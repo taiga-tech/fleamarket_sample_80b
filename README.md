@@ -6,47 +6,47 @@
 |password|string|null: false|
 |name|string|null: false|
 ### Association
-- has_many :auctions
-- has_many :purchases   
+- has_many :sells
+- has_many :buys
 
-## auctionsテーブル
+## sellsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|title|text|null: false| 
-|price|integer|null: false| 
+|title|text|null: false|
+|price|integer|null: false|
 |image|string|null: false|
-|text|text|null: false| 
+|text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- has_many :purchases
-- has_many :auctions_categories
-- has_many :categories,  through:  :actions_categories
+- has_many :buys
+- has_many :sell_categories
+- has_many :categories,  through:  :sell_categories
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
 ### Association
-- has_many :auctions_categories
-- has_many :auctions,  through:  :auctions_categories
-## auctions_categoriesテーブル
+- has_many :sell_categories
+- has_many :sells,  through:  :sell_categories
+## sell_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|auction_id|integer|null: false, foreign_key: true|
+|sell_id|integer|null: false, foreign_key: true|
 |category_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :auction
-- belongs_to :category 
+- belongs_to :sell
+- belongs_to :category
 - belongs_to :purchase
-## purchasesテーブル
+## buysテーブル
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false| 
-|price|integer 
+|text|text|null: false|
+|price|integer
 |user_id|integer|null: false, foreign_key: true|
-|auction_id|integer|null: false, foreign_key: true|
+|sell_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :auction 
-- belongs_to :user  
-- has_many :auctions_categories
-- has_many  :categories,  through:  :actions_categories
+- belongs_to :sell
+- belongs_to :user
+- has_many :sell_categories
+- has_many  :categories,  through:  :sell_categories
