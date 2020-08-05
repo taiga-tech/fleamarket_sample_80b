@@ -8,6 +8,7 @@
 ### Association
 - has_many :sells
 - has_many :buys
+
 - has_one :address
 
 ## sellsテーブル(出品)
@@ -28,6 +29,22 @@
 - has_many :sell_categories
 - has_many :categories,  through:  :sell_categories
 
+=======
+
+## sellsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|title|text|null: false|
+|price|integer|null: false|
+|image|string|null: false|
+|text|text|null: false|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- has_many :buys
+- has_many :sell_categories
+- has_many :categories,  through:  :sell_categories
+
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
@@ -36,10 +53,13 @@
 - has_many :sell_categories
 - has_many :sells,  through:  :sell_categories
 
+
+=======
 ## sell_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |sell_id|integer|null: false, foreign_key: true|
+
 |category_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :sell
@@ -78,3 +98,22 @@
 |user_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
+
+|category_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :sell
+- belongs_to :category
+- belongs_to :purchase
+## buysテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|price|integer
+|user_id|integer|null: false, foreign_key: true|
+|sell_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :sell
+- belongs_to :user
+- has_many :sell_categories
+- has_many  :categories,  through:  :sell_categories
+
