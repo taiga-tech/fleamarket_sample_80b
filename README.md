@@ -17,9 +17,9 @@
 |Column|Type|Options|
 |------|----|-------|
 |title|string|null: false|
-|price|integer|null: false| 
+|price|integer|null: false|
 |image|string|null: false|
-|text|text|null: false| 
+|text|text|null: false|
 |brand|string|null: false|
 |condition|string|null: false|
 |user_id|reference|null: false, foreign_key: true|
@@ -76,19 +76,19 @@
 |category_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :sell
-- belongs_to :category 
+- belongs_to :category
 - belongs_to :buy
 
 ## buysテーブル(購入)
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false| 
-|price|integer 
+|text|text|null: false|
+|price|integer
 |user_id|reference|null: false, foreign_key: true|
 |sell_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :sell 
-- belongs_to :user  
+- belongs_to :sell
+- belongs_to :user
 - has_many :sell_categories
 - has_many  :categories,  through:  :sell_categories
 
