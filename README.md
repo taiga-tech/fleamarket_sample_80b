@@ -2,51 +2,79 @@
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
+|name|string|null: false|
 |email|string|null: false|
 |password|string|null: false|
-|name|string|null: false|
 ### Association
-- has_many :auctions
-- has_many :purchases   
+- has_many :sells
+- has_many :buys
+- has_one :address
 
-## auctionsテーブル
+## sellsテーブル(出品)
 |Column|Type|Options|
 |------|----|-------|
-|title|text|null: false| 
+|title|string|null: false|
 |price|integer|null: false| 
 |image|string|null: false|
 |text|text|null: false| 
-|user_id|integer|null: false, foreign_key: true|
+|brand|string|null: false|
+|condition|string|null: false|
+|user_id|reference|null: false, foreign_key: true|
+|delivery_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
-- has_many :purchases
-- has_many :auctions_categories
-- has_many :categories,  through:  :actions_categories
+- belongs_to :delivery
+- has_many :buys
+- has_many :sell_categories
+- has_many :categories,  through:  :sell_categories
+
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false|
+|name|string|null: false|
 ### Association
-- has_many :auctions_categories
-- has_many :auctions,  through:  :auctions_categories
-## auctions_categoriesテーブル
+- has_many :sell_categories
+- has_many :sells,  through:  :sell_categories
+
+## sell_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|auction_id|integer|null: false, foreign_key: true|
-|category_id|integer|null: false, foreign_key: true|
+|sell_id|integer|null: false, foreign_key: true|
+|category_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :auction
+- belongs_to :sell
 - belongs_to :category 
-- belongs_to :purchase
-## purchasesテーブル
+- belongs_to :buy
+
+## buysテーブル(購入)
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false| 
 |price|integer 
-|user_id|integer|null: false, foreign_key: true|
-|auction_id|integer|null: false, foreign_key: true|
+|user_id|reference|null: false, foreign_key: true|
+|sell_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :auction 
+- belongs_to :sell 
 - belongs_to :user  
-- has_many :auctions_categories
-- has_many  :categories,  through:  :actions_categories
+- has_many :sell_categories
+- has_many  :categories,  through:  :sell_categories
+
+## deliveriesテーブル(配送関係)
+|Column|Type|Options|
+|------|----|-------|
+|area|string|null: false|
+|price|integer|null: false|
+|leadtime|integer|null: false|
+### Association
+- has_many :sells
+
+## addressesテーブル(住所)
+|Column|Type|Options|
+|------|----|-------|
+|zipcode|integer|null: false|
+|area|string|null: false|
+|city|string|null: false|
+|street|text|null: false|
+|user_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :user
