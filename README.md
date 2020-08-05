@@ -37,7 +37,7 @@
 ### Association
 - belongs_to :sell
 - belongs_to :category
-- belongs_to :purchase
+- belongs_to :buy
 ## buysテーブル
 |Column|Type|Options|
 |------|----|-------|
