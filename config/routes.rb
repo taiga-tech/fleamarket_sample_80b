@@ -1,7 +1,3 @@
-Rails.application.routes.draw do
-# before
-get 'items/index'
-
-# after
-root 'items#index'
+Rails.application.routes.draw do 
+  root "sells#index"
 end
