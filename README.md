@@ -1,24 +1,119 @@
-# README
+# フリマ DB設計
+## usersテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+|email|string|null: false|
+|password|string|null: false|
+### Association
+- has_many :sells
+- has_many :buys
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- has_one :address
 
-Things you may want to cover:
+## sellsテーブル(出品)
+|Column|Type|Options|
+|------|----|-------|
+|title|string|null: false|
+|price|integer|null: false| 
+|image|string|null: false|
+|text|text|null: false| 
+|brand|string|null: false|
+|condition|string|null: false|
+|user_id|reference|null: false, foreign_key: true|
+|delivery_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :delivery
+- has_many :buys
+- has_many :sell_categories
+- has_many :categories,  through:  :sell_categories
 
-* Ruby version
+=======
 
-* System dependencies
+## sellsテーブル
+|Column|Type|Options|
+|------|----|-------|
+|title|text|null: false|
+|price|integer|null: false|
+|image|string|null: false|
+|text|text|null: false|
+|user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- has_many :buys
+- has_many :sell_categories
+- has_many :categories,  through:  :sell_categories
 
-* Configuration
+## categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|name|string|null: false|
+### Association
+- has_many :sell_categories
+- has_many :sells,  through:  :sell_categories
 
-* Database creation
 
-* Database initialization
+=======
+## sell_categoriesテーブル
+|Column|Type|Options|
+|------|----|-------|
+|sell_id|integer|null: false, foreign_key: true|
 
-* How to run the test suite
+|category_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :sell
+- belongs_to :category 
+- belongs_to :buy
 
-* Services (job queues, cache servers, search engines, etc.)
+## buysテーブル(購入)
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false| 
+|price|integer 
+|user_id|reference|null: false, foreign_key: true|
+|sell_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :sell 
+- belongs_to :user  
+- has_many :sell_categories
+- has_many  :categories,  through:  :sell_categories
 
-* Deployment instructions
+## deliveriesテーブル(配送関係)
+|Column|Type|Options|
+|------|----|-------|
+|area|string|null: false|
+|price|integer|null: false|
+|leadtime|integer|null: false|
+### Association
+- has_many :sells
 
-* ...
+## addressesテーブル(住所)
+|Column|Type|Options|
+|------|----|-------|
+|zipcode|integer|null: false|
+|area|string|null: false|
+|city|string|null: false|
+|street|text|null: false|
+|user_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+
+|category_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :sell
+- belongs_to :category
+- belongs_to :purchase
+## buysテーブル
+|Column|Type|Options|
+|------|----|-------|
+|text|text|null: false|
+|price|integer
+|user_id|integer|null: false, foreign_key: true|
+|sell_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :sell
+- belongs_to :user
+- has_many :sell_categories
+- has_many  :categories,  through:  :sell_categories
+
