@@ -6,16 +6,15 @@
 |email|string|null: false|
 |password|string|null: false|
 ### Association
-- has_many :sells
+- has_many :items
 - has_many :buys
 - has_one :address
 
-## sellsテーブル(出品)
+## itemsテーブル(商品)
 |Column|Type|Options|
 |------|----|-------|
 |title|string|null: false|
 |price|integer|null: false| 
-|image|string|null: false|
 |text|text|null: false| 
 |brand|string|null: false|
 |condition|string|null: false|
@@ -25,24 +24,25 @@
 - belongs_to :user
 - belongs_to :delivery
 - has_many :buys
-- has_many :sell_categories
-- has_many :categories,  through:  :sell_categories
+- has_many :images
+- has_many :item_categories
+- has_many :categories,  through:  :item_categories
 
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- has_many :sell_categories
-- has_many :sells,  through:  :sell_categories
+- has_many :item_categories
+- has_many :items,  through:  :item_categories
 
-## sell_categoriesテーブル
+## item_categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|sell_id|integer|null: false, foreign_key: true|
+|item_id|integer|null: false, foreign_key: true|
 |category_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :sell
+- belongs_to :item
 - belongs_to :category 
 - belongs_to :buy
 
@@ -52,12 +52,12 @@
 |text|text|null: false| 
 |price|integer 
 |user_id|reference|null: false, foreign_key: true|
-|sell_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :sell 
+- belongs_to :item 
 - belongs_to :user  
-- has_many :sell_categories
-- has_many  :categories,  through:  :sell_categories
+- has_many :item_categories
+- has_many  :categories,  through:  :item_categories
 
 ## deliveriesテーブル(配送関係)
 |Column|Type|Options|
@@ -66,7 +66,7 @@
 |price|integer|null: false|
 |leadtime|integer|null: false|
 ### Association
-- has_many :sells
+- has_many :items
 
 ## addressesテーブル(住所)
 |Column|Type|Options|
@@ -79,4 +79,11 @@
 ### Association
 - belongs_to :user
 
+## imagesテーブル(商品画像)
+|Column|Type|Options|
+|------|----|-------|
+|image|string|null: false|
+|items_id|reference|null: false, foreign_key: true|
+### Association
+- belongs_to :item
 
