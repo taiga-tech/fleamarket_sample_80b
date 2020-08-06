@@ -7,6 +7,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :stock
       t.string :brand
       t.string :condition
+      t.references :category, foreign_key: true
       t.timestamps
     end
   end
