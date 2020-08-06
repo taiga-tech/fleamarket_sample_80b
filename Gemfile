@@ -68,3 +68,6 @@ end
 group :production do
   gem 'unicorn'
 end
+
+# Haml導入:kake(8/6)
+gem "haml-rails", ">= 1.0", '<= 2.0.1'
