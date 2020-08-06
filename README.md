@@ -45,8 +45,7 @@
 |item_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :item 
-- belongs_to :user  
-- has_many  :categories
+- belongs_to :user
 
 ## deliveriesテーブル(配送関係)
 |Column|Type|Options|
