@@ -14,8 +14,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |title|string|null: false|
-|price|integer|null: false| 
-|text|text|null: false| 
+|price|integer|null: false|
+|text|text|null: false|
 |brand|string|null: false|
 |condition|string|null: false|
 |user_id|reference|null: false, foreign_key: true|
@@ -39,12 +39,12 @@
 ## buysテーブル(購入)
 |Column|Type|Options|
 |------|----|-------|
-|text|text|null: false| 
-|price|integer 
+|text|text|null: false|
+|price|integer
 |user_id|reference|null: false, foreign_key: true|
 |item_id|reference|null: false, foreign_key: true|
 ### Association
-- belongs_to :item 
+- belongs_to :item
 - belongs_to :user
 
 ## deliveriesテーブル(配送関係)
@@ -74,4 +74,3 @@
 |item_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :item
-

@@ -69,9 +69,13 @@ group :production do
   gem 'unicorn'
 end
 
+
 # Haml導入:kake(8/6)
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
 
 # carrierwave導入:kake(8/6)
 gem 'carrierwave'
 gem 'mini_magick'
+
+# ユーザ
+gem 'devise'
