@@ -1,0 +1,22 @@
+.main
+  ●●●メインページ
+  .main__box
+    ●●
+    .main__box--textBox
+      ●アプリ紹介(以下は指定サンプルよりあくまで例)
+      .main__box--textBox--content1
+        アプリに関して①（紹介）
+      .main__box--textBox--content2
+        アプリに関して②（ダウンロードの仕方）
+      .main__box--textBox--content3
+        アプリに関して③（アプリ特徴）
+    .main__box--itemBox
+      ●商品
+      .main__box--itemBox--index
+        - @items.each do |item|
+          価格:
+          = item.price
+          商品名:
+          = item.title
+      .main__box--itemBox--archive
+        アーカイブ？
