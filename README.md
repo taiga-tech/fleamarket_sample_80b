@@ -20,13 +20,14 @@
 |condition|string|null: false|
 |user_id|reference|null: false, foreign_key: true|
 |delivery_id|reference|null: false, foreign_key: true|
+|category_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :user
 - belongs_to :delivery
+- belongs_to :category
 - has_many :buys
 - has_many :images
 - has_many :item_categories
-- has_many :categories,  through:  :item_categories
 
 ## categoriesテーブル
 |Column|Type|Options|
@@ -83,7 +84,7 @@
 |Column|Type|Options|
 |------|----|-------|
 |image|string|null: false|
-|items_id|reference|null: false, foreign_key: true|
+|item_id|reference|null: false, foreign_key: true|
 ### Association
 - belongs_to :item
 
