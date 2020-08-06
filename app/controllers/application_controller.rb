@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
       username == Rails.application.credentials[:basic_auth][:user] &&
       password == Rails.application.credentials[:basic_auth][:pass]
     end
-  end  
+  end 
 
   # if: :production?を追加
   before_action :basic_auth, if: :production?
@@ -18,4 +18,4 @@ private
 def production?
   Rails.env.production?
 end
-end 
+end
