@@ -1,1 +1,21 @@
 .header
+  ●●●ヘッダー
+  .header__headerBox
+    .header__headerBox--appIcon
+      = link_to "●●アイコン" , "#", class: "iconBtn"
+    .header__headerBox--searchBox
+      .header__headerBox--searchBox--formBox
+        = form_with model: @item, class: "Form", local: true do |f|
+          = f.text_field :content, class: "Form__input", placeholder: "キーワードから探す"
+          = f.submit "検索", class: "Form__submit"
+    .header__headerBox--various
+      %ul.focus
+        %li.forcus__category
+          = link_to "カテゴリー", "#", class: "cateBtn"
+        %li.forcus__brand
+          = link_to "ブランド", "#", class: "brandBtn"
+      %ul.log
+        %li.log__login
+          = link_to "ログイン", "#", class: "loginBtn"
+        %li.log__signIn
+          = link_to "新規登録", "#", class: "signinBtn"
