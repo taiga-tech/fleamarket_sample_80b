@@ -8,6 +8,20 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    = yield
     = render partial: 'layouts/header'
+    - if flash[:notice]
+      .notification.is-info
+        %p.notice= notice
+    - if flash[:alert]
+      .notification.is-danger
+        %p.alert= alert
+    - if user_signed_in?
+      %h2 ログインしてください♪
+      = link_to "ログアウト", destroy_user_session_path, method: :delete
+    - else
+      %h2 ログインしていません♪
+      = link_to "新規登録", new_user_registration_path
+      = link_to "ログイン", new_user_session_path
+
+    = yield
     = render partial: 'layouts/header'
