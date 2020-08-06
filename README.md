@@ -27,25 +27,14 @@
 - belongs_to :category
 - has_many :buys
 - has_many :images
-- has_many :item_categories
 
 ## categoriesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string|null: false|
 ### Association
-- has_many :item_categories
-- has_many :items,  through:  :item_categories
+- has_many :items
 
-## item_categoriesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|item_id|integer|null: false, foreign_key: true|
-|category_id|reference|null: false, foreign_key: true|
-### Association
-- belongs_to :item
-- belongs_to :category 
-- belongs_to :buy
 
 ## buysテーブル(購入)
 |Column|Type|Options|
@@ -57,8 +46,7 @@
 ### Association
 - belongs_to :item 
 - belongs_to :user  
-- has_many :item_categories
-- has_many  :categories,  through:  :item_categories
+- has_many  :categories
 
 ## deliveriesテーブル(配送関係)
 |Column|Type|Options|
