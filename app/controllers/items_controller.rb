@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   end
   
   def show  
-    @items = Item.all
+    @items = Item.find(params[:id])
   end 
   
   #商品出品
