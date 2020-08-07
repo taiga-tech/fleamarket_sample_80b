@@ -3,16 +3,44 @@
   .main__box
     ●●
     .main__box--textBox
-      ●アプリ紹介(以下は指定サンプルよりあくまで例)
+      .main__box--textBox--content0
+        .main__box--textBox--content0--contentBox
+          .main__box--textBox--content0--contentBox--text1
+            .main__box--textBox--content0--contentBox--text1--text2
+              人生を変えるフリマアプリ
+          .main__box--textBox--content0--contentBox--text3
+            FURIMAはだれでもかんたんに出品・購入できる
+            %br
+            フリマアプリです
       .main__box--textBox--content1
-        アプリに関して①（紹介）
+        .main__box--textBox--content1--introBox
+          FURIMAが選ばれる3つの理由
+        %ul.introduction
+          %li.introduction__reason1
+            .introduction__reason1--image1
+            .introduction__reason1--text1
+              3分ですぐに出品
+            .introduction__reason1--comment1
+              スマホで入力するだけで簡単に出品できる！
+          %li.introduction__reason2
+            .introduction__reason2--image2
+            .introduction__reason2--text2
+              シンプルで使いやすい
+            .introduction__reason2--comment2
+              めんどくさい入力は必要なく、検索も購入もスムーズ！
+          %li.introduction__reason3
+            .introduction__reason3--image3
+            .introduction__reason3--text3
+              手数料業界最安
+            .introduction__reason3--comment3
+              最大3%でお得に出品&購入！
       .main__box--textBox--content2
         アプリに関して②（ダウンロードの仕方）
       .main__box--textBox--content3
         アプリに関して③（アプリ特徴）
     .main__box--itemBox
-      ●商品
       .main__box--itemBox--itemIndex
+        商品一覧
         .main__box--itemBox--itemIndex--item
           - @items.each do |item, image|
             - if item.stock == 0
@@ -36,3 +64,5 @@
                   = item.title
       .main__box--itemBox--archive
         アーカイブ？
+    .main__box--download
+      今すぐ無料ダウンロード
