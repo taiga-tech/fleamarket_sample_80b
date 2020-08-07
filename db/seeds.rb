@@ -8,5 +8,4 @@
 
 # Item.create(id:1, title:"macbook", price:100000, text:"中古です。", stock:1, brand:"apple", condition:"新品に近い")
 
-Item.create(title: "test1", price: 400, text: "test2", stock: 2, brand: "test3", condition: "test4", user_id: 1, delivery_id: 1, category_id: 1) 
-
+Item.create!(title: "test1", price: 400, text: "test2", stock: 2, brand: "test3", condition: "test4", user_id: 1, delivery_id: 1, category_id: 1) 
