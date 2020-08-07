@@ -15,15 +15,15 @@
       .main__box--itemBox--itemIndex
         .main__box--itemBox--itemIndex--item
           - @items.each do |item, image|
-              %ul.item_status
-                %li.item_status__stock
-                  SOLD
-                %li.item_status__price
-                  価格:
-                  = item.price
-                %li.item_status__title
-                  商品名:
-                  = link_to item.title, item_path(item)
+            %ul.item_status
+              %li.item_status__stock
+                SOLD
+              %li.item_status__price
+                価格:
+                = item.price
+              %li.item_status__title
+                商品名:
+                = link_to item.title, item_path(item)
 
 
   -# .main__box--itemBox--itemIndex
