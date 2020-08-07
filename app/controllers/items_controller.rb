@@ -3,6 +3,10 @@ class ItemsController < ApplicationController
     @items = Item.all
   end
   
+  def show  
+    @items = Item.all
+  end 
+  
   #商品出品
   def new
     @item = Item.new
@@ -59,3 +63,4 @@ class ItemsController < ApplicationController
   end
   
 end
+
