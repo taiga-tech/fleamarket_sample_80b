@@ -53,7 +53,7 @@
               %li.item_status__title
                 商品名:
                 = link_to item.title, item_path(item)
-            - else
+              -# - else
               -# = image_tag image.image.url, class: "item_image" if image.image.present?
               %ul.item_status
                 %li.item_status__price
