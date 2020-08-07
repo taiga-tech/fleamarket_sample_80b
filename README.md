@@ -16,6 +16,7 @@
 |title|string|null: false|
 |price|integer|null: false|
 |text|text|null: false|
+|stock|integer|null: false|
 |brand|string|null: false|
 |condition|string|null: false|
 |user_id|reference|null: false, foreign_key: true|
