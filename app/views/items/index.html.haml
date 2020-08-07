@@ -42,17 +42,17 @@
       .main__box--itemBox--itemIndex
         商品一覧
         .main__box--itemBox--itemIndex--item
-          - @items.each do |item, image|
-            - if item.stock == 0
-              %ul.item_status
-                %li.item_status__stock
-                  SOLD
-                %li.item_status__price
-                  価格:
-                  = item.price
-                %li.item_status__title
-                  商品名:
-                  = item.title
+
+          - @items.each do |item|
+            %ul.item_status
+              %li.item_status__stock
+                SOLD
+              %li.item_status__price
+                価格:
+                = item.price
+              %li.item_status__title
+                商品名:
+                = link_to item.title, item_path(item)
             - else
               -# = image_tag image.image.url, class: "item_image" if image.image.present?
               %ul.item_status
@@ -66,3 +66,30 @@
         アーカイブ？
     .main__box--download
       今すぐ無料ダウンロード
+
+
+  -# .main__box--itemBox--itemIndex
+  -#       .main__box--itemBox--itemIndex--item
+  -#         - @items.each do |item, image|
+  -#           - if item.stock == 0
+  -#             %ul.item_status
+  -#               %li.item_status__stock
+  -#                 SOLD
+  -#               %li.item_status__price
+  -#                 価格:
+  -#                 = item.price
+  -#               %li.item_status__title
+  -#                 商品名:
+  -#                 = item.title
+  -#           - else
+  -#             -# = image_tag image.image.url, class: "item_image" if image.image.present?
+  -#             %ul.item_status
+  -#               %li.item_status__price
+  -#                 価格:
+  -#                 = item.price
+  -#               %li.item_status__title
+  -#                 商品名:
+  -#                 = item.title
+  -#     .main__box--itemBox--archive
+  -#       アーカイブ？
+
