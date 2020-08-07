@@ -19,6 +19,7 @@
 |stock|integer|null: false|
 |brand|string|null: false|
 |condition|string|null: false|
+|leadtime|integer|null: false|
 |user_id|reference|null: false, foreign_key: true|
 |delivery_id|reference|null: false, foreign_key: true|
 |category_id|reference|null: false, foreign_key: true|
@@ -51,9 +52,9 @@
 ## deliveriesテーブル(配送関係)
 |Column|Type|Options|
 |------|----|-------|
-|area|string|null: false|
+|name|string|null: false|
+|size|string|null: false|
 |price|integer|null: false|
-|leadtime|integer|null: false|
 ### Association
 - has_many :items
 

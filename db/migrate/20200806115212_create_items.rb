@@ -6,7 +6,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.text        :text
       t.integer     :stock      
       t.string      :brand
-      t.string      :condition  
+      t.string      :condition,  null: false
+      t.integer     :leadtime,   null: false
       t.references  :category,   foreign_key: true
       t.references  :user,       foreign_key: true
       t.references  :delivery,   foreign_key: true
