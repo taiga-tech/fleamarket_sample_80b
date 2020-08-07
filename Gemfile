@@ -77,5 +77,8 @@ gem "haml-rails", ">= 1.0", '<= 2.0.1'
 gem 'carrierwave'
 gem 'mini_magick'
 
-# ユーザ
+# ユーザ(8/6)
 gem 'devise'
+
+# jquery追加(8/7)
+gem 'jquery-rails'
