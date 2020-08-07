@@ -1,7 +1,8 @@
 .card
   .card-title
     %h1.text-center
-      %span.card-text タイトル: @item.title
+      %span.card-text タイトル: 
+      = @item.title
     %h1.text-center  
       %span.card-text 画像: 画像
     %h1.text-center  
@@ -21,10 +22,10 @@
         %td 作業着 
       %tr  
         %th ブランド
-        %td @item.brand 
+        %td= @item.brand 
       %tr   
         %th 商品の状態
-        %td @item.condition
+        %td= @item.condition
       %tr   
         %th 配送元の地域 
         %td 東京 
