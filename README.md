@@ -52,6 +52,7 @@
 ## deliveriesテーブル(配送関係)
 |Column|Type|Options|
 |------|----|-------|
+|nane|string|null: false|
 |size|string|null: false|
 |price|integer|null: false|
 ### Association
