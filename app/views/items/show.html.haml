@@ -5,9 +5,11 @@
     %h1.text-center  
       %span.card-text 画像: 画像
     %h1.text-center  
-      %span.card-text @item.price(税込) 
+      %span.card-text 
+      = @item.price
     %h1.text-center  
-      %span.card-text @item.text 
+      %span.card-text 
+      = @item.text 
 
   .card-table  
     %table{:border => 1, :width => "50%"}
