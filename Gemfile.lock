@@ -316,8 +316,8 @@ DEPENDENCIES
   capistrano-rbenv
   capistrano3-unicorn
   capybara (>= 2.15)
-  devise
   carrierwave
+  devise
   fog-aws
   haml-rails (>= 1.0, <= 2.0.1)
   jbuilder (~> 2.7)
