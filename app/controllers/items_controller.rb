@@ -2,17 +2,17 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
   end
-  
-  def show  
+
+  def show
     @items = Item.all
-  end 
-  
+  end
+
   #商品出品
   def new
     @item = Item.new
     @item.images.new
   end
-  
+
   #商品情報
   def create
     @item = Item.new(item_params)
@@ -21,11 +21,11 @@ class ItemsController < ApplicationController
     # render :new
   # end
   end
-  
+
   #商品編集
   def edit
   end
-  
+
   #商品あげるやつ
   def update
     # if @item.update(product_params)
@@ -61,6 +61,6 @@ class ItemsController < ApplicationController
   def set_product
     @item = Item.find(params[:id])
   end
-  
+
 end
 
