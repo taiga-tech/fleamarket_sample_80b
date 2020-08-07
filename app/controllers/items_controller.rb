@@ -1,5 +1,8 @@
 class ItemsController < ApplicationController
   def index
     @items = Item.all
-  end
+  end 
+  def show  
+    @items = Item.all
+  end 
 end
