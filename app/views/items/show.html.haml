@@ -12,7 +12,22 @@
       %span.card-supplement  
     %p.text-center  
       %span.card-text
-      = @item.text 
+      = @item.text  
+  .card-comment  
+    - if @item.buys.any?  
+      %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
+        %tr
+          %th 名前
+          %td コメント 
+          %th
+      - @item.buys.each do |buy| 
+        %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"} 
+          %tr
+            %th 石井
+            %td=buy.text 
+            %th= link_to "削除", item_buy_path(@item, buy), method: :delete, data: { confirm: "本当に削除しますか？" }
+    - else 
+      まだ取引はありません 
 
   .card-table  
     %table{:border => 1, :width => "50%"}
@@ -45,7 +60,9 @@
       %span.left-info ★ お気に入り ８
       %span.right-info 🏴不適切な商品の通報  
 .form 
-  = form_with model: @item, local: true do |f| 
+  = form_with model: [@item, @buy], local: true do |f|  
+    = f.hidden_field :item_id, { value: @item.id} 
+    = f.hidden_field :price, { value: 1234 } 
     = f.text_area :text, class: "form-area" 
     %p.text-waring  
       %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。 

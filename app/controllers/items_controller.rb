@@ -4,22 +4,24 @@ class ItemsController < ApplicationController
   end
   
   def show  
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id]) 
+    @buy = Buy.new 
   end 
   
   #商品出品
   def new
     @item = Item.new
-    @item.images.new
+    # @item.images.new 
   end
   
   #商品情報
   def create
     @item = Item.new(item_params)
-  # if @item.save
-  # else
-    # render :new
-  # end
+  if @item.save 
+    redirect_to root_path
+  else
+    render :new
+  end
   end
   
   #商品編集
@@ -43,7 +45,7 @@ class ItemsController < ApplicationController
 
   #ストロングパラメーター
   private
-  def product_params
+  def item_params
     params.require(:item).permit(
       :title,
       :price,
