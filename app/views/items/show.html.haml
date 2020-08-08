@@ -1,15 +1,17 @@
 .card
   .card-title
     %h1.text-center
-      %span.card-text タイトル: 
+      %span.card-text 
       = @item.title
-    %h1.text-center  
-      %span.card-text 画像: 画像
-    %h1.text-center  
-      %span.card-text 
-      = @item.price
-    %h1.text-center  
-      %span.card-text 
+    %p.text-center  
+      %span.card-text 画像
+    %h4.text-center  
+      %span.card-text ¥ 
+      = @item.price  
+    %p.text-center  
+      %span.card-supplement  
+    %p.text-center  
+      %span.card-text
       = @item.text 
 
   .card-table  
@@ -27,11 +29,26 @@
         %th 商品の状態
         %td= @item.condition
       %tr   
+        %th 配送料の負担 
+        %td 送料込み(出品者負担)  
+      %tr   
         %th 配送元の地域 
         %td 東京 
-
-
+      %tr   
+        %th 配送目安 
+        %td 1-2日で発送 
+      %tr   
+        %th メニュー
+        %td [編集][削除]
+  .card-information 
+    %h4.info 
+      %span.left-info ★ お気に入り ８
+      %span.right-info 🏴不適切な商品の通報  
 .form 
   = form_with model: @item, local: true do |f| 
     = f.text_area :text, class: "form-area" 
-    = f.submit "コメントする", class: "submit"
+    %p.text-waring  
+      %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。 
+      %br 
+      %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。
+    = f.submit "💬コメントする", class: "submit"
