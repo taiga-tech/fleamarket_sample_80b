@@ -13,13 +13,14 @@ class ItemsController < ApplicationController
     if current_user
       @item = Item.new
       # @item.images.new
+    else
+      redirect_to root_path
     end
   end
 
   #商品情報
   def create
     @item = Item.new(item_params)
-    # binding.pry
     if @item.save
       redirect_to root_path
     else

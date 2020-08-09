@@ -46,7 +46,7 @@
           - @items.each do |item|
             %ul.item_status
               %li.item_status__stock
-                SOLD
+                = "在庫#{item.stock}" #ここは条件分岐在庫の有無を表示する
               %li.item_status__price
                 価格:
                 = item.price

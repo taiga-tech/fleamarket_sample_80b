@@ -91,7 +91,7 @@
 
   .form-group
     = f.label :derivery_id do
-      配送手順
+      配送方法
     = f.collection_select :delivery_id, Delivery.all, :id, :name
 
   .form-group

@@ -1,72 +1,72 @@
 .card
   .card-title
     %h1.text-center
-      %span.card-text 
-      = @item.title
-    %p.text-center  
-      %span.card-text 画像
-    %h4.text-center  
-      %span.card-text ¥ 
-      = @item.price  
-    %p.text-center  
-      %span.card-supplement  
-    %p.text-center  
       %span.card-text
-      = @item.text  
-  .card-comment  
-    - if @item.comments.any?  
+      = @item.title
+    %p.text-center
+      %span.card-text 画像
+    %h4.text-center
+      %span.card-text ¥
+      = @item.price
+    %p.text-center
+      %span.card-supplement
+    %p.text-center
+      %span.card-text
+      = @item.text
+  .card-comment
+    - if @item.comments.any?
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
           %th 名前
-          %td コメント 
+          %td コメント
           %th
-      - @item.comments.each do |comment| 
-        %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"} 
+      - @item.comments.each do |comment|
+        %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
           %tr
-            %th 石井 
-            %td=comment.text 
+            %th= comment.user.name
+            %td=comment.text
             %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
-    - else 
-      まだ取引はありません 
-  .card-cash 
-    %h1.cash-cash= link_to "購入手続きへ", buys_new_path 
-  .card-table  
+    - else
+      まだ取引はありません
+  .card-cash
+    %h1.cash-cash= link_to "購入手続きへ", buys_new_path
+  .card-table
     %table{:border => 1, :width => "50%"}
       %tr
         %th 出品者
-        %td 石井
-      %tr  
+        %td= @item.user.name
+      %tr
         %th カテゴリー
-        %td 作業着 
-      %tr  
+        %td= @item.category.name
+      %tr
         %th ブランド
-        %td= @item.brand 
-      %tr   
+        %td= @item.brand
+      %tr
         %th 商品の状態
         %td= @item.condition
-      %tr   
-        %th 配送料の負担 
-        %td 送料込み(出品者負担)  
-      %tr   
-        %th 配送元の地域 
-        %td 東京 
-      %tr   
-        %th 配送目安 
-        %td 1-2日で発送 
-      %tr   
+      %tr
+        %th 配送料の負担
+        %td 送料込み(出品者負担)
+      %tr
+        %th 配送元の地域
+        %td 東京
+      %tr
+        %th 配送目安
+        %td=  "#{@item.leadtime}日で発送"
+      %tr
         %th メニュー
         %td [編集][削除]
-  .card-information 
-    %h4.info 
+  .card-information
+    %h4.info
       %span.left-info ★ お気に入り ８
-      %span.right-info 🏴不適切な商品の通報  
-.form 
-  = form_with model: [@item, @comment], local: true do |f|  
-    = f.hidden_field :item_id, { value: @item.id}  
+      %span.right-info 🏴不適切な商品の通報
+.form
+  = form_with model: [@item, @comment], local: true do |f|
+    = f.hidden_field :item_id, { value: @item.id}
     = f.hidden_field :user_id, { value: 1 }
-    = f.text_area :text, class: "form-area" 
-    %p.text-waring  
-      %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。 
-      %br 
+    = f.text_area :text, class: "form-area"
+    %p.text-waring
+      %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
+      %br
       %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。
     = f.submit "💬コメントする", class: "submit"
