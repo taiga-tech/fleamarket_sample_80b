@@ -4,13 +4,14 @@ class ItemsController < ApplicationController
   end
   
   def show  
-    @items = Item.all
+    @item = Item.find(params[:id]) 
+    @comment = Comment.new 
   end 
   
   #商品出品
   def new
     @item = Item.new
-    @item.images.new
+    # @item.images.new 
   end
   
   #商品情報

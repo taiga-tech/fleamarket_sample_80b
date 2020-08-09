@@ -1,0 +1,168 @@
+// Place all the styles related to the items controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+// メインページ
+.main {
+  &__box {
+    &--textBox {
+      // トップ画像
+      &--content0 {
+        background-image: url("/assets/bg-mainVisual-pict_pc.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: top center;
+        height: 560px;
+        width: 100%;
+        padding: 20px 50px;
+        display: flex;
+        align-items: center;
+        &--contentBox {
+          height: 450px;
+          // 人生を変えるフリマアプリ
+          &--text1 {
+            height: 200px;
+            margin-top: 100px;
+            font-size: 60px;
+            color: white;
+            text-shadow: 0 0 5px rgba(0,0,0,0.4);
+            &--text2 {
+            }
+          }
+          // FURIMAはだれでも〜
+          &--text3 {
+            height: 100px;
+            margin-top: 10px;
+            font-size: 18px;
+            color: white;
+            text-shadow: 0 0 5px rgba(0,0,0,0.4);
+          }
+        }
+      }
+      // アプリに関して
+      &--content1 {
+        height: 800px;
+        width: 100%;
+        padding: 20px;
+        //  FURIMAが選ばれる3つの理由
+        &--introBox {
+          height: 100px;
+          text-align: center;
+          padding-top: 50px;
+          margin-bottom: 40px;
+          font-size: 26px;
+          font-weight: bold;
+        }
+        // 3項目（横並び）
+        .introduction {
+          height: calc(800px - 100px);
+          display: flex;
+          justify-content: space-around;
+          // ①
+          &__reason1  {
+            width: 28%;
+            // 画像①
+            &--image1 {
+              background-image: url("/assets/pict-reason-01.jpg");
+              background-size: cover;
+              height: 330px;
+            }
+            // 3分ですぐに出品
+            &--text1 {
+              margin-top: 25px;
+              font-size: 26px;
+              font-weight: bold;
+              text-align: center;
+            }
+            // スマホで入力するだけで〜
+            &--comment1 {
+              height: 150px;
+              text-align: center;
+              margin-top: 25px;
+              font-size: 18px;
+            }
+          }
+          // ②
+          &__reason2  {
+            width: 28%;
+            // 画像②
+            &--image2 {
+              background-image: url("/assets/pict-reason-02.jpg");
+              background-size: cover;
+              height: 330px;
+            }
+            // シンプルで使いやすい
+            &--text2 {
+              margin-top: 25px;
+              font-size: 26px;
+              font-weight: bold;
+              text-align: center;
+            }
+            // めんどくさい入力は〜
+            &--comment2 {
+              height: 150px;
+              text-align: center;
+              margin-top: 25px;
+              font-size: 18px;
+            }
+          }
+          // ③
+          &__reason3  {
+            width: 28%;
+            // 画像③
+            &--image3 {
+              background-image: url("/assets/pict-reason-03.jpg");
+              background-size: cover;
+              height: 330px;
+            }
+            // 手数料業界最安
+            &--text3 {
+              margin-top: 25px;
+              font-size: 26px;
+              font-weight: bold;
+              text-align: center;
+            }
+            // 最大3%でお得に出品&購入！
+            &--comment3 {
+              height: 150px;
+              text-align: center;
+              margin-top: 25px;
+              font-size: 18px;
+            }
+          }
+        }
+      }
+      // 会員数日本一
+      &--content2 {
+        height: 560px;
+        background-color: blue;
+      }
+      // アプリの特徴
+      &--content3 {
+        height: 560px;
+        background-color: green;
+      }
+    }
+    // 商品一覧
+    &--itemBox {
+      &--itemIndex {
+        height: 500px;
+        background-color: burlywood;
+      }
+      // アーカイバ
+      &--archive {
+        height: 500px;
+        background-color: yellowgreen;
+      }
+    }
+    // 今すぐ無料ダウンロード
+    &--download {
+      height: 400px;
+      background-color: orange;
+    }
+  }
+}
