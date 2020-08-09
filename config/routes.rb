@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'buys/new'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   root "items#index"
   resources :items, only: [:index, :show] do 
     resources :comments, only: [:create, :destroy]
-  end 
+  end  
+  resources :new, only: :new 
 end
