@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
   
   def show  
     @item = Item.find(params[:id]) 
-    @buy = Buy.new 
+    @comment = Comment.new 
   end 
   
   #商品出品

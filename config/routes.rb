@@ -9,6 +9,6 @@ Rails.application.routes.draw do
 
   root "items#index"
   resources :items, only: [:index, :show] do 
-    resources :buys, only: [:create, :destroy]
+    resources :comments, only: [:create, :destroy]
   end 
 end
