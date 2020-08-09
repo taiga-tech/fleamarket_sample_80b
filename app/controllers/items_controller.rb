@@ -10,8 +10,10 @@ class ItemsController < ApplicationController
 
   #商品出品
   def new
-    @item = Item.new
-    # @item.images.new
+    if current_user
+      @item = Item.new
+      # @item.images.new
+    end
   end
 
   #商品情報
