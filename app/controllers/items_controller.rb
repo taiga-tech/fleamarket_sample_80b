@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
   def edit
   end
   
-  #商品あげるやつ
+  #商品更新機能
   def update
     # if @item.update(product_params)
     #   redirect_to root_path
