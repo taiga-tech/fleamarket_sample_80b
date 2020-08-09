@@ -1,54 +1,98 @@
 %h1 フォームです
 = form_with model: @item, local: true do |f|
   .form-group.card-title
-    =f.label :images do
-      商品画像
-    =f.file_field :images, class:"form-control"
-  
+    -# =f.label :images do
+    -#   商品画像
+    -# =f.file_field :images, class:"form-control"
+
+  -# .form-group
+  -#   =f.label :title do
+  -#     商品名
+  -#   =f.text_field :title
+
+  -# .form-group
+  -#   =f.label :text do
+  -#     商品説明
+  -#   =f.text_area :text
+
+  -# .form-group
+  -#   =f.label :category do
+  -#     商品カテゴリー
+  -#   =f.text_field :category
+
+  -# .form-group
+  -#   =f.label :brand do
+  -#     ブランド
+  -#   =f.text_field :brand
+
+  -# .form-group
+  -#   =f.label :condition do
+  -#     商品の状態
+  -#   =f.text_field :condition
+
+  -# .form-group
+  -#   =f.label :delivery do
+  -#     配送料の負担
+  -#   =f.text_field :delivery
+
+  -# .form-group
+  -#   =f.label :leadtime do
+  -#     発送までの日数
+  -#   =f.number_field :leadtime
+
+  -# .form-group
+  -#   =f.label :price do
+  -#     販売価格
+  -#   =f.number_field :price
+
+  -# .form-group
+  -#   =f.submit "出品"
+
+
   .form-group
-    =f.label :name do
+    = f.label :title do
       商品名
-    =f.text_field :name
-  
-  .form-group
-    =f.label :text do
-      商品説明
-    =f.text_field :text
+    = f.text_field :title
 
   .form-group
-    =f.label :Category do
-      商品カテゴリー
-    =f.text_field :Category
+    = f.label :price do
+      値段
+    = f.number_field :price
 
   .form-group
-    =f.label :brand do
-      ブランド
-    =f.text_field :brand
+    = f.label :text do
+      商品紹介
+    = f.text_area :text
 
   .form-group
-    =f.label :status do
-      商品の状態
-    =f.text_field :status
-  
+    = f.label :stock do
+      在庫
+    = f.number_field :stock
+
   .form-group
-    =f.label :deliveryfee do
-      配送料の負担
-    =f.text_field :deliveryfee
-  
+    = f.label :brand do
+      ブランド名
+    = f.text_field :brand
+
   .form-group
-    =f.label :shippingregion do
-      発送元の地域
-    =f.text_field :shippingregion
-  
+    = f.label :condition do
+      商品状態
+    = f.text_field :condition
+
   .form-group
-    =f.label :daysuntilshipping do
-      発送までの日数
-    =f.text_field :daysuntilshipping
-  
+    = f.label :leadtime do
+      配送日数
+    = f.number_field :leadtime
+
   .form-group
-    =f.label :price do
-      販売価格
-    =f.text_field :price
-  
+    = f.label :category_id do
+      カテゴリー
+    = f.collection_select :category_id, Category.all, :id, :name
+
   .form-group
-    =f.submit "出品"
+    = f.label :derivery_id do
+      配送方法
+    = f.collection_select :delivery_id, Delivery.all, :id, :name
+
+  .form-group
+    = f.submit "出品"
