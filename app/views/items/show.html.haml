@@ -1,4 +1,10 @@
-.card
+.card 
+  .card-menu   
+    - if user_signed_in? && current_user.id == @item.user_id 
+      .card-edit 
+        = link_to "編集する", root_path  
+      .card-delete 
+        = link_to "削除する", root_path
   .card-title
     %h1.text-center
       %span.card-text
@@ -28,8 +34,9 @@
             %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
     - else
       まだ取引はありません
-  .card-cash
-    %h1.cash-cash= link_to "購入手続きへ", buys_new_path
+  .card-cash 
+    - unless user_signed_in? && current_user.id == @item.user_id 
+      %h1.cash-cash= link_to "購入手続きへ", buys_new_path
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
@@ -43,22 +50,26 @@
         %td= @item.brand
       %tr
         %th 商品の状態
-        %td= @item.condition
+        %td= @item.condition 
+      %tr
+        %th 在庫
+        %td= @item.stock  
       %tr
         %th 配送料の負担
         %td 送料込み(出品者負担)
       %tr
         %th 配送元の地域
-        %td 東京
+        %td 東京 
+      %tr
+        %th 配送方法
+        %td= @item.delivery  
       %tr
         %th 配送目安
-        %td=  "#{@item.leadtime}日で発送"
-      %tr
-        %th メニュー
-        %td [編集][削除]
+        %td=  "#{@item.leadtime}日で発送" 
+
   .card-information
     %h4.info
-      %span.left-info ★ お気に入り ８
+      %span.left-info 🖤いいね！ 8
       %span.right-info 🏴不適切な商品の通報
 .form
   = form_with model: [@item, @comment], local: true do |f|
