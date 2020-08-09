@@ -12,7 +12,7 @@
     &--textBox {
       // トップ画像
       &--content0 {
-        background-image: url("../bg-mainVisual-pict_pc.jpg");
+        background-image: url("/assets/bg-mainVisual-pict_pc.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -67,7 +67,7 @@
             width: 28%;
             // 画像①
             &--image1 {
-              background-image: url("../pict-reason-01.jpg");
+              background-image: url("/assets/pict-reason-01.jpg");
               background-size: cover;
               height: 330px;
             }
@@ -91,7 +91,7 @@
             width: 28%;
             // 画像②
             &--image2 {
-              background-image: url("../pict-reason-02.jpg");
+              background-image: url("/assets/pict-reason-02.jpg");
               background-size: cover;
               height: 330px;
             }
@@ -115,7 +115,7 @@
             width: 28%;
             // 画像③
             &--image3 {
-              background-image: url("../pict-reason-03.jpg");
+              background-image: url("/assets/pict-reason-03.jpg");
               background-size: cover;
               height: 330px;
             }
