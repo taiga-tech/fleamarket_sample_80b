@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end  # devise_for :users
 
   root "items#index"
-  resources :items, only: [:index, :show] do 
+  resources :items, only: [:index, :show, :new, :create] do 
     resources :comments, only: [:create, :destroy]
   end  
   resources :new, only: :new 
