@@ -2,32 +2,33 @@ class ItemsController < ApplicationController
   def index
     @items = Item.all
   end
-  
-  def show  
-    @item = Item.find(params[:id]) 
-    @comment = Comment.new 
-  end 
-  
+
+  def show
+    @item = Item.find(params[:id])
+    @comment = Comment.new
+  end
+
   #商品出品
   def new
     @item = Item.new
-    # @item.images.new 
+    # @item.images.new
   end
-  
+
   #商品情報
   def create
     @item = Item.new(item_params)
-  if @item.save 
-    redirect_to root_path
-  else
-    render :new
+    # binding.pry
+    if @item.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
-  end
-  
+
   #商品編集
   def edit
   end
-  
+
   #商品更新機能
   def update
     # if @item.update(product_params)
@@ -53,16 +54,18 @@ class ItemsController < ApplicationController
       :stock,
       :brand,
       :condition,
+      :leadtime,
       :user_id,
       :delivery_id,
       :category_id,
-      images_attributes:  [:image, :_destroy, :id],
+      # images_attributes:  [:image, :_destroy, :id],
     )
+    .merge(user_id: current_user.id)
   end
 
   def set_product
     @item = Item.find(params[:id])
   end
-  
+
 end
 
