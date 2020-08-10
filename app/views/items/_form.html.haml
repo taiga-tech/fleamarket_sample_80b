@@ -1,6 +1,6 @@
 %h1 フォームです
 = form_with model: @item, local: true do |f|
-  .form-group.card-title
+  #image-box
     =f.label :images do
       商品画像
     =f.fields_for :images do |i|
