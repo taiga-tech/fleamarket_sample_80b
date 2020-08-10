@@ -21,7 +21,10 @@
       商品紹介
     = f.text_area :text
 
-  = f.hidden_field :stock, value: 1
+  .form-group
+    = f.label :stock do
+      在庫
+    = f.number_field :stock
 
   .form-group
     =f.label :condition do
