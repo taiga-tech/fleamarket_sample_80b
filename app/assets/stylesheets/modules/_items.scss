@@ -13,7 +13,7 @@
     &--textBox {
       // トップ画像
       &--content0 {
-        background-image: image-url("/assets/bg-mainVisual-pict_pc.jpg");
+        background-image: image-url("/images/images/bg-mainVisual-pict_pc.jpg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: top center;
@@ -82,7 +82,7 @@
             text-align: center;
             // 画像①
             &--image1 {
-              background-image: image-url("/assets/pict-reason-01.jpg");
+              background-image: image-url("/images/images/pict-reason-01.jpg");
               background-size: cover;
               height: 330px;
               &--greenBox1 {
@@ -119,7 +119,7 @@
             text-align: center;
             // 画像②
             &--image2 {
-              background-image: image-url("/assets/pict-reason-02.jpg");
+              background-image: image-url("/images/images/pict-reason-02.jpg");
               background-size: cover;
               height: 330px;
               &--greenBox2 {
@@ -156,7 +156,7 @@
             text-align: center;
             // 画像③
             &--image3 {
-              background-image: image-url("/assets/pict-reason-03.jpg");
+              background-image: image-url("/images/images/pict-reason-03.jpg");
               background-size: cover;
               height: 330px;
               &--greenBox3 {
@@ -192,7 +192,7 @@
       // 3.会員数日本一位
       &--content2 {
         height: 560px;
-        background-image: image-url("../bg-topMiddleDl-pict.jpg");
+        background-image: image-url("/images/images/bg-topMiddleDl-pict.jpg");
         background-size: cover;
         padding-top: 100px;
         &--textBox1 {
@@ -248,7 +248,7 @@
             width: 20%;
             margin: 0 10px;
             &--image2 {
-              background-image: image-url("../icon-01.png");
+              background-image: image-url("/images/images/icon-01.png");
               background-size: cover;
               height: 50%;
             }
@@ -272,7 +272,7 @@
             width: 20%;
             margin: 0 10px;
             &--image3 {
-              background-image: image-url("../icon-03.png");
+              background-image: image-url("/images/images/icon-03.png");
               background-size: cover;
               height: 50%;
             }
@@ -295,7 +295,7 @@
             width: 20%;
             margin: 0 10px;
             &--image4 {
-              background-image: image-url("../icon-04.png");
+              background-image: image-url("/images/images/icon-04.png");
               background-size: cover;
               height: 50%;
             }
@@ -351,7 +351,7 @@
     }
     // 今すぐ無料ダウンロード
     &--download {
-      background-image: image-url("../bg-appBanner-pict.jpg");
+      background-image: image-url("/images/images/bg-appBanner-pict.jpg");
       background-size: cover;
       height: 400px;
       &--DLtextBox {
