@@ -1,4 +1,21 @@
 .footer {
-  color: white;
+  height: 100%;
+  padding: 70px 0;
+  color:white;
   background-color: black;
+  &__index {
+    display: flex;
+    justify-content: space-around;
+    &--box1 {
+      .info1 {
+        text-align: center;
+        .aboutApp{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  &__bottom {
+    text-align: center;
+  }
 }
