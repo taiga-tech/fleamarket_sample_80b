@@ -23,3 +23,4 @@ end
 Item.create!(title: "test10", price: 400, text: "test10", stock: 10, brand: "test3", condition: "test10",leadtime: 10, user_id: 10, delivery_id: 10, category_id: 10)
 User.create!(name: "test10", email: "testtest10@test", password: "testtest10", password_confirmation: "testtest10")
 
+

@@ -99,34 +99,64 @@
         .main__box--itemBox--itemIndex--text1
           ピックアップカテゴリー
         .main__box--itemBox--itemIndex--text2
-          新規投稿商品
+          = link_to '新規投稿商品', '#'
         .main__box--itemBox--itemIndex--textItem3
-          商品
-          .main__box--itemBox--itemIndex--itemPick
-            - @items.first(5).each do |item|
-              - unless item.stock == 0
+          - @items.first(5).each do |item|
+            - unless item.stock == 0
+              -# 仮クラス。商品登録機能完了後以下コメント外す
+              .itemPickBox
+                .itemPickBox__item-image
+                -# = image_tag image.image.url, class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__stock
-                    = "在庫#{item.stock}" #ここは条件分岐在庫の有無を表示する
+                    = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
                   %li.item_status__price
                     価格:
                     = item.price
                   %li.item_status__title
                     商品名:
                     = link_to item.title, item_path(item)
-              - else
-                -# = image_tag image.image.url, class: "item_image" if image.image.present?
-                %ul.item_status
-                  %li.item_status__price
-                    価格:
-                    = item.price
-                  %li.item_status__title
-                    商品名:
-                    = item.title
-
+            - else
+              -# = image_tag image.image.url, class: "item_image" if image.image.present?
+              %ul.item_status
+                %li.item_status__price
+                  価格:
+                  = item.price
+                %li.item_status__title
+                  商品名:
+                  = item.title
 
       .main__box--itemBox--archive
-        アーカイブ？
+        .main__box--itemBox--archive--text1
+          ピックアップブランド
+        .main__box--itemBox--archive--text2
+          = link_to 'アーカイバ', '#'
+        .main__box--itemBox--archive--textItem3
+          - @items.first(5).each do |item|
+            - unless item.stock == 0
+              -# 仮クラス。商品登録機能完了後以下コメント外す
+              .itemPickBox2
+                .itemPickBox2__item-image
+                -# = image_tag image.image.url, class: "item_image" if image.image.present?
+                %ul.item_status2
+                  %li.item_status2__stock
+                    = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
+                  %li.item_status2__price
+                    価格:
+                    = item.price
+                  %li.item_status2__title
+                    商品名:
+                    = link_to item.title, item_path(item)
+            - else
+              -# = image_tag image.image.url, class: "item_image" if image.image.present?
+              %ul.item_status2
+                %li.item_status2__price
+                  価格:
+                  = item.price
+                %li.item_status2__title
+                  商品名:
+                  = item.title
+
     -# 6.今すぐ無料ダウンロード
     .main__box--download
       .main__box--download--DLtextBox

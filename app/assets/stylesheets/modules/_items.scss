@@ -32,6 +32,7 @@
             color: white;
             text-shadow: 0 0 5px rgba(0,0,0,0.4);
             &--text2 {
+              padding-top: 100px;
             }
           }
           // FURIMAはだれでも〜
@@ -319,8 +320,9 @@
     // 5.商品一覧
     &--itemBox {
       &--itemIndex {
-        height: 500px;
-        // padding-top: 80px;
+        height: 550px;
+        background-color: #eeeeee;
+        padding-top: 80px;
         &--text1 {
           text-align: center;
           font-size: 28px;
@@ -334,19 +336,69 @@
         }
         &--textItem3 {
           margin-top: 50px;
-          height: 300px;
-          background-color: gray;
-          &--itemPick {
-            height: 100%;
+          height: 335px;
+          display: flex;
+          .itemPickBox {
+            height: 80%;
             width: 25%;
-            background-color: green;
+            background-color: white;
+            &__item-image {
+              height: 60%;
+              background-color: gray;
+            }
+            .item_status {
+              padding: 20px 13px;
+              font-weight: bold;
+              &__stock {
+                font-size: 10px;
+              }
+              &__price {
+                font-size: 23px;
+              }
+            }
           }
         }
       }
       // アーカイバ
       &--archive {
-        height: 500px;
-        background-color: yellowgreen;
+        height: 550px;
+        background-color: #eeeeee;
+        padding-top: 80px;
+        &--text1 {
+          text-align: center;
+          font-size: 28px;
+          font-weight: bold;
+        }
+        &--text2 {
+          color: #3CCACE;
+          font-size: 24px;
+          text-align: center;
+          font-weight: bold;
+        }
+        &--textItem3 {
+          margin-top: 50px;
+          height: 335px;
+          display: flex;
+          .itemPickBox2 {
+            height: 80%;
+            width: 25%;
+            background-color: white;
+            &__item-image {
+              height: 60%;
+              background-color: gray;
+            }
+            .item_status2 {
+              padding: 20px 13px;
+              font-weight: bold;
+              &__stock {
+                font-size: 10px;
+              }
+              &__price {
+                font-size: 23px;
+              }
+            }
+          }
+        }
       }
     }
     // 今すぐ無料ダウンロード
