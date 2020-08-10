@@ -104,7 +104,7 @@
           商品
           .main__box--itemBox--itemIndex--itemPick
             - @items.first(5).each do |item|
-              - if item.stock == 0
+              - unless item.stock == 0
                 %ul.item_status
                   %li.item_status__stock
                     = "在庫#{item.stock}" #ここは条件分岐在庫の有無を表示する
@@ -114,7 +114,7 @@
                   %li.item_status__title
                     商品名:
                     = link_to item.title, item_path(item)
-                -# - else
+              - else
                 -# = image_tag image.image.url, class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__price
