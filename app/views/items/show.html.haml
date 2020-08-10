@@ -10,7 +10,7 @@
       %span.card-text
       = @item.title
     %p.text-center
-      %span.card-text 画像
+      %span.card-text  画像
     %h4.text-center
       %span.card-text 
       = "¥#{@item.price}"
@@ -62,7 +62,7 @@
         %td 東京 
       %tr
         %th 配送方法
-        %td= @item.delivery  
+        %td= @item.delivery.name
       %tr
         %th 配送目安
         %td=  "#{@item.leadtime}日で発送" 
