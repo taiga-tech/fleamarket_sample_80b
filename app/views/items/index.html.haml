@@ -106,7 +106,7 @@
               -# 仮クラス。商品登録機能完了後以下コメント外す
               .itemPickBox
                 .itemPickBox__item-image
-                -# = image_tag image.image.url, class: "item_image" if image.image.present?
+                = image_tag image.image.url, class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__stock
                     = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
