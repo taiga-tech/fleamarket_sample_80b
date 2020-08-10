@@ -16,11 +16,10 @@ class ItemsController < ApplicationController
   #商品情報
   def create
     @item = Item.new(item_params)
-  if @item.save 
-    redirect_to root_path
-  else
-    render :new
-  end
+    if @item.save
+    else
+      render :new
+    end
   end
   
   #商品編集
@@ -52,11 +51,12 @@ class ItemsController < ApplicationController
       :stock,
       :brand,
       :condition,
+      :leadtime,
       :user_id,
       :delivery_id,
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
-    )
+    ).merge(user_id: current_user.id)
   end
 
   def set_product
