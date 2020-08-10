@@ -13,7 +13,7 @@ class ItemsController < ApplicationController
   def new
     if current_user
       @item = Item.new
-      # @item.images.new
+      @item.images.new
     else
       redirect_to root_path
     end
@@ -59,12 +59,10 @@ class ItemsController < ApplicationController
       :brand,
       :condition,
       :leadtime,
-      :user_id,
       :delivery_id,
       :category_id,
-      # images_attributes:  [:image, :_destroy, :id],
-    )
-    .merge(user_id: current_user.id)
+      images_attributes:  [:image, :_destroy, :id],
+    ).merge(user_id: current_user.id)
   end
 
   def set_product
