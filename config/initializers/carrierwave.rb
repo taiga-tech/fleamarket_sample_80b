@@ -14,7 +14,7 @@ CarrierWave.configure do |config|
       aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
       region: 'ap-northeast-1'
     }
-    config.fog_directory  = 'バケット名'
-    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/バケット名'
+    config.fog_directory  = 'fleamarket80bb'
+    config.asset_host = 'https://s3-ap-northeast-1.amazonaws.com/fleamarket80bb'
   end
 end
