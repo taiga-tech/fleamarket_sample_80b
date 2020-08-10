@@ -1,10 +1,10 @@
 class CreateItems < ActiveRecord::Migration[6.0]
   def change
     create_table :items do |t|
-      t.string      :title  
-      t.string      :price 
-      t.text        :text
-      t.integer     :stock      
+      t.string      :title,      null: false
+      t.string      :price,      null: false
+      t.text        :text,       null: false
+      t.integer     :stock,      null: false
       t.string      :brand
       t.string      :condition,  null: false
       t.integer     :leadtime,   null: false
@@ -13,5 +13,5 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.references  :delivery,   foreign_key: true
       t.timestamps
     end
-  end 
-end 
+  end
+end

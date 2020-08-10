@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_06_115232) do
+ActiveRecord::Schema.define(version: 2020_08_09_003926) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcode", null: false
@@ -40,9 +40,19 @@ ActiveRecord::Schema.define(version: 2020_08_06_115232) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.bigint "item_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_comments_on_item_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "area", null: false
-    t.integer "leadtime", null: false
+    t.string "name", null: false
+    t.string "size", null: false
     t.integer "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -58,11 +68,12 @@ ActiveRecord::Schema.define(version: 2020_08_06_115232) do
 
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title", null: false
-    t.integer "price", null: false
+    t.string "price", null: false
     t.text "text", null: false
     t.integer "stock", null: false
     t.string "brand"
     t.string "condition", null: false
+    t.integer "leadtime", null: false
     t.bigint "category_id"
     t.bigint "user_id"
     t.bigint "delivery_id"
@@ -89,6 +100,8 @@ ActiveRecord::Schema.define(version: 2020_08_06_115232) do
   add_foreign_key "addresses", "users"
   add_foreign_key "buys", "items"
   add_foreign_key "buys", "users"
+  add_foreign_key "comments", "items"
+  add_foreign_key "comments", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "deliveries"

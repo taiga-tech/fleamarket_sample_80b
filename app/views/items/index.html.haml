@@ -107,14 +107,14 @@
               - if item.stock == 0
                 %ul.item_status
                   %li.item_status__stock
-                    SOLD
+                    = "在庫#{item.stock}" #ここは条件分岐在庫の有無を表示する
                   %li.item_status__price
                     価格:
                     = item.price
                   %li.item_status__title
                     商品名:
                     = link_to item.title, item_path(item)
-              - else
+                -# - else
                 -# = image_tag image.image.url, class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__price
@@ -123,6 +123,8 @@
                   %li.item_status__title
                     商品名:
                     = item.title
+
+
       .main__box--itemBox--archive
         アーカイブ？
     -# 6.今すぐ無料ダウンロード

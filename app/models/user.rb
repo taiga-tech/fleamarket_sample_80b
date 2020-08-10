@@ -7,5 +7,5 @@ class User < ApplicationRecord
   validates :name,presence: true
   has_one :address
   has_many :items
-  has_many :buys
+  has_many :comments 
 end
