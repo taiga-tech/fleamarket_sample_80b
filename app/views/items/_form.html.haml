@@ -22,9 +22,7 @@
     = f.text_area :text
 
   .form-group
-    = f.label :stock do
-      在庫
-    = f.number_field :stock
+    = f.hidden_field :stock, value:1
 
   .form-group
     =f.label :condition do
@@ -35,7 +33,8 @@
     =f.label :leadtime do
       発送までの日数
     =f.number_field :leadtime
-
+  
+  .form-group
     = f.label :brand do
       ブランド名
     = f.text_field :brand
