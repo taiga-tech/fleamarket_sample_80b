@@ -1,31 +1,38 @@
-class ItemsController < ApplicationController
+class ItemsController < ApplicationController 
+  before_action :move_to_index, except: [:index, :show]
   def index
     @items = Item.all
   end
-  
-  def show  
-    @items = Item.all
-  end 
-  
+
+  def show
+    @item = Item.find(params[:id])
+    @comment = Comment.new
+  end
+
   #商品出品
   def new
-    @item = Item.new
-    @item.images.new
+    if current_user
+      @item = Item.new
+      @item.images.new
+    else
+      redirect_to root_path
+    end
   end
-  
+
   #商品情報
   def create
     @item = Item.new(item_params)
     if @item.save
+      redirect_to root_path
     else
       render :new
     end
   end
-  
+
   #商品編集
   def edit
   end
-  
+
   #商品更新機能
   def update
     # if @item.update(product_params)
@@ -52,7 +59,6 @@ class ItemsController < ApplicationController
       :brand,
       :condition,
       :leadtime,
-      :user_id,
       :delivery_id,
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
@@ -62,6 +68,10 @@ class ItemsController < ApplicationController
   def set_product
     @item = Item.find(params[:id])
   end
-  
+  def move_to_index
+    unless user_signed_in?
+      redirect_to action: :index
+    end
+  end 
 end
 

@@ -1,56 +1,51 @@
 %h1 フォームです
 = form_with model: @item, local: true do |f|
-  #image-box
+  .form-group
     =f.label :images do
       商品画像
     =f.fields_for :images do |i|
-      =i.file_field :image 
-    -# =f.file_field :images, class:"form-control"
-  
+      =i.file_field :image
+
   .form-group
-    =f.label :title do
+    = f.label :title do
       商品名
-    =f.text_field :title
+    = f.text_field :title
 
   .form-group
-    =f.label :price do
-      販売価格
-    =f.number_field :price
+    = f.label :price do
+      値段
+    = f.number_field :price
 
   .form-group
-    =f.label :text do
-      商品説明
-    =f.text_field :text
+    = f.label :text do
+      商品紹介
+    = f.text_area :text
 
-  .form-group
-    =f.label :stock do
-      商品在庫
-    =f.number_field :stock
-
-  .form-group
-    =f.label :category_id do
-      商品カテゴリー
-    =f.number_field :category_id
-
-  .form-group
-    =f.label :brand do
-      ブランド
-    =f.text_field :brand
+  = f.hidden_field :stock, value: 1
 
   .form-group
     =f.label :condition do
       商品の状態
     =f.text_field :condition
-  
-  .form-group
-    =f.label :delivery_id do
-      配送料の負担
-    =f.number_field :delivery_id
-  
+
   .form-group
     =f.label :leadtime do
       発送までの日数
     =f.number_field :leadtime
-  
+
+    = f.label :brand do
+      ブランド名
+    = f.text_field :brand
+
   .form-group
-    =f.submit "出品"
+    = f.label :category_id do
+      カテゴリー
+    = f.collection_select :category_id, Category.all, :id, :name
+
+  .form-group
+    = f.label :derivery_id do
+      配送方法
+    = f.collection_select :delivery_id, Delivery.all, :id, :name
+
+  .form-group
+    = f.submit "出品"

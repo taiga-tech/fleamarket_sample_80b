@@ -20,5 +20,6 @@ CSV.foreach("db/csv/deliveries-table.csv") do |row|
   Delivery.create!(name: row[1], size: row[2], price: row[3])
 end
 
-# Item.create!(title: "test1", price: 400, text: "test2", stock: 2, brand: "test3", condition: "test4", user_id: 1, delivery_id: 1, category_id: 1) 
+Item.create!(title: "test10", price: 400, text: "test10", stock: 10, brand: "test3", condition: "test10",leadtime: 10, user_id: 10, delivery_id: 10, category_id: 10)
+User.create!(name: "test10", email: "testtest10@test", password: "testtest10", password_confirmation: "testtest10")
 
