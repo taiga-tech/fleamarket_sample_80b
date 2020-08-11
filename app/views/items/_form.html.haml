@@ -6,7 +6,6 @@
       %ul
         - @item.errors.full_messages.each do |message|
           %li= message
-  .form-group
   #image-box
     #previews
       - if @item.persisted?
@@ -19,11 +18,11 @@
         =i.file_field :image, class: 'js-file'
         %span.js-remove 削除
       - if @item.persisted?
-        = image.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+        = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
     - if @item.persisted?
       .js-file_group{"data-index" => "#{@item.images.count}"}
         = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-        .js-remove 削除
+        %span.js-remove 削除
 
   .form-group
     = f.label :title do
@@ -52,7 +51,7 @@
     =f.label :leadtime do
       発送までの日数
     =f.number_field :leadtime
-  
+
   .form-group
     = f.label :brand do
       ブランド名

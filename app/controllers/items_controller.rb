@@ -1,6 +1,8 @@
+
 class ItemsController < ApplicationController  
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, except: [:index, :show]
+
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
@@ -35,19 +37,19 @@ class ItemsController < ApplicationController
 
   #商品更新機能
   def update
-    # if @item.update(product_params)
-    #   redirect_to root_path
-    # else
-    #   render :edit
-    # end
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   #商品削除
   def destroy
-  if @item.destroy
-    redirect_to root_path
+    if @item.destroy
+      redirect_to root_path
+    end 
   end 
-end 
 
   #ストロングパラメーター
   private
@@ -69,10 +71,10 @@ end
   def set_item 
     @item = Item.find(params[:id])
   end
+
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index
     end
-  end 
+  end
 end
-

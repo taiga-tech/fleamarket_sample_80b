@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :items do 
     resources :comments, only: [:create, :destroy]
   end
+
   resources :buy, only: :new
 
   # クレカに関する記述
@@ -28,5 +29,7 @@ Rails.application.routes.draw do
       get 'pay'
     end
   end
-  
+ 
+  resources :buys, only: :new
+
 end
