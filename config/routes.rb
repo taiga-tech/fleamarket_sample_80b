@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'buys/new'
+  get '/users/item.user.id', to: 'users#show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
   }
@@ -8,8 +8,9 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end  # devise_for :users
 
-  root "items#index"
-  resources :items do
+  root "items#index"  
+  resources :users, only: :show 
+  resources :items do 
     resources :comments, only: [:create, :destroy]
   end
   resources :buy, only: :new
