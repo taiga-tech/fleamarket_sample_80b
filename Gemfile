@@ -82,3 +82,6 @@ gem 'devise'
 
 # jquery追加(8/7)
 gem 'jquery-rails'
+
+# payjp導入(8/11)
+gem 'payjp'

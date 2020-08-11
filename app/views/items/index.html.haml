@@ -108,7 +108,7 @@
                     -# 画像サイズ(size:)は仮値
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status
-                  %li.item_status__stock
+                  %li.item_status__stock 
                     = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
                   %li.item_status__price
                     価格:
@@ -119,9 +119,11 @@
                   %li.item_status__title
                     出品者  
                     = link_to item.user.name, user_path(item.user.id)
-                    -# %a{ href: "/users/1"} 
-                    -#   %span 
-                    -#     =item.user.name
+                  %li.item_status__title 
+              - if user_signed_in? && current_user.id == item.user_id  
+                メニュー
+                = link_to "編集", root_path, class: "item_edit" 
+                = link_to "削除", item_path(item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
             - else
               - item.images.each do |image|
                 -# 画像サイズ(size:)は仮値

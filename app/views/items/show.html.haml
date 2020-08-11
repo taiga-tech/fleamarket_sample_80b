@@ -10,8 +10,9 @@
       %span.card-text
       = @item.title
     %p.text-center
-      %span.card-text
-      = image_tag "https://d33v4339jhl8k0.cloudfront.net/docs/assets/5c814e0d2c7d3a0cb9325d1f/images/5c8bc20d2c7d3a154460eb97/file-1CjQ85QAme.jpg"
+      %span.card-text   
+    - @item.images.each do |image|
+      = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
     %h4.text-center
       %span.card-text
       = "¥#{@item.price}"
