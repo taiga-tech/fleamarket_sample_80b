@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :comments, only: [:create, :destroy]
   end
 
-  resources :buy, only: :new
+  resources :buys, only: :new
 
   # クレカに関する記述
   resources :credits, expect: :index do
@@ -29,7 +29,5 @@ Rails.application.routes.draw do
       get 'pay'
     end
   end
- 
-  resources :buys, only: :new
 
 end
