@@ -16,11 +16,30 @@
         %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"
       %ul.log
+
         %li.log__login
           = link_to "ログイン", "#", class: "loginBtn"
         %li.log__signIn
           = link_to "新規登録", "#", class: "signinBtn"
+
+        = link_to new_item_path, class: "log__new" do
+          出品する
+          = image_tag ( "icon_camera.png"), class: "camera"
+        - if user_signed_in?
+          %li.log__signIn
+            = link_to "ログアウト", destroy_user_session_path, method: :delete
+            = link_to "マイページ", "/users/#{current_user.id}"
+        - else
+          %li.log__login
+            = link_to "新規登録", new_user_registration_path
+            = link_to "ログイン", new_user_session_path
+        %li.log__new
+          = link_to new_item_path, class: "sellBtn" do
+            出品する
+            = image_tag ( "icon_camera.png"), class: "camera" 
+
         %li.log__new
           = link_to new_item_path, class: "sellBtn" do
             出品する
             = image_tag ( "icon_camera.png"), class: "camera"
+

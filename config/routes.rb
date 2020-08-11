@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'card/new'
+  get 'card/show'
   get '/users/item.user.id', to: 'users#show'
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -13,5 +15,21 @@ Rails.application.routes.draw do
   resources :items do 
     resources :comments, only: [:create, :destroy]
   end
+
+  resources :buy, only: :new
+
+  # クレカに関する記述
+  resources :credits, expect: :index do
+    collection do
+      get 'regist_done'
+      get 'delete_done'
+    end
+    member do
+      get 'buy'
+      get 'pay'
+    end
+  end
+ 
   resources :buys, only: :new
+
 end
