@@ -106,7 +106,7 @@
                 .itemPickBox__item-image
                   - item.images.each do |image|
                     -# 画像サイズ(size:)は仮値
-                    = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
+                    = image_tag image.image.url, height: "100", width: "100", class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__stock
                     = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
@@ -125,7 +125,7 @@
             - else
               - item.images.each do |image|
                 -# 画像サイズ(size:)は仮値
-                = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
+                = image_tag image.image.url, height: "100", width: "100", class: "item_image" if image.image.present?
               %ul.item_status
                 %li.item_status__price
                   価格:
