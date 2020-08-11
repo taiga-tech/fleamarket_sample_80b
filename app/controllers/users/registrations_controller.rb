@@ -3,9 +3,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
- def new
-  @user = User.new
- end
+  def new
+    @user = User.new
+  end
   # GET /resource/sign_up
   # def new
   #   super
@@ -31,7 +31,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       render :new and return
     end
     @user.build_address(@address.attributes)
-    @user.save
+    if @user.save
+      redirect_to root_path
+    else
+      render :create_address
+    end
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
   end
