@@ -1,2 +1,9 @@
 .contents 
-  %h1= @name
+  %h1= @name 
+  - @items.first(5).each do |item|
+    - item.images.each do |image|
+      = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present? 
+  %h1= @zipcode 
+  %h1= @area 
+  %h1= @city
+  %h1= @street 
