@@ -115,7 +115,13 @@
                     = item.price
                   %li.item_status__title
                     商品名:
-                    = link_to item.title, item_path(item)
+                    = link_to item.title, item_path(item) 
+                  %li.item_status__title
+                    出品者  
+                    = link_to item.user.name, user_path(item.user.id)
+                    -# %a{ href: "/users/1"} 
+                    -#   %span 
+                    -#     =item.user.name
             - else
               - item.images.each do |image|
                 -# 画像サイズ(size:)は仮値
@@ -126,7 +132,10 @@
                   = item.price
                 %li.item_status__title
                   商品名:
-                  = item.title
+                  = item.title 
+                  %li.item_status__title
+                  出品者:
+                  = link_to item.user.name, user_path(item.user.id)
 
       .main__box--itemBox--archive
         .main__box--itemBox--archive--text1
@@ -148,7 +157,10 @@
                     = item.price
                   %li.item_status2__title
                     商品名:
-                    = link_to item.title, item_path(item)
+                    = link_to item.title, item_path(item) 
+                  %li.item_status__title
+                    出品者  
+                    = link_to item.user.name, user_path(item.user.id)  
             - else
               -# = image_tag image.image.url, class: "item_image" if image.image.present?
               %ul.item_status2
@@ -157,7 +169,10 @@
                   = item.price
                 %li.item_status2__title
                   商品名:
-                  = item.title
+                  = item.title 
+                %li.item_status__title
+                  出品者  
+                  = link_to item.user.name, user_path(item.user.id)
 
     -# 6.今すぐ無料ダウンロード
     .main__box--download
