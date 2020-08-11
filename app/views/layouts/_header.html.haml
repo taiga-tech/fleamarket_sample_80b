@@ -1,18 +1,19 @@
 .header
-  ●●●ヘッダー
   .header__headerBox
     .header__headerBox--appIcon
-      = link_to "●●アイコン" , "#", class: "iconBtn"
+      = link_to image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
     .header__headerBox--searchBox
       .header__headerBox--searchBox--formBox
         = form_with model: @item, class: "Form", local: true do |f|
           = f.text_field :content, class: "Form__input", placeholder: "キーワードから探す"
-          = f.submit "検索", class: "Form__submit"
-    .header__headerBox--various
+          = button_tag type:"submit", class: "Form__submit" do
+            = link_to image_tag ( "icon-search1.png") , class: "submit_image"
+  .header__headerBox2
+    .header__headerBox2--various
       %ul.focus
-        %li.forcus__category
+        %li.focus__category
           = link_to "カテゴリー", "#", class: "cateBtn"
-        %li.forcus__brand
+        %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"
       %ul.log
         %li.log__login
@@ -20,5 +21,6 @@
         %li.log__signIn
           = link_to "新規登録", "#", class: "signinBtn"
         %li.log__new
-          = link_to "出品", new_item_path
-          
+          = link_to new_item_path, class: "sellBtn" do
+            出品する
+            = image_tag ( "icon_camera.png"), class: "camera"

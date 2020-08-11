@@ -1,8 +1,6 @@
 .main
-  ●●●メインページ
   -# 1.人生を変えるフリマアプリ
   .main__box
-    ●●
     .main__box--textBox
       .main__box--textBox--content0
         .main__box--textBox--content0--contentBox
@@ -106,7 +104,9 @@
               -# 仮クラス。商品登録機能完了後以下コメント外す
               .itemPickBox
                 .itemPickBox__item-image
-                = image_tag "https://d33v4339jhl8k0.cloudfront.net/docs/assets/5c814e0d2c7d3a0cb9325d1f/images/5c8bc20d2c7d3a154460eb97/file-1CjQ85QAme.jpg"
+                  - item.images.each do |image|
+                    -# 画像サイズ(size:)は仮値
+                    = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__stock
                     = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
@@ -123,7 +123,9 @@
                     -#   %span 
                     -#     =item.user.name
             - else
-              -# = image_tag image.image.url, class: "item_image" if image.image.present?
+              - item.images.each do |image|
+                -# 画像サイズ(size:)は仮値
+                = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
               %ul.item_status
                 %li.item_status__price
                   価格:
