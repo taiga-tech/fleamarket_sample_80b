@@ -1,8 +1,7 @@
 .header
   .header__headerBox
     .header__headerBox--appIcon
-      = link_to root_path do
-        = image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
+      = link_to image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
     .header__headerBox--searchBox
       .header__headerBox--searchBox--formBox
         = form_with model: @item, class: "Form", local: true do |f|
@@ -17,14 +16,10 @@
         %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"
       %ul.log
-        - if user_signed_in?
-          %li.log__signIn
-            = link_to "ログアウト", destroy_user_session_path, method: :delete
-            = link_to "マイページ", "/users/#{current_user.id}"
-        - else
-          %li.log__login
-            = link_to "新規登録", new_user_registration_path
-            = link_to "ログイン", new_user_session_path
+        %li.log__login
+          = link_to "ログイン", "#", class: "loginBtn"
+        %li.log__signIn
+          = link_to "新規登録", "#", class: "signinBtn"
         %li.log__new
           = link_to new_item_path, class: "sellBtn" do
             出品する
