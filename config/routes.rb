@@ -13,5 +13,5 @@ Rails.application.routes.draw do
   resources :items do 
     resources :comments, only: [:create, :destroy]
   end
-  resources :buy, only: :new
+  resources :buys, only: :new
 end
