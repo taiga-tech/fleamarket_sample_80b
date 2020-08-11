@@ -20,7 +20,6 @@
           = link_to "ログイン", "#", class: "loginBtn"
         %li.log__signIn
           = link_to "新規登録", "#", class: "signinBtn"
-        %li.log__new
-          = link_to new_item_path, class: "sellBtn" do
-            出品する
-            = image_tag ( "icon_camera.png"), class: "camera"
+        = link_to new_item_path, class: "log__new" do
+          出品する
+          = image_tag ( "icon_camera.png"), class: "camera"
