@@ -37,7 +37,7 @@
       まだ取引はありません
   .card-cash 
     - unless user_signed_in? && current_user.id == @item.user_id 
-      %h1.cash-cash= link_to "購入手続きへ", buys_new_path
+      %h1.cash-cash= link_to "購入手続きへ", new_buy_path
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr

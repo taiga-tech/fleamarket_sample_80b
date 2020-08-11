@@ -17,8 +17,9 @@
       .notification.is-danger
         %p.alert= alert
     - if user_signed_in?
-      %h2 ログインしてください♪
-      = link_to "ログアウト", destroy_user_session_path, method: :delete 
+      %h2 ログインしてください
+      = link_to "ログアウト", destroy_user_session_path, method: :delete  
+      = link_to "マイページ", "/users/#{current_user.id}" 
       = link_to "ホーム", root_path
     - else
       %h2 ログインしていません♪
