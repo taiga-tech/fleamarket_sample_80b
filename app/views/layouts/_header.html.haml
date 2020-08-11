@@ -1,7 +1,8 @@
 .header
   .header__headerBox
     .header__headerBox--appIcon
-      = link_to image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
+      = link_to root_path do
+        = image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
     .header__headerBox--searchBox
       .header__headerBox--searchBox--formBox
         = form_with model: @item, class: "Form", local: true do |f|
@@ -16,15 +17,6 @@
         %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"
       %ul.log
-
-        %li.log__login
-          = link_to "ログイン", "#", class: "loginBtn"
-        %li.log__signIn
-          = link_to "新規登録", "#", class: "signinBtn"
-
-        = link_to new_item_path, class: "log__new" do
-          出品する
-          = image_tag ( "icon_camera.png"), class: "camera"
         - if user_signed_in?
           %li.log__signIn
             = link_to "ログアウト", destroy_user_session_path, method: :delete
@@ -33,13 +25,7 @@
           %li.log__login
             = link_to "新規登録", new_user_registration_path
             = link_to "ログイン", new_user_session_path
-        %li.log__new
-          = link_to new_item_path, class: "sellBtn" do
-            出品する
-            = image_tag ( "icon_camera.png"), class: "camera" 
 
-        %li.log__new
-          = link_to new_item_path, class: "sellBtn" do
-            出品する
-            = image_tag ( "icon_camera.png"), class: "camera"
-
+        = link_to new_item_path, class: "log__new" do
+          出品する
+          = image_tag ( "icon_camera.png"), class: "camera"

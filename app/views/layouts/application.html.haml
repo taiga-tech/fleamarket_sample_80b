@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}/
     %title FleamarketSample80bb
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
 
@@ -12,21 +12,5 @@
     = javascript_include_tag 'application'
   %body
     = render partial: 'layouts/header'
-    - if flash[:notice]
-      .notification.is-info
-        %p.notice= notice
-    - if flash[:alert]
-      .notification.is-danger
-        %p.alert= alert
-    - if user_signed_in?
-      %h2 ログインしてください
-      = link_to "ログアウト", destroy_user_session_path, method: :delete  
-      = link_to "マイページ", "/users/#{current_user.id}" 
-      = link_to "ホーム", root_path
-    - else
-      %h2 ログインしていません♪
-      = link_to "新規登録", new_user_registration_path
-      = link_to "ログイン", new_user_session_path 
-      = link_to "ホーム", root_path
     = yield
     = render partial: 'layouts/footer'

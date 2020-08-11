@@ -4,13 +4,13 @@
       .card-edit
         = link_to "編集する", edit_item_path
       .card-delete
-        = link_to "削除する", root_path
+        = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
   .card-title
     %h1.text-center
       %span.card-text
       = @item.title
     %p.text-center
-      %span.card-text   
+      %span.card-text
     - @item.images.each do |image|
       = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
     %h4.text-center

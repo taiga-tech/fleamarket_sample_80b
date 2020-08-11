@@ -1,5 +1,5 @@
-
-class ItemsController < ApplicationController  
+class ItemsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, except: [:index, :show]
 
@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     @items = Item.includes(:user).order('created_at DESC')
   end
 
-  def show 
+  def show
     @comment = Comment.new
   end
 
@@ -46,10 +46,9 @@ class ItemsController < ApplicationController
 
   #商品削除
   def destroy
-    if @item.destroy
-      redirect_to root_path
-    end 
-  end 
+    @item.destroy
+    redirect_to root_path
+  end
 
   #ストロングパラメーター
   private
@@ -68,7 +67,7 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def set_item 
+  def set_item
     @item = Item.find(params[:id])
   end
 

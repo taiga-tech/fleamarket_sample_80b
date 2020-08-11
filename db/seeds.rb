@@ -19,6 +19,3 @@ end
 CSV.foreach("db/csv/deliveries-table.csv") do |row|
   Delivery.create!(name: row[1], size: row[2], price: row[3])
 end
-
-
-
