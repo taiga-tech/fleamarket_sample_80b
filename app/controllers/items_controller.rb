@@ -1,11 +1,12 @@
-class ItemsController < ApplicationController 
+class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
 
   def show
-    @item = Item.find(params[:id])
     @comment = Comment.new
   end
 
@@ -35,11 +36,11 @@ class ItemsController < ApplicationController
 
   #商品更新機能
   def update
-    # if @item.update(product_params)
-    #   redirect_to root_path
-    # else
-    #   render :edit
-    # end
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   #商品削除
@@ -65,13 +66,12 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def set_product
+  def set_item
     @item = Item.find(params[:id])
   end
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index
     end
-  end 
+  end
 end
-
