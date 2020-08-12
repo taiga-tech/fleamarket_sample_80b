@@ -14,7 +14,7 @@ class CardController < ApplicationController
     end
   end
 
-  def create
+  def pay
     # 秘密鍵を取得、payjpと照合
     Payjp.api_key = Rails.application.credentials[:PAYJP_SECRET_KEY]
     if params['payjp-token'].blank?
@@ -28,7 +28,7 @@ class CardController < ApplicationController
       )
 
       # railsのデータベース上にもカード情報とそれに紐づく顧客情報を保存
-      @card = CreditCard.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
+      @card = Credit.new(user_id: current_user.id, customer_id: customer.id, card_id: customer.default_card)
       if @card.save #保存ができたらカード登録完了ページへ遷移
         redirect_to regist_done_credits_path
       else
@@ -37,7 +37,29 @@ class CardController < ApplicationController
     end
   end
 
+  # PayjpとCardデータベースを削除
+  def delete
+    card = Credit.where(user_id: current_user.id).first
+    if card.blank?
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer.delete
+      card.delete
+    end
+      redirect_to action: "new"
+  end
+
+  # Cardのデータをpayjpに送り、情報を取り出す
   def show
+    card = Credit.where(user_id: current_user.id).first
+    if card.blank?
+      redirect_to action: "new"
+    else
+      Payjp.api_key = ENV["PAYJP_PRIVATE_KEY"]
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      @default_card_infomation = customer.cards.retrieve(card.card_id)
+    end
   end
 
   def buy

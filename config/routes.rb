@@ -23,6 +23,9 @@ Rails.application.routes.draw do
     collection do
       get 'regist_done'
       get 'delete_done'
+      post 'show', to: 'credit#show'
+      post 'pay', to: 'credit#pay'
+      post 'delete', to: 'credit#delete'
     end
     member do
       get 'buy'
