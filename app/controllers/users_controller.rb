@@ -1,18 +1,19 @@
-class UsersController < ApplicationController 
+class UsersController < ApplicationController  
   def show  
     user = User.find(params[:id]) 
     @name = user.name 
-    @items = user.items  
+    @items = user.items    
+    @profile = user.profile
     # @zipcode = user.zipcode 
     # @area = user.area 
     # @city = user.city 
     # @street = user.street  
-  end  
+  end   
   def edit  
     @user = User.find(params[:id])
   end  
   def update  
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])  
     if @user.update(user_params) 
     redirect_to user_path     
     else
