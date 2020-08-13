@@ -7,5 +7,8 @@ class UsersController < ApplicationController
     # @area = user.area 
     # @city = user.city 
     # @street = user.street 
+  end  
+  def edit  
+    @user = User.find(params[:id])
   end 
 end

@@ -1,0 +1,8 @@
+.edit 
+  = form_with model: [@user], local: true do |f|
+    %h2.mypage_name 名前
+    = f.text_field :name 
+    %h2.mypage_introduse 自己紹介
+    = f.text_area :text   
+    %h2.mypage_card 
+= render partial: "card/new"   
