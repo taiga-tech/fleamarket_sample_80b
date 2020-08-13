@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   end  # devise_for :users
 
   root "items#index"  
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do 
+  resources :profiles, only: [:new, :create] 
+  end 
   resources :items do 
     resources :comments, only: [:create, :destroy]
   end
