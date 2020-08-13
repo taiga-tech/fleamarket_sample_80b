@@ -1,0 +1,8 @@
+.edit 
+  = form_with model: @user, local: true do |f| 
+    %h2.edit_name 名前
+    = f.text_field :name 
+    %h2.edit_introduce 自己紹介
+    = f.text_area :text    
+    %h2.submit_update 
+    = f.submit "更新"
