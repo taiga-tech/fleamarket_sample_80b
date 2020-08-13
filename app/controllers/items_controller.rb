@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_categories, only: [:new, :edit]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -65,6 +66,10 @@ class ItemsController < ApplicationController
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
     ).merge(user_id: current_user.id)
+  end
+
+  def set_categories
+    @parents = Category.where(ancestry: nil)
   end
 
   def set_item

@@ -85,3 +85,5 @@ gem 'jquery-rails'
 
 # payjp導入(8/11)
 gem 'payjp'
+
+gem "ancestry"
