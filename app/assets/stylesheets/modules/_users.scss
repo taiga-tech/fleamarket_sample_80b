@@ -1,0 +1,131 @@
+.container {  
+  display: flex;  
+  justify-content: space-around;   
+  .wrapper {    
+    width: 900px; 
+    display: flex;
+    flex-direction: column;
+    .room { 
+        font-size: 60px; 
+        font-weight: bold; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center; 
+        margin-bottom: 40px; 
+        margin-top: 50px;
+    }
+    .mypage{    
+      display: flex; 
+      justify-content: center;
+      .mypage_new { 
+        background-color: lightgray; 
+        padding: 10px 20px; 
+        margin-top: 10px; 
+        border-radius: 5px; 
+        color: #fff; 
+        font-size: 16px; 
+        font-weight: bold; 
+        text-align: center; 
+        width: 60%;
+      } 
+      .mypage_edit  { 
+        background-color: lightgrey; 
+        padding: 10px 20px; 
+        margin-top: 10px; 
+        border-radius: 5px; 
+        color:#fff; 
+        font-size: 16px; 
+        font-weight: bold; 
+        text-align: center; 
+        width: 60%;
+      }   
+    }    
+
+    .content_1 {   
+      text-align: center;  
+      width: 100%;     
+      margin-bottom: 40px;
+      .content_left {  
+        background-color: #fff; 
+        width: 50%; 
+        float: left; 
+        height: 200px; 
+        border-right: 1px solid #f5f5f5; 
+        .user_name {   
+          margin-right: 0px;
+          color: #000;
+          font-size: 20px;
+          font-weight: bold; 
+          margin-top: 20px;
+        } 
+        .user_area { 
+          font-size: 20px;  
+          font-weight: bold; 
+          margin-top: 20px;
+        } 
+        .user_count {  
+          font-size: 20px; 
+          font-weight: bold; 
+          margin-top: 20px;
+        } 
+        .user_like {  
+          font-size: 20px; 
+          font-weight: bold; 
+          margin-top: 20px;
+        }  
+      } 
+      .content_right { 
+        width: 50%; 
+        float: right; 
+        background-color:  #fff;
+        .user_introduce { 
+          padding-top: 10px;   
+          height: 200px;
+        } 
+      }
+    }
+
+    .between{    
+      display: flex; 
+      justify-content: center; 
+      width: 100%; 
+      background-color: #191970; 
+      padding: 15px 20px;  
+      border-radius: 5px; 
+      color: #f5f5f5; 
+      font-size: 20px; 
+      font-weight: bold; 
+      text-align: center; 
+      margin-bottom: 20px;
+    } 
+
+
+    .content_2 {   
+      width: 900px; 
+      height: 400px;
+      margin-top: 0px;
+      margin-bottom: 30px;  
+      display: flex; 
+      .content { 
+      width: 900px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: center; 
+        .user_images {   
+          height: 200px;  
+          .item_image { 
+            width: 300px; 
+            height: 200px; 
+          }
+        } 
+        .user_info {   
+          padding-top: 20px;  
+          text-align: center; 
+          background-color: #f5f5f5; 
+          font-size: 15px; 
+          border: solid 1px lightgrey; 
+          width: 300px;
+        }   
+      }
+    } 
+  }
+}

@@ -344,6 +344,7 @@
             background-color: white;
             &__item-image {
               height: 60%;
+              object-fit: cover;
               background-color: gray;
             }
             .item_status {

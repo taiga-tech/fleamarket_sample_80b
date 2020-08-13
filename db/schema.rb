@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_09_003926) do
+ActiveRecord::Schema.define(version: 2020_08_13_064544) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "zipcode", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2020_08_09_003926) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "credits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "customer_id", null: false
+    t.string "card_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_credits_on_user_id"
+  end
+
   create_table "deliveries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "size", null: false
@@ -84,6 +93,14 @@ ActiveRecord::Schema.define(version: 2020_08_09_003926) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
+  create_table "profiles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -102,8 +119,10 @@ ActiveRecord::Schema.define(version: 2020_08_09_003926) do
   add_foreign_key "buys", "users"
   add_foreign_key "comments", "items"
   add_foreign_key "comments", "users"
+  add_foreign_key "credits", "users"
   add_foreign_key "images", "items"
   add_foreign_key "items", "categories"
   add_foreign_key "items", "deliveries"
   add_foreign_key "items", "users"
+  add_foreign_key "profiles", "users"
 end
