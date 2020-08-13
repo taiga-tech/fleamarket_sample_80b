@@ -6,14 +6,15 @@
       %ul
         - @item.errors.full_messages.each do |message|
           %li= message
-  .form-group
   #image-box
     #previews
       - if @item.persisted?
         - @item.images.each_with_index do |image, i|
           = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
-    =f.label :images do
+    =f.label :images, class:"image-field" do
       商品画像
+      %span.product_up 最大10枚までアップロードできます
+      %span.product_up 以下の項目の入力をお願いします
     =f.fields_for :images do |i|
       .js-file_group{"data-index" => "#{i.index}"}
         =i.file_field :image, class: 'js-file'
@@ -26,47 +27,91 @@
         .js-remove 削除
 
   .form-group
-    = f.label :title do
-      商品名
-    = f.text_field :title
+    .temporaryclass
+      = f.label :title do
+        商品名
+      .icon 必須
+      = f.text_field :title, placeholder: "40文字まで", class: "title"
+
+  -# .form-group
+  -#   .temporaryclass
+  -#     = f.label :price do
+  -#       販売価格
+  -#     .icon 必須
+  -#     = f.number_field :price, class: "price"
 
   .form-group
-    = f.label :price do
-      値段
-    = f.number_field :price
-
-  .form-group
-    = f.label :text do
-      商品紹介
-    = f.text_area :text
+    .temporaryclass
+      = f.label :text, class:"setumei" do
+        商品の説明
+      .icon 必須
+      = f.text_area :text, placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
 
   .form-group
     = f.hidden_field :stock, value:1
-
-  .form-group
-    =f.label :condition do
-      商品の状態
-    =f.text_field :condition
-
-  .form-group
-    =f.label :leadtime do
-      発送までの日数
-    =f.number_field :leadtime
   
   .form-group
-    = f.label :brand do
-      ブランド名
-    = f.text_field :brand
+    .temporaryclass
+      = f.label :category_id do
+        カテゴリー
+      .icon 必須
+      = f.collection_select :category_id, Category.all, :id, :name, placeholder: "40文字まで", class: "category"
+  
+  .form-group
+    .temporaryclass
+      = f.label :brand do
+        ブランド名
+      .icon2 任意
+      = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
+
 
   .form-group
-    = f.label :category_id do
-      カテゴリー
-    = f.collection_select :category_id, Category.all, :id, :name
+    .temporaryclass
+      =f.label :condition do
+        商品の状態
+      .icon 必須
+      =f.text_field :condition, class: "condition"
 
   .form-group
-    = f.label :derivery_id do
-      配送方法
-    = f.collection_select :delivery_id, Delivery.all, :id, :name
+    .temporaryclass
+      =f.label :leadtime do
+        発送の日数
+      .icon 必須
+      =f.number_field :leadtime, class: "leadtime"
+  
+  -# .form-group
+  -#   .temporaryclass
+  -#     = f.label :brand do
+  -#       ブランド名
+  -#     .icon2 任意
+  -#     = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
+
+  -# .form-group
+  -#   = f.label :category_id do
+  -#     カテゴリー
+  -#   .icon 必須
+  -#   = f.collection_select :category_id, Category.all, :id, :name, placeholder: "40文字まで", class: "category"
 
   .form-group
-    = f.submit "出品"
+    .temporaryclass
+      = f.label :derivery_id do
+        配送方法
+      .icon 必須
+      = f.collection_select :delivery_id, Delivery.all, :id, :name, class: "delivery"
+
+  -# .form-group
+  -#   = f.submit "出品",
+  .form-group
+    .temporaryclass
+      = f.label :price do
+        販売価格
+      .icon 必須
+      = f.number_field :price, class: "price"
+
+  .form-group
+    .submit
+      =f.submit '出品完了スイッチ', class: 'submit-btn' 
+  
+  -# .form-group
+  -#   .draft
+  -#     =f.submit '下書きに保存', class: 'draft-btn'
