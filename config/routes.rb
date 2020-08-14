@@ -10,12 +10,17 @@ Rails.application.routes.draw do
     post 'addresses', to: 'users/registrations#create_address'
   end  # devise_for :users
 
-  root "items#index"  
-  resources :users, only: [:show, :edit, :update] do 
-  resources :profiles, only: [:new, :create, :edit, :update] 
-  end 
-  resources :items do 
+  root "items#index"
+  resources :users, only: [:show, :edit, :update] do
+    resources :profiles, only: [:new, :create]
+  end
+  
+  resources :items do
     resources :comments, only: [:create, :destroy]
+    collection do
+      get 'get_category_children', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end
   end
   
   resources :buys, except: [:new] do
@@ -34,5 +39,4 @@ Rails.application.routes.draw do
       post 'delete', to: 'card#delete'
     end
   end
-
 end

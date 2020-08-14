@@ -12,7 +12,7 @@ require "csv"
 
 # カテゴリー
 CSV.foreach("db/csv/categories-table.csv") do |row|
-  Category.create!(name: row[1])
+  Category.create!(name: row[1], ancestry: row[2])
 end
 
 # 送料

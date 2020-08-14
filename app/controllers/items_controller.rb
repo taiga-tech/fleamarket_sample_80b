@@ -13,12 +13,23 @@ class ItemsController < ApplicationController
 
   #商品出品
   def new
+    @category_parents = Category.where(ancestry: nil)
+    # end
     if current_user
       @item = Item.new
       @item.images.new
     else
       redirect_to root_path
     end
+  end
+
+  # ajax
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   #商品情報
