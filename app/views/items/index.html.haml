@@ -105,7 +105,6 @@
               .itemPickBox
                 .itemPickBox__item-image
                   - item.images.each do |image|
-                    -# 画像サイズ(size:)は仮値
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status
                   %li.item_status__stock 
@@ -125,19 +124,23 @@
                 = link_to "編集", root_path, class: "item_edit" 
                 = link_to "削除", item_path(item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
             - else
-              - item.images.each do |image|
-                -# 画像サイズ(size:)は仮値
-                = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-              %ul.item_status
-                %li.item_status__price
-                  価格:
-                  = item.price
-                %li.item_status__title
-                  商品名:
-                  = item.title 
-                  %li.item_status__title
-                  出品者:
-                  = link_to item.user.name, user_path(item.user.id)
+              .itemPickBox
+                .itemPickBox__item-image
+                  - item.images.each do |image|
+                    -# 画像サイズ(size:)は仮値
+                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                  %ul.item_status
+                    %li.item_status__stock 
+                      完売
+                    %li.item_status__price
+                      価格:
+                      = item.price
+                    %li.item_status__title
+                      商品名:
+                      = item.title 
+                      %li.item_status__title
+                      出品者:
+                      = link_to item.user.name, user_path(item.user.id)
 
       .main__box--itemBox--archive
         .main__box--itemBox--archive--text1
@@ -150,7 +153,8 @@
               -# 仮クラス。商品登録機能完了後以下コメント外す
               .itemPickBox2
                 .itemPickBox2__item-image
-                -# = image_tag image.image.url, class: "item_image" if image.image.present?
+                  - item.images.each do |image|
+                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status2
                   %li.item_status2__stock
                     = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
@@ -164,17 +168,22 @@
                     出品者  
                     = link_to item.user.name, user_path(item.user.id)  
             - else
-              -# = image_tag image.image.url, class: "item_image" if image.image.present?
-              %ul.item_status2
-                %li.item_status2__price
-                  価格:
-                  = item.price
-                %li.item_status2__title
-                  商品名:
-                  = item.title 
-                %li.item_status__title
-                  出品者  
-                  = link_to item.user.name, user_path(item.user.id)
+              .itemPickBox2
+                .itemPickBox2__item-image
+                  - item.images.each do |image|
+                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                %ul.item_status2
+                  %li.item_status__stock 
+                    完売
+                  %li.item_status2__price
+                    価格:
+                    = item.price
+                  %li.item_status2__title
+                    商品名:
+                    = item.title 
+                  %li.item_status__title
+                    出品者  
+                    = link_to item.user.name, user_path(item.user.id)
 
     -# 6.今すぐ無料ダウンロード
     .main__box--download
