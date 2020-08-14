@@ -42,9 +42,7 @@ $(function() {
       children.forEach(function(child) {
         insertHtml += appendOption(child);
       });
-      if (childrenBox(insertHtml) == true) {
-        parentId.remove();
-      }
+      childrenBox(insertHtml)
     })
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
@@ -65,9 +63,7 @@ $(function() {
       grandChildren.forEach(function(grandchild) {
         insertHtml += appendOption(grandchild);
       });
-      if (grandChildrenBox(insertHtml) == true) {
-        childId.remove();
-      }
+      grandChildrenBox(insertHtml)
     })
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
