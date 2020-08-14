@@ -6,19 +6,17 @@
       .card-delete
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
   .card-title
-    %h1.text-center
+    %h1.text-title 
       %span.card-text
       = @item.title
-    %p.text-center
+    %p.text-top 
       %span.card-text
     - @item.images.each do |image|
       = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
     %h4.text-center
-      %span.card-text
+      %span.card-proce
       = "¥#{@item.price}"
-    %p.text-center
-      %span.card-supplement
-    %p.text-center
+    %p.text-bottom
       %span.card-text
       = @item.text
   .card-comment
