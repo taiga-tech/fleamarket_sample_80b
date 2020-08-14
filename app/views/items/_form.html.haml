@@ -1,121 +1,101 @@
-%h1 フォームです
-= form_with model: @item, local: true do |f|
-  - if @item.errors.any?
-    .SettingitemForm__errors
-      %h2= "#{@item.errors.full_messages.count}件のエラーが発生しました。"
-      %ul
-        - @item.errors.full_messages.each do |message|
-          %li= message
-  #image-box
-    #previews
+.container
+
+  = form_with model: @item, local: true do |f|
+
+    - if @item.errors.any?
+      .SettingitemForm__errors
+        %h2= "#{@item.errors.full_messages.count}件のエラーが発生しました。"
+        %ul
+          - @item.errors.full_messages.each do |message|
+            %li= message
+
+    #image-box
+      #previews
+        - if @item.persisted?
+          - @item.images.each_with_index do |image, i|
+            = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+
+      =f.label :images, class:"image-field" do
+        商品画像
+        %span.product_up 最大10枚までアップロードできます
+        %span.product_up 以下の項目の入力をお願いします
+
+      =f.fields_for :images do |i|
+        .js-file_group{"data-index" => "#{i.index}"}
+          =i.file_field :image, class: 'js-file'
+          %span.js-remove 削除
+        - if @item.persisted?
+          = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+
       - if @item.persisted?
-        - @item.images.each_with_index do |image, i|
-          = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
-    =f.label :images, class:"image-field" do
-      商品画像
-      %span.product_up 最大10枚までアップロードできます
-      %span.product_up 以下の項目の入力をお願いします
-    =f.fields_for :images do |i|
-      .js-file_group{"data-index" => "#{i.index}"}
-        =i.file_field :image, class: 'js-file'
-        %span.js-remove 削除
-      - if @item.persisted?
-        = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-    - if @item.persisted?
-      .js-file_group{"data-index" => "#{@item.images.count}"}
-        = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-        %span.js-remove 削除
+        .js-file_group{"data-index" => "#{@item.images.count}"}
+          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
+          %span.js-remove 削除
 
-  .form-group
-    .temporaryclass
-      = f.label :title do
-        商品名
-      .icon 必須
-      = f.text_field :title, placeholder: "40文字まで", class: "title"
+    .form-group
+      .temporaryclass
+        = f.label :title do
+          商品名
+          .icon 必須
+        = f.text_field :title, placeholder: "40文字まで", class: "title"
 
-  -# .form-group
-  -#   .temporaryclass
-  -#     = f.label :price do
-  -#       販売価格
-  -#     .icon 必須
-  -#     = f.number_field :price, class: "price"
+    .form-group
+      .temporaryclass
+        = f.label :text, class:"setumei" do
+          商品の説明
+          .icon 必須
+        = f.text_area :text, placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
 
-  .form-group
-    .temporaryclass
-      = f.label :text, class:"setumei" do
-        商品の説明
-      .icon 必須
-      = f.text_area :text, placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
+    .form-group
+      = f.hidden_field :stock, value:1
 
-  .form-group
-    = f.hidden_field :stock, value:1
-
-  .form-group
-    .temporaryclass
-      = f.label :category_id do
-        カテゴリー
-      .icon 必須
-      = f.collection_select :category_id, @parents, :id, :name, placeholder: "40文字まで", class: "category"
-
-  .form-group
-    .temporaryclass
-      = f.label :brand do
-        ブランド名
-      .icon2 任意
-      = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
+    .form-group
+      .temporaryclass
+        = f.label :category_id do
+          カテゴリー
+          .icon 必須
+        .categorySelect
+          = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+    .form-group
+      .temporaryclass
+        = f.label :brand do
+          ブランド名
+          .icon2 任意
+        = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
 
 
-  .form-group
-    .temporaryclass
-      =f.label :condition do
-        商品の状態
-      .icon 必須
-      =f.text_field :condition, class: "condition"
+    .form-group
+      .temporaryclass
+        =f.label :condition do
+          商品の状態
+          .icon 必須
+        =f.text_field :condition, class: "condition"
 
-  .form-group
-    .temporaryclass
-      =f.label :leadtime do
-        発送の日数
-      .icon 必須
-      =f.number_field :leadtime, class: "leadtime"
+    .form-group
+      .temporaryclass
+        =f.label :leadtime do
+          発送の日数
+          .icon 必須
+        =f.number_field :leadtime, class: "leadtime"
 
-  -# .form-group
-  -#   .temporaryclass
-  -#     = f.label :brand do
-  -#       ブランド名
-  -#     .icon2 任意
-  -#     = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
+    .form-group
+      .temporaryclass
+        = f.label :derivery_id do
+          配送方法
+          .icon 必須
+        = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください'}, class: "delivery"
 
-  -# .form-group
-  -#   = f.label :category_id do
-  -#     カテゴリー
-  -#   .icon 必須
-  -#   = f.collection_select :category_id, Category.all, :id, :name, placeholder: "40文字まで", class: "category"
+    .form-group
+      .temporaryclass
+        = f.label :price do
+          販売価格
+          .icon 必須
+        = f.number_field :price, class: "price"
 
-    -# =f.label :leadtime do
-    -#   発送までの日数
-    -# =f.number_field :leadtime
+    .form-group
+      .submit
+        =f.submit '出品完了スイッチ', class: 'submit-btn'
 
-  .form-group
-    .temporaryclass
-      = f.label :derivery_id do
-        配送方法
-      .icon 必須
-      = f.collection_select :delivery_id, Delivery.all, :id, :name, class: "delivery"
-
-  -# .form-group
-  -#   = f.submit "出品",
-  .form-group
-    .temporaryclass
-      = f.label :price do
-        販売価格
-      .icon 必須
-      = f.number_field :price, class: "price"
-
-  .form-group
-    .submit
-      =f.submit '出品完了スイッチ', class: 'submit-btn'
-
-  -# .form-group
-  -#   .draft
-  -#     =f.submit '下書きに保存', class: 'draft-btn'
+    -# .form-group
+    -#   .draft
+    -#     =f.submit '下書きに保存', class: 'draft-btn'

@@ -2,7 +2,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_categories, only: [:new, :edit]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -14,12 +13,23 @@ class ItemsController < ApplicationController
 
   #商品出品
   def new
+    @category_parents = Category.where(ancestry: nil)
+    # end
     if current_user
       @item = Item.new
       @item.images.new
     else
       redirect_to root_path
     end
+  end
+
+  # ajax
+  def get_category_children
+    @category_children = Category.find(params[:parent_id]).children
+  end
+
+  def get_category_grandchildren
+    @category_grandchildren = Category.find(params[:child_id]).children
   end
 
   #商品情報
@@ -66,10 +76,6 @@ class ItemsController < ApplicationController
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
     ).merge(user_id: current_user.id)
-  end
-
-  def set_categories
-    @parents = Category.where(ancestry: nil)
   end
 
   def set_item
