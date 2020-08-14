@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   root "items#index"
   resources :users, only: [:show, :edit, :update] do
-    resources :profiles, only: [:new, :create]
+    resources :profiles, only: [:new, :create, :edit, :update]
   end
   
   resources :items do

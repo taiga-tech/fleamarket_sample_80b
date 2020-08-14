@@ -13,7 +13,7 @@
     .content_1  
       .content_left
         %h1.user_name 
-          = link_to "クレジットカード情報", card_new_path, mehthod: :get 
+          = link_to "クレジットカード情報", new_card_path, method: :get 
         %h1.user_area= "配送元地域：福岡" 
         %h1.user_count= "出品数：#{@items.count}"
         %h1.user_like= "いいね数：４" 
