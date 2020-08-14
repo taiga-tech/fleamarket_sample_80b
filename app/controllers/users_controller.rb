@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     user = User.find(params[:id]) 
     @name = user.name 
     @items = user.items    
-    @profile = user.profile
+    @profile = user.profile 
+    @user = User.find(params[:id])
     # @zipcode = user.zipcode 
     # @area = user.area 
     # @city = user.city 
