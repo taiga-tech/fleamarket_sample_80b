@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController 
   def create  
     @item = Item.find(params[:item_id]) 
-    @comment = Comment.new 
-    if @comment.update(comment_params)  
-      redirect_to item_path(@item) 
-    else 
-      redirect_to item_path(@item)
-    end 
+    @comment = Comment.create(comment_params) 
+    respond_to do |format| 
+      format.html { redirect_to item_path(@item)} 
+      format.json
+    end  
   end   
   def destroy  
     @item = Item.find(params[:item_id]) 
@@ -17,6 +16,6 @@ class CommentsController < ApplicationController
   private  
   def comment_params 
     params.require(:comment).permit(:text, :price, :item_id, :user_id)
-end 
+  end 
 end
 
