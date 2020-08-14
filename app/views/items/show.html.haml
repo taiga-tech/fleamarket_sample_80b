@@ -6,19 +6,17 @@
       .card-delete
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
   .card-title
-    %h1.text-center
+    %h1.text-title 
       %span.card-text
       = @item.title
-    %p.text-center
+    %p.text-top 
       %span.card-text
     - @item.images.each do |image|
       = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
     %h4.text-center
-      %span.card-text
+      %span.card-proce
       = "¥#{@item.price}"
-    %p.text-center
-      %span.card-supplement
-    %p.text-center
+    %p.text-bottom
       %span.card-text
       = @item.text
   .card-comment
@@ -38,7 +36,7 @@
       まだ取引はありません
   .card-cash
     - unless user_signed_in? && current_user.id == @item.user_id
-      %h1.cash-cash= link_to "購入手続きへ", new_buy_path
+      %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr

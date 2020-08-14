@@ -1,10 +1,6 @@
--# = form_with model: @buy do
--#   :plain
--#   %script{type: "text/javascript", src: "https://checkout.pay.jp", class:"payjp-button", "data-text": "購入する", "data-key": "pk_test_31d4180a73af244259d7daf0"}
-
 %h2 購入を確定しますか？
-%p= @item.title
-%p= @item.price
+%p Apple MacBook Pro 13インチ
+%p ¥135,000(送料込み)
 %br
 %h3 支払い方法
 - if @default_card_information.blank?
