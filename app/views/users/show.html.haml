@@ -15,10 +15,10 @@
         %h1.user_name 
           = link_to "クレジットカード情報", card_new_path, mehthod: :get 
         %h1.user_area= "配送元地域：福岡" 
-        %h1.user_count= "出品数：２" 
+        %h1.user_count= "出品数：#{@items.count}"
         %h1.user_like= "いいね数：４" 
       .content_right
-        %p.user_introduce
+        %h1.user_introduce
           = @profile.text 
     .between         
       %p.between_image
