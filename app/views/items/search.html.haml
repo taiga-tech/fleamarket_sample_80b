@@ -1,0 +1,54 @@
+.main
+  .main__box   
+    .main__box--itemBox
+      .main__box--itemBox--itemIndex
+        .main__box--itemBox--itemIndex--text1
+          検索結果一覧
+        .main__box--itemBox--itemIndex--text2
+        .main__box--itemBox--itemIndex--textItem3  
+          - if @items.any? 
+            - @items.each do |item|
+              - unless item.stock == 0
+                -# 仮クラス。商品登録機能完了後以下コメント外す
+                .itemPickBox
+                  .itemPickBox__item-image
+                    - item.images.each do |image|
+                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                  %ul.item_status
+                    %li.item_status__stock
+                      = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
+                    %li.item_status__price
+                      価格:
+                      = item.price
+                    %li.item_status__title
+                      商品名:
+                      = link_to item.title, item_path(item) 
+                    %li.item_status__title
+                      出品者  
+                      = link_to item.user.name, user_path(item.user.id)
+                    %li.item_status__title 
+                - if user_signed_in? && current_user.id == item.user_id  
+                  メニュー
+                  = link_to "編集", root_path, class: "item_edit" 
+                  = link_to "削除", item_path(item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
+              - else
+                .itemPickBox
+                  .itemPickBox__item-image
+                    - item.images.first(5).each do |image|
+                      -# 画像サイズ(size:)は仮値
+                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                    %ul.item_status
+                      %li.item_status__stock 
+                        完売
+                      %li.item_status__price
+                        価格:
+                        = item.price
+                      %li.item_status__title
+                        商品名:
+                        = item.title 
+                        %li.item_status__title
+                        出品者:
+                        = link_to item.user.name, user_path(item.user.id) 
+          - else  
+            .search_result{style: "font-size: 30px;"}  
+              %h1{style:"padding-left: 570px"}検索結果はありません              
