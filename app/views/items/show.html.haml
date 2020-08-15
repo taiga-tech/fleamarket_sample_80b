@@ -29,7 +29,7 @@
         %td= @item.user.name
       %tr
         %th カテゴリー
-        %td= "#{@item.category.parent.parent.name} > #{@item.category.parent.name} > #{@item.category.name}"
+        -# %td= "#{@item.category.parent.parent.name} > #{@item.category.parent.name} > #{@item.category.name}"
       %tr
         %th ブランド
         %td= @item.brand
@@ -51,14 +51,10 @@
       %tr
         %th 配送目安
         %td=  "#{@item.leadtime}日で発送"
+  .btn-bar 
+    .btn-box
+      = render partial: "items/like", locals: { item: @item, like: @like }
 
-  .card-information
-    %h1.info
-    - if current_user.already_liked?(@item) 
-      = button_to "❤️いいね！#{@item.likes.count}", item_like_path(@item), method: :delete 
-    - else 
-      = button_to "🖤いいね！#{@item.likes.count}", item_likes_path(@item)   
-      
   .card-comment
     - if @item.comments.any?
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
