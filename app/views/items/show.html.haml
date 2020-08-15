@@ -53,13 +53,12 @@
         %td=  "#{@item.leadtime}日で発送"
   .card-information
     %h4.info
-      %span.left-info 🖤いいね！ 8
-      -# %span.right-info 🏴不適切な商品の通報       
+      %span.left-info 🖤いいね！ 8      
   .card-comment
     - if @item.comments.any?
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
-          %th 名前
+          %th ユーザー名
           %td コメント
           %th
       - @item.comments.each do |comment|
@@ -67,11 +66,11 @@
           %tr
             %th= comment.user.name
             %td=comment.text  
-            %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" } 
+            -# %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" } 
     - else 
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
-          %th 名前
+          %th ユーザー
           %td コメント
           %th
       - @item.comments.each do |comment|
@@ -79,7 +78,7 @@
           %tr
             %th= comment.user.name
             %td=comment.text
-            %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
+            -# %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
 
 .warning 
   %p.text-waring
