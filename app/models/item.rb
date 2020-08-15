@@ -16,5 +16,12 @@ class Item < ApplicationRecord
             :category_id,
             :user_id,
             :delivery_id,
-            presence: true
-end
+            presence: true 
+  def self.search(search)  
+    if search 
+      Item.where('title LIKE(?)', "%#{search}%")  
+    else 
+      redirect_to root_path 
+    end 
+  end 
+end 

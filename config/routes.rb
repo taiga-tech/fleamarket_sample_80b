@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   
   resources :items do
     resources :comments, only: [:create, :destroy]
-    collection do
+    collection do 
+      get "search"
       get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get 'get_category_grandchildren', defaults: { format: 'json' } 
     end
   end
   

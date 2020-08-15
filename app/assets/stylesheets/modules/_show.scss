@@ -104,25 +104,15 @@
       background-color: #e8e8e8;
       padding: 10px; 
       position: absolute;
-      left: 360px; 
+      left: 370px; 
       font-weight: bold; 
       font-size: 20px; 
     } 
-    .right-info {   
-      font-size: 20px; 
-      font-weight: bold;
-      position: absolute; 
-      right: 360px;    
-      padding: 10px;
-      border: solid 2px #000;  
-    
-    }
   } 
 }  
-
 .card-comment {  
   display: flex; 
-  justify-content: center;  
+  justify-content: space-around;  
   align-items: center;
   flex-direction: column;   
   padding-bottom: 10px; 
@@ -131,26 +121,26 @@
     border: solid 10px #fff; 
     color: #000;   
     font-weight: bold;
+    width: 100%; 
     th {   
-      width: 10%;
+      width: 20%;
       font-size: 15px;
       background-color:  #e8e8e8; 
       text-align: center; 
       font-weight: bold;  
-      padding-top:10px; 
+      padding-top:10px;  
     } 
     td {    
-      width: 70%;
+      width: 80%; 
+      padding-right: 400px;
       font-size: 15px;  
-      font-weight: bold;
-      padding-left: 5px; 
-      background-color: #e8e8e8;
+      font-weight: bold; 
+      background-color: #e8e8e8; 
     }  
   } 
 } 
-
 .warning { 
-  margin-left: 360px; 
+  margin-left: 370px; 
   margin-bottom: 10px;
 }
 .form {  
@@ -160,7 +150,7 @@
     height: 40px; 
     font-size: 15px; 
     padding: 5px; 
-    width: 620px; 
+    width: 600px; 
     border: 3px solid #000;
   }  
   .submit {   

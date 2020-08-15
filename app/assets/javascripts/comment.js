@@ -4,7 +4,6 @@ $(function(){
     <tbody><tr>
     <th>${comment.user_name}</th>
     <td>${comment.text}</td>
-    <th>削除</th>
     </tr>
     </tbody>
     </table>`     
