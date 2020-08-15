@@ -8,7 +8,8 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new 
+    @comments = @item.comments.includes(:user)
   end
 
   #商品出品

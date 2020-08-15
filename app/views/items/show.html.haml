@@ -29,7 +29,7 @@
         %td= @item.user.name
       %tr
         %th カテゴリー
-        -# %td= "#{@item.category.parent.parent.name} > #{@item.category.parent.name} > #{@item.category.name}"
+        %td= "#{@item.category.parent.parent.name} > #{@item.category.parent.name} > #{@item.category.name}"
       %tr
         %th ブランド
         %td= @item.brand
@@ -66,8 +66,8 @@
         %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
           %tr
             %th= comment.user.name
-            %td=comment.text
-            %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
+            %td=comment.text  
+            %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" } 
     - else 
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
