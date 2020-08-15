@@ -4,7 +4,9 @@ class Item < ApplicationRecord
   belongs_to :category
   has_many   :buys#, dependent: :destroy
   has_many   :comments#, dependent: :destroy
-  has_many   :images, dependent: :destroy
+  has_many   :images, dependent: :destroy 
+  has_many   :likes 
+  has_many   :liked_users, through: :likes, source: :user 
   accepts_nested_attributes_for :images, allow_destroy: true
   validates :images, length: { minimum: 1, maximum: 10 }
   validates :title,

@@ -9,7 +9,8 @@ class ItemsController < ApplicationController
 
   def show
     @comment = Comment.new 
-    @comments = @item.comments.includes(:user)
+    @comments = @item.comments.includes(:user) 
+    @like = Like.new  
   end
 
   #商品出品
@@ -35,7 +36,8 @@ class ItemsController < ApplicationController
 
   #商品情報
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params) 
+    @post.user_id = current_user.id 
     if @item.save
       redirect_to root_path
     else

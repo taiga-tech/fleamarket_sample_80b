@@ -18,8 +18,8 @@
           - else  
             = link_to "クレジットカード情報"
         %h1.user_area= "配送元地域：福岡" 
-        %h1.user_count= "出品数：#{@items.count}"
-        %h1.user_like= "いいね数：４" 
+        %h1.user_count= "出品数：#{@items.count}" 
+        %h1.user_like= "クーポン情報" 
       .content_right
         %h1.user_introduce
           = @profile.text 
@@ -44,7 +44,9 @@
             %li.user.condition
               = "商品の状態：#{item.condition}"  
             %li.user.leadtime
-              = "配送目安：#{item.leadtime}日"
+              = "配送目安：#{item.leadtime}日" 
+            %li.user.leadtime
+              = "いいね数：#{item.liked_users.count}個"
         
 
 

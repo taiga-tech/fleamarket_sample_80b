@@ -11,11 +11,12 @@ Rails.application.routes.draw do
   end  # devise_for :users
 
   root "items#index"
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:show, :edit, :update] do 
     resources :profiles, only: [:new, :create, :edit, :update]
   end
   
-  resources :items do
+  resources :items do  
+    resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do 
       get "search"
