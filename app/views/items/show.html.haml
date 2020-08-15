@@ -51,9 +51,14 @@
       %tr
         %th 配送目安
         %td=  "#{@item.leadtime}日で発送"
+
   .card-information
-    %h4.info
-      %span.left-info 🖤いいね！ 8      
+    %h1.info
+    - if current_user.already_liked?(@item) 
+      = button_to "❤️いいね！#{@item.likes.count}", item_like_path(@item), method: :delete 
+    - else 
+      = button_to "🖤いいね！#{@item.likes.count}", item_likes_path(@item)   
+      
   .card-comment
     - if @item.comments.any?
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
@@ -66,7 +71,6 @@
           %tr
             %th= comment.user.name
             %td=comment.text  
-            -# %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" } 
     - else 
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
@@ -78,7 +82,6 @@
           %tr
             %th= comment.user.name
             %td=comment.text
-            -# %th= link_to "削除", item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？" }
 
 .warning 
   %p.text-waring
