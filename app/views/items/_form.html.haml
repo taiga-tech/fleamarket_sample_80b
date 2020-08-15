@@ -31,7 +31,7 @@
       = f.label :title do
         商品名
       .icon 必須
-      = f.text_field :title, placeholder: "40文字まで", class: "title"
+      = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title"
 
   -# .form-group
   -#   .temporaryclass
@@ -44,8 +44,8 @@
     .temporaryclass
       = f.label :text, class:"setumei" do
         商品の説明
-      .icon 必須
-      = f.text_area :text, placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
+        .icon 必須
+      = f.text_area :text, maxlength: "1000", placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
 
   .form-group
     = f.hidden_field :stock, value:1
@@ -54,14 +54,14 @@
     .temporaryclass
       = f.label :category_id do
         カテゴリー
-      .icon 必須
+        .icon 必須
       = f.collection_select :category_id, Category.all, :id, :name, placeholder: "40文字まで", class: "category"
   
   .form-group
     .temporaryclass
       = f.label :brand do
         ブランド名
-      .icon2 任意
+        .icon2 任意
       = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
 
 
@@ -69,14 +69,14 @@
     .temporaryclass
       =f.label :condition do
         商品の状態
-      .icon 必須
+        .icon 必須
       =f.text_field :condition, class: "condition"
 
   .form-group
     .temporaryclass
       =f.label :leadtime do
         発送の日数
-      .icon 必須
+        .icon 必須
       =f.number_field :leadtime, class: "leadtime"
   
   -# .form-group
@@ -92,19 +92,11 @@
   -#   .icon 必須
   -#   = f.collection_select :category_id, Category.all, :id, :name, placeholder: "40文字まで", class: "category"
 
-    =f.label :leadtime do
-      発送までの日数
-    =f.number_field :leadtime
-
-  .form-group
-    = f.label :brand do
-      ブランド名
-    = f.text_field :brand
   .form-group
     .temporaryclass
       = f.label :derivery_id do
         配送方法
-      .icon 必須
+        .icon 必須
       = f.collection_select :delivery_id, Delivery.all, :id, :name, class: "delivery"
 
   -# .form-group
@@ -113,12 +105,12 @@
     .temporaryclass
       = f.label :price do
         販売価格
-      .icon 必須
+        .icon 必須
       = f.number_field :price, class: "price"
 
   .form-group
     .submit
-      =f.submit '出品完了スイッチ', class: 'submit-btn' 
+      =f.submit '出品する', class: 'submit-btn' 
   
   -# .form-group
   -#   .draft
