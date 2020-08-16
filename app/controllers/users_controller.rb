@@ -5,7 +5,8 @@ class UsersController < ApplicationController
   def show  
     user = User.find(params[:id]) 
     @name = user.name 
-    @items = user.items    
+    @items = user.items 
+    @created_at = user.created_at    
     @profile = Profile.new 
     @profile = Profile.find(params[:id])
     # @zipcode = user.zipcode 

@@ -26,6 +26,8 @@
                       出品者  
                       = link_to item.user.name, user_path(item.user.id)
                     %li.item_status__title 
+                      登録日:
+                      = item.created_at.strftime("%Y年%-m月%-d日")
                 - if user_signed_in? && current_user.id == item.user_id  
                   メニュー
                   = link_to "編集", root_path, class: "item_edit" 
@@ -43,10 +45,13 @@
                         = item.price
                       %li.item_status__title
                         商品名:
-                        = item.title 
-                        %li.item_status__title
+                        = link_to item.title, item_path(item)
+                      %li.item_status__title
                         出品者:
                         = link_to item.user.name, user_path(item.user.id) 
+                      %li.item_status__title 
+                        登録日:
+                        = item.created_at.strftime("%Y年%-m月%-d日")
           - else  
             .search_result 
               検索結果はありません              
