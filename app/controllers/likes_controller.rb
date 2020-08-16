@@ -18,5 +18,5 @@ class LikesController < ApplicationController
       format.html { redirect_to @item }
       format.js
     end
-  end 
+  end  
 end

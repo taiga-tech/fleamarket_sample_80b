@@ -63,24 +63,28 @@
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
           %th ユーザー名
-          %td コメント
+          %td 
+            %td__title コメント
           %th
       - @item.comments.each do |comment|
         %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
           %tr
             %th= comment.user.name
-            %td=comment.text  
+            %td 
+              %td__text=comment.text  
     - else 
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
-          %th ユーザー
-          %td コメント
+          %th ユーザー名
+          %td 
+            %td__title コメント
           %th
       - @item.comments.each do |comment|
         %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
           %tr
             %th= comment.user.name
-            %td=comment.text
+            %td
+              %td__text=comment.text 
 
 .warning 
   %p.text-waring
