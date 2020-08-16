@@ -21,7 +21,7 @@ class Item < ApplicationRecord
             presence: true 
   def self.search(search)  
     if search 
-      Item.where('title LIKE(?)', "%#{search}%")  
+      Item.where('title LIKE(?)', "%#{search}%") 
     else 
       redirect_to root_path 
     end 

@@ -30,9 +30,11 @@
           = @profile.text 
     .between         
       %p.between_image
-        = link_to "出品一覧", root_path
+        = link_to "出品一覧", root_path 
+.container 
+  .index_mypage         
     .content_2  
-      - @items.first(3).each do |item|  
+      - @items.each do |item|  
         .content  
           %h2.user_images  
             - item.images.each do |image|  
