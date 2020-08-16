@@ -3,7 +3,11 @@ $(function(){
     var html = `<table border="1" flame="box" rules="none" width="50%">
     <tbody><tr>
     <th>${comment.user_name}</th>
-    <td>${comment.text}</td>
+    <td>
+      <td__text>
+    ${comment.text}
+      </td__text>
+    </td>
     </tr>
     </tbody>
     </table>`     
