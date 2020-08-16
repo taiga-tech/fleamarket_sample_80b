@@ -1,8 +1,10 @@
 .container  
   .wrapper
-    .between         
+    .upper          
       %p.between_image
-        = link_to "#{current_user.name}さんがいいねした商品一覧", root_path
+        = link_to "#{current_user.name}さんがいいねした商品一覧", root_path 
+.container 
+  .index_mypage         
     .content_2  
       - current_user.liked_items.each do |item|  
         .content  

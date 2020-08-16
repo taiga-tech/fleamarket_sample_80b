@@ -1,57 +1,37 @@
-.main
-  .main__box   
-    .main__box--itemBox
-      .main__box--itemBox--itemIndex
-        .main__box--itemBox--itemIndex--text1
-          検索結果一覧
-        .main__box--itemBox--itemIndex--text2
-        .main__box--itemBox--itemIndex--textItem3  
-          - if @items.any? 
-            - @items.each do |item|
-              - unless item.stock == 0
-                .itemPickBox
-                  .itemPickBox__item-image
-                    - item.images.each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                  %ul.item_status
-                    %li.item_status__stock
-                      = "在庫: #{item.stock}" 
-                    %li.item_status__price
-                      価格:
-                      = item.price
-                    %li.item_status__title
-                      商品名:
-                      = link_to item.title, item_path(item) 
-                    %li.item_status__title
-                      出品者  
-                      = link_to item.user.name, user_path(item.user.id)
-                    %li.item_status__title 
-                      登録日:
-                      = item.created_at.strftime("%Y年%-m月%-d日")
-                - if user_signed_in? && current_user.id == item.user_id  
-                  メニュー
-                  = link_to "編集", root_path, class: "item_edit" 
-                  = link_to "削除", item_path(item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
-              - else
-                .itemPickBox
-                  .itemPickBox__item-image
-                    - item.images.first(5).each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                    %ul.item_status
-                      %li.item_status__stock 
-                        完売
-                      %li.item_status__price
-                        価格:
-                        = item.price
-                      %li.item_status__title
-                        商品名:
-                        = link_to item.title, item_path(item)
-                      %li.item_status__title
-                        出品者:
-                        = link_to item.user.name, user_path(item.user.id) 
-                      %li.item_status__title 
-                        登録日:
-                        = item.created_at.strftime("%Y年%-m月%-d日")
-          - else  
-            .search_result 
-              検索結果はありません              
+.container  
+  .wrapper
+    .upper          
+      %p.between_image
+        = link_to "検索商品一覧", root_path 
+.container 
+  .index_mypage          
+    .content_2  
+      - if @items.any? 
+        - @items.each do |item|  
+          .content  
+            %h2.user_images  
+              - item.images.each do |image|  
+                = image_tag image.image.url, class: "item_image" if image.image.present?                     
+            %ul.user_info  
+              %li.user.created_at 
+                = "登録日：#{item.created_at.strftime("%Y年%-m月%-d日")}"  
+              %li.user.title 
+                商品名：
+                = link_to item.title, item_path(item) 
+              %li.user.price
+                = "現在の価格：¥#{item.price}" 
+              %li.user.stock   
+                = "在庫：#{item.stock}個"  
+              %li.user.brand
+                = "ブランド：#{item.brand}"  
+              %li.user.condition
+                = "商品の状態：#{item.condition}"  
+              %li.user.leadtime
+                = "配送目安：#{item.leadtime}日" 
+              %li.user.leadtime
+                = "いいね数：#{item.liked_users.count}個"
+              %li.user.leadtime
+                = "コメント数：#{item.comments.count}個"
+      - else  
+        .search_result 
+          検索結果はありません                
