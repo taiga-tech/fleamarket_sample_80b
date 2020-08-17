@@ -23,6 +23,12 @@ $(function() {
 
     $('.hidden-destroy').hide();
 
+    // カメラをクリックで画像選択
+    $(document).on("click", ".fa-camera", function(e){
+      let file_field = $(".js-file:last");
+      file_field.trigger("click");
+    })
+
     $('#image-box').on('change', '.js-file', function(e) {
       const targetIndex = $(this).parent().data('index');
       // ファイルのブラウザ上でのURLを取得する
