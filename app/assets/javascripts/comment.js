@@ -24,7 +24,8 @@ $(function(){
       dataType: 'json',
       processData: false,
       contentType: false
-    .done(function(data){ 
+    })
+    .done(function(data){
       console.log
       var html = buildHTML(data);
       $('.card-comment').append(html);
