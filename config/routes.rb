@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end  # devise_for :users
 
   root "items#index"
+  
   resources :users, only: [:show, :edit, :update] do 
     resources :profiles, only: [:new, :create, :edit, :update] 
     collection do 
@@ -26,8 +27,13 @@ Rails.application.routes.draw do
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' } 
     end
+    member do
+      get "get_category_children",        defaults: { format: "json" }
+      get "get_category_grandchildren",   defaults: { format: "json" }
+      # get "get_selected_category",        defaults: { format: "json" }
+    end
   end
-  
+
   resources :buys, except: [:new] do
     member do
       post 'pay', to: 'buys#pay'

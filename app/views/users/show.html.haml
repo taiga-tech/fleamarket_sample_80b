@@ -1,16 +1,16 @@
-.container  
+.container
   .wrapper
-    .room 
+    .room
       = @name
-    .mypage 
+    .mypage
       %p.mypage_new
         = link_to "プロフィール", root_path
-      %p.mypage_edit 
-        - if user_signed_in? && current_user.id == @profile.id  
-          = link_to "自己紹介", edit_user_profile_path(current_user)
-        -else 
+      %p.mypage_edit
+        - if user_signed_in? && current_user.id
+          = link_to "自己紹介", edit_user_profile_path(@current_user.id, @profile.id)
+        -else
           = link_to "自己紹介", root_path
-    .content_1  
+    .content_1
       .content_left
         %h1.user_created_at= "登録日：#{@created_at.strftime("%Y年%-m月%-d日")}" 
         %h1.user_area= "配送元地域：福岡" 
@@ -27,9 +27,11 @@
             = link_to "いいね！した商品をみる(本人のみ)"
       .content_right
         %h1.user_introduce
-          = @profile.text 
-    .between         
+          = @profile.text
+    .between
       %p.between_image
+
+  
         = link_to "出品一覧", root_path 
 .container 
   .index_mypage         

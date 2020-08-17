@@ -6,13 +6,13 @@
       .card-delete
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
   .card-title
-    %h1.text-title 
+    %h1.text-title
       %span.card-text
       = @item.title
-    %p.text-top 
+    %p.text-top
       %span.card-text
     - @item.images.each do |image|
-      = image_tag image.image.url, size: "100×100", class: "item_image" if image.image.present?
+      = image_tag image.image.url, class: "item_image" if image.image.present?
     %h4.text-center
       %span.card-proce
       = "¥#{@item.price}"
@@ -32,7 +32,13 @@
         %td= link_to @item.user.name, user_path(@item.user.id)
       %tr
         %th カテゴリー
-        -# %td= "#{@item.category.parent.parent.name} > #{@item.category.parent.name} > #{@item.category.name}"
+        %td
+          = @item.category.parent.parent.name
+          %span >
+          = @item.category.parent.name
+          %span >
+          = @item.category.name
+
       %tr
         %th ブランド
         %td= @item.brand
@@ -54,9 +60,11 @@
       %tr
         %th 配送目安
         %td=  "#{@item.leadtime}日で発送"
+
   .btn-bar 
     .btn-box
       = render partial: "items/like", locals: { item: @item, like: @like }
+
 
   .card-comment
     - if @item.comments.any?
@@ -86,11 +94,11 @@
             %td
               %td__text=comment.text 
 
-.warning 
+.warning
   %p.text-waring
     %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
     %br
-    %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。          
+    %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。
 .form
   = form_with model: [@item, @comment], local: true, id: "new_comment" do |f|
     = f.hidden_field :item_id, { value: @item.id}

@@ -4,10 +4,9 @@
 
     - if @item.errors.any?
       .SettingitemForm__errors
-        %h2= "#{@item.errors.full_messages.count}件のエラーが発生しました。"
         %ul
           - @item.errors.full_messages.each do |message|
-            %li= message
+            %li.error= message
 
     #image-box
       #previews
@@ -38,6 +37,11 @@
         = f.label :title do
           商品名
           .icon 必須
+          -# - if @item.errors.include?(:title)
+          -#   %span.error= @item.errors.full_messages_for(:title).first
+          -#   = f.text_field :title, placeholder: "40文字まで", class: "title error-field"
+          -# - else
+          -#   %div
         = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title"
 
     .form-group
@@ -56,14 +60,18 @@
           カテゴリー
           .icon 必須
         .categorySelect
-          -# = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+
+          - if action_name == "new" || action_name == "create"
+            = f.select :category_id, options_for_select(@category_parents.collect{ |c| [c.name, c.id]}), {include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+          - else
+            = f.select :category_id, options_for_select(@category_parents.collect{ |c| [c.name, c.id,  {"data-category": c.id}]}, @grandparent_category.id), {include_blank: '選択してください'}, class: "category", id: "parent_category"
+
     .form-group
       .temporaryclass
         = f.label :brand do
           ブランド名
           .icon2 任意
         = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
-
 
     .form-group
       .temporaryclass
