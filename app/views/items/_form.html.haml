@@ -56,7 +56,7 @@
           カテゴリー
           .icon 必須
         .categorySelect
-          = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+          -# = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
     .form-group
       .temporaryclass
         = f.label :brand do
