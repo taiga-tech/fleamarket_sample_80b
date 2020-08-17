@@ -1,16 +1,13 @@
 $(function(){
   function buildHTML(comment){
-    var html = `<table border="1" flame="box" rules="none" width="50%">
-    <tbody><tr>
-    <th>${comment.user_name}</th>
-    <td>
-      <td__text>
-    ${comment.text}
-      </td__text>
-    </td>
-    </tr>
-    </tbody>
-    </table>`
+    var html = `<div class="Message">
+    <h1>${comment.text}</h1>
+    <div class="MessageInfo">
+    <div class="MessageInfo__userName">
+    ${comment.user_name}
+    </div>
+    </div>  
+    </div>`
     return html;
   }
   $('#new_comment').on('submit', function(e){
@@ -28,7 +25,7 @@ $(function(){
     .done(function(data){
       console.log
       var html = buildHTML(data);
-      $('.card-comment').append(html);
+      $('.MessageBox').append(html);
       $('.form-area').val('');
       $('.submit').prop('disabled', false);
     })
