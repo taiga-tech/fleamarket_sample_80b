@@ -1,7 +1,8 @@
 .container
   .wrapper
     .room
-      = @name
+      = @name 
+      -# = image_tag @profile.image.url 
     .mypage
       %p.mypage_new
         = link_to "プロフィール", root_path
