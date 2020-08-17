@@ -1,14 +1,16 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
   end
 
   def show
-    @comment = Comment.new
+    @comment = Comment.new 
+    @comments = @item.comments.includes(:user) 
+    @like = Like.new  
   end
 
   #商品出品
@@ -34,7 +36,8 @@ class ItemsController < ApplicationController
 
   #商品情報
   def create
-    @item = Item.new(item_params)
+    @item = Item.new(item_params) 
+    @post.user_id = current_user.id 
     if @item.save
       redirect_to root_path
     else
@@ -60,7 +63,9 @@ class ItemsController < ApplicationController
     @item.destroy
     redirect_to root_path
   end
-
+  def search  
+    @items = Item.search(params[:keyword]) 
+end 
   #ストロングパラメーター
   private
   def item_params

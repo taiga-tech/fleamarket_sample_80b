@@ -93,64 +93,57 @@
       }
     } 
   }  
-  .card-information {  
-    margin-top: 20px; 
-    margin-bottom: 60px;
-    position: relative;
-    .left-info {  
-      color: #000;   
-      border: solid 2px #e8e8e8;  
-      border-radius: 5px;
-      background-color: #e8e8e8;
-      padding: 10px; 
-      position: absolute;
-      left: 360px; 
-      font-weight: bold; 
-      font-size: 20px; 
-    } 
-    .right-info {   
-      font-size: 20px; 
-      font-weight: bold;
-      position: absolute; 
-      right: 360px;    
-      padding: 10px;
-      border: solid 2px #000;  
-    
-    }
-  } 
-}  
-
+  .btn-bar {  
+    margin-top: 30px; 
+    margin-bottom: 30px; 
+    font-size: 23px; 
+    font-weight: bold; 
+    padding-right: 550px; 
+    font-family: Arial, Helvetica, sans-serif;
+    }  
+  }  
 .card-comment {  
   display: flex; 
-  justify-content: center;  
+  justify-content: flex-start;  
   align-items: center;
   flex-direction: column;   
-  padding-bottom: 10px; 
-  tr {    
+  padding-bottom: 10px;  
+  tr {   
     height: 60px;  
     border: solid 10px #fff; 
     color: #000;   
     font-weight: bold;
+    width: 100%;  
     th {   
-      width: 10%;
+      width: 20%;
       font-size: 15px;
       background-color:  #e8e8e8; 
       text-align: center; 
       font-weight: bold;  
-      padding-top:10px; 
+      padding-top:10px;  
     } 
-    td {    
-      width: 70%;
+    td {  
+      width: 80%;   
+      padding-right: 400px;
       font-size: 15px;  
-      font-weight: bold;
-      padding-left: 5px; 
+      font-weight: bold; 
       background-color: #e8e8e8;
+      position: relative; 
+      overflow: scroll;
+      &__text { 
+        position: absolute;
+        top: 10px; 
+        left: 10px;
+      } 
+      &__title {
+        padding-right: 80px; 
+
+      }
     }  
   } 
 } 
-
 .warning { 
-  margin-left: 360px; 
+  margin-left: 370px; 
   margin-bottom: 10px;
 }
 .form {  
@@ -160,7 +153,7 @@
     height: 40px; 
     font-size: 15px; 
     padding: 5px; 
-    width: 620px; 
+    width: 600px; 
     border: 3px solid #000;
   }  
   .submit {   

@@ -326,8 +326,8 @@
         &--text1 {
           text-align: center;
           font-size: 28px;
-          font-weight: bold;
-        }
+          font-weight: bold; 
+        }   
         &--text2 {
           color: #3CCACE;
           font-size: 24px;
@@ -357,7 +357,12 @@
                 font-size: 23px;
               }
             }
-          }
+          } 
+          .search_result { 
+            font-size: 30px;  
+            font-weight: bold;
+            padding-left: 570px; 
+          } 
         }
       }
       // アーカイバ
@@ -429,4 +434,4 @@
       }
     }
   }
-}
+} 

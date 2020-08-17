@@ -116,9 +116,14 @@
                     商品名:
                     = link_to item.title, item_path(item) 
                   %li.item_status__title
-                    出品者  
-                    = link_to item.user.name, user_path(item.user.id)
-                  %li.item_status__title 
+                    出品者: 
+                    = link_to item.user.name, user_path(item.user.id) 
+                  %li.item_status__title
+                    登録日:
+                    = item.created_at.strftime("%Y年%-m月%-d日")
+                  %li.item_status__title  
+                    いいね数: 
+                    = item.likes.count
               - if user_signed_in? && current_user.id == item.user_id  
                 メニュー
                 = link_to "編集", root_path, class: "item_edit" 
@@ -141,6 +146,12 @@
                       %li.item_status__title
                       出品者:
                       = link_to item.user.name, user_path(item.user.id)
+                      %li.item_status__title
+                      登録日:
+                      = item.created_at.strftime("%Y年%-m月%-d日")
+                      %li.item_status__title  
+                      いいね数: 
+                      = item.likes.count
 
       .main__box--itemBox--archive
         .main__box--itemBox--archive--text1
@@ -166,7 +177,13 @@
                     = link_to item.title, item_path(item) 
                   %li.item_status__title
                     出品者  
-                    = link_to item.user.name, user_path(item.user.id)  
+                    = link_to item.user.name, user_path(item.user.id)
+                  %li.item_status__title 
+                    登録日:
+                    = item.created_at.strftime("%Y年%-m月%-d日")
+                  %li.item_status__title  
+                    いいね数: 
+                    = item.likes.count 
             - else
               .itemPickBox2
                 .itemPickBox2__item-image
@@ -180,10 +197,16 @@
                     = item.price
                   %li.item_status2__title
                     商品名:
-                    = item.title 
+                    = link_to item.title, item_path(item)
                   %li.item_status__title
                     出品者  
                     = link_to item.user.name, user_path(item.user.id)
+                  %li.item_status__title 
+                    登録日:
+                    = item.created_at.strftime("%Y年%-m月%-d日")
+                  %li.item_status__title  
+                    いいね数: 
+                    = item.likes.count 
 
     -# 6.今すぐ無料ダウンロード
     .main__box--download
