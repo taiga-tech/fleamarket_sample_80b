@@ -6,7 +6,7 @@
       %p.mypage_new
         = link_to "プロフィール", root_path
       %p.mypage_edit
-        - if user_signed_in? && current_user.id
+        - if user_signed_in? && current_user.id = @profile.id
           = link_to "自己紹介", edit_user_profile_path(@current_user.id, @profile.id)
         -else
           = link_to "自己紹介", root_path
@@ -16,12 +16,12 @@
         %h1.user_area= "配送元地域：福岡" 
         %h1.user_count= "現在の出品数：#{@items.count}"
         %h1.user_name  
-          - if user_signed_in? && current_user.id == @profile.id
+          - if user_signed_in? && current_user.id
             = link_to "クレジットカード情報", new_card_path, method: :get  
           - else  
             = link_to "クレジットカード情報(本人のみ)"
         %h1.user_like 
-          - if user_signed_in? && current_user.id  == @profile.id 
+          - if user_signed_in? && current_user.id
             = link_to "いいね！した商品をみる", likes_users_path, method: :get  
           - else 
             = link_to "いいね！した商品をみる(本人のみ)"
