@@ -191,7 +191,7 @@
             - else
               .itemPickBox2
                 .itemPickBox2__item-image
-                  - item.images.fiest(1).each do |image|
+                  - item.images.first(1).each do |image|
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status2
                   %li.item_status__stock
