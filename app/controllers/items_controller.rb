@@ -9,9 +9,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @comment = Comment.new 
-    @comments = @item.comments.includes(:user) 
-    @like = Like.new  
+    @comment = Comment.new
+    @comments = @item.comments.includes(:user)
+    @like = Like.new
   end
 
   #商品出品
@@ -22,8 +22,8 @@ class ItemsController < ApplicationController
 
   #商品情報
   def create
-    @item = Item.new(item_params) 
-    @item.user_id = current_user.id 
+    @item = Item.new(item_params)
+    @item.user_id = current_user.id
     if @item.save
       redirect_to item_path(@item)
     else
@@ -36,6 +36,8 @@ class ItemsController < ApplicationController
     @category = @item.category
     @child_category = @category.parent
     @grandparent_category = @category.root
+    @child_categories = @grandparent_category.children
+    @grandchild_categories = @child_category.children
   end
 
   #商品更新機能
@@ -56,21 +58,16 @@ class ItemsController < ApplicationController
       @category_grandchildren = Category.find(params[:child_id]).children
     end
 
-    # def get_selected_category
-    #   # @child_category = Item.find(params[:id]).category.parent
-    #   @child_category = Item.find(params[:id]).category.parent
-    # end
-
   #商品削除
   def destroy
     @item.destroy
     redirect_to root_path
   end
 
-  def search  
-    @items = Item.search(params[:keyword]) 
-  end 
- 
+  def search
+    @items = Item.search(params[:keyword])
+  end
+
   private
   def set_item
     @item = Item.find(params[:id])

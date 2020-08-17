@@ -81,34 +81,16 @@ $(function() {
   });
 
   // items#edit
-  if ( location.pathname.includes("items") && location.pathname.includes("edit") ) {
-    let selectedChildData = $(".hiddenData").data();
-    console.log(selectedChildData);
-
-    $(document).ready(function() {
-      let selectedParentId = $("#parent_category option:selected").val();
-      let selectedChildId = $("#child_category option:selected").val();
-      // let selectedChildId = $(".hiddenData").data();
-      // console.log(selectedChildId);
-      $("#parent_category").change(function() {
-      });
-      return childrenAjax(selectedParentId);
-      return grandChildrenAjax(selectedChildId);
-    });
-
-    $("#parent_category").change(function() {
-
-    });
-
-    // $(function() {
-    //   let childoptions = $("#child_category");
-    //   var aryCmp = [];
-    //   $("#child_category option").each(function(key, value) {
-    //     aryCmp.push($(value).attr('value'));
-    //   })
-    //   console.log(aryCmp.join("\r\n"))
-    //   // console.log($("#catagory-children").html());
-    //   // childoptions[1].selected = true
-    // });
-  }
+  // if ( location.pathname.includes("items") && location.pathname.includes("edit") ) {
+  //   let selectedChildData = $(".hiddenData").data();
+  //   console.log(selectedChildData);
+  //   $(document).ready(function() {
+  //     let selectedParentId = $("#parent_category option:selected").val();
+  //     let selectedChildId = $("#child_category option:selected").val();
+  //     // let selectedChildId = $(".hiddenData").data();
+  //     // console.log(selectedChildId);
+  //     // return childrenAjax(selectedParentId);
+  //     // return grandChildrenAjax(selectedChildId);
+  //   });
+  // }
 });
