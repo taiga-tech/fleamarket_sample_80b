@@ -89,3 +89,6 @@ gem 'jquery-rails'
 gem 'payjp'
 
 gem "ancestry"
+
+# font-awesome導入(8/16)
+gem 'font-awesome-sass', '~> 5.4.1'

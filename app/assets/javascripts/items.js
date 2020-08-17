@@ -29,6 +29,12 @@ $(function() {
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
 
+    // カメラをクリックで画像選択
+    $(document).on("click", ".fa-camera", function(e){
+      let file_field = $(".js-file:last");
+      file_field.trigger("click");
+    })
+
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);

@@ -3,8 +3,11 @@ $(function(){
     var html = `<table border="1" flame="box" rules="none" width="50%">
     <tbody><tr>
     <th>${comment.user_name}</th>
-    <td>${comment.text}</td>
-    <th>削除</th>
+    <td>
+      <td__text>
+    ${comment.text}
+      </td__text>
+    </td>
     </tr>
     </tbody>
     </table>`
@@ -21,8 +24,7 @@ $(function(){
       dataType: 'json',
       processData: false,
       contentType: false
-    })
-    .done(function(data){
+    .done(function(data){ 
       console.log
       var html = buildHTML(data);
       $('.card-comment').append(html);

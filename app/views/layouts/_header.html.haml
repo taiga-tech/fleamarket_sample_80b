@@ -5,8 +5,8 @@
         = image_tag ( "logo.png") , size: "200×90", class: "iconBtn"
     .header__headerBox--searchBox
       .header__headerBox--searchBox--formBox
-        = form_with model: @item, class: "Form", local: true do |f|
-          = f.text_field :content, class: "Form__input", placeholder: "キーワードから探す"
+        = form_with(url: search_items_path, local: true, method: :get, class: "Form") do |f|
+          = f.text_field :keyword, class: "Form__input", placeholder: "キーワードから探す"
           = button_tag type:"submit", class: "Form__submit" do
             = link_to image_tag ( "icon-search1.png") , class: "submit_image"
   .header__headerBox2

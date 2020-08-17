@@ -17,22 +17,23 @@
       display: flex; 
       justify-content: center;
       .mypage_new { 
-        background-color:  #48d1cc; 
+        background-color:   #ffaf26;
+        border-right: 1px solid  lightgray;
         padding: 10px 20px; 
         margin-top: 10px; 
         border-radius: 5px; 
-        color: #fff; 
+        color:  #fff; 
         font-size: 16px; 
         font-weight: bold; 
         text-align: center; 
         width: 60%;
       } 
       .mypage_edit  { 
-        background-color:  #48d1cc; 
+        background-color:   #ffaf26; 
         padding: 10px 20px; 
         margin-top: 10px; 
         border-radius: 5px; 
-        color:#fff; 
+        color:  #ffff; 
         font-size: 16px; 
         font-weight: bold; 
         text-align: center; 
@@ -44,42 +45,50 @@
       width: 100%;     
       margin-bottom: 10px;
       .content_left {  
-        background-color: #fff; 
+        background-color: #48d1cc; 
+        color:  #fff;
         width: 50%; 
         float: left; 
         height: 200px; 
-        border: 1px solid lightgray;
-        .user_name {  
-          text-align: center;  
-          margin-right: 0px;
-          color: #000;
+        border: 1px solid lightgray; 
+        .user_created_at {   
+          color: #fff;
           font-size: 20px;
           font-weight: bold; 
-          margin-top: 15px;
+          margin-left: 20px;
+          margin-top: 18px;
+        }
+        .user_name {   
+          margin-right: 0px;
+          color: #fff;
+          font-size: 20px;
+          font-weight: bold; 
+          margin-left: 20px;
         } 
         .user_area { 
-          text-align: center; 
           font-size: 20px;  
           font-weight: bold; 
-          margin-top: 15px;
+          margin-left: 20px;
         } 
-        .user_count { 
-          text-align: center;  
+        .user_count{ 
           font-size: 20px; 
           font-weight: bold; 
-          margin-top: 15px;
+          margin-left: 20px;
         } 
         .user_like {  
-          text-align: center; 
           font-size: 20px; 
-          font-weight: bold; 
-          margin-top: 15px;
+          font-weight: bold;
+          margin-left: 20px; 
         }  
+      } 
+      .content_right{ 
+        color: #fff;
         .user_introduce { 
           font-size: 20px; 
           font-weight: bold; 
+          background-color: #48d1cc;
         }
-      } 
+      }
       .content_right { 
         width: 50%; 
         float: right; 
@@ -87,7 +96,8 @@
         border: 1px solid lightgray;
         .user_introduce { 
           padding-top: 10px;   
-          height: 200px;
+          height: 200px; 
+          font-size: 18px;
         } 
       }
     }
@@ -105,37 +115,37 @@
       text-align: center; 
       margin-bottom: 0px;
     } 
+  }
+} 
 
-
+.container {
+  .index_mypage{  
+    display: flex; 
+    justify-content: flex-start;
     .content_2 {   
-      width: 900px; 
-      height: 400px;
-      margin-top: 0px;
-      margin-bottom: 30px;  
-      display: flex; 
+      height: 500px;
+      margin-top: 20px; 
+      margin-bottom: 50px;
       .content { 
-      width: 900px; 
-      display: flex; 
-      flex-direction: column; 
-      justify-content: center; 
         .user_images {   
-          height: 200px; 
-          display: flex;  
+          height: 200px;  
           .item_image { 
             width: 300px; 
             height: 200px; 
+            border: 1px solid #fff; 
           }
         } 
         .user_info {    
-          padding-top: 20px;  
-          text-align: center; 
+          padding-top: 10px;   
           background-color: #f5f5f5; 
           font-size: 15px; 
-          border: solid 1px lightgray; 
+          border: solid 1px #fff; 
           width: 300px; 
           font-weight: bold;
+          padding-left: 20px; 
+          padding-right: 5px; 
         }   
       }
     } 
-  }
+  }  
 }
