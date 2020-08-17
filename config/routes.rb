@@ -12,17 +12,22 @@ Rails.application.routes.draw do
 
   root "items#index"
   resources :users, only: [:show, :edit, :update] do
-    resources :profiles, only: [:new, :create]
+    resources :profiles, only: [:edit, :update]
   end
-  
+
   resources :items do
     resources :comments, only: [:create, :destroy]
     collection do
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
+      get "get_category_children",      defaults: { format: "json" }
+      get "get_category_grandchildren", defaults: { format: "json" }
+    end
+    member do
+      get "get_category_children",        defaults: { format: "json" }
+      get "get_category_grandchildren",   defaults: { format: "json" }
+      # get "get_selected_category",        defaults: { format: "json" }
     end
   end
-  
+
   resources :buys, except: [:new] do
     member do
       post 'pay', to: 'buys#pay'

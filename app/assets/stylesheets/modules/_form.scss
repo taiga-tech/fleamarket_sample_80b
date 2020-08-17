@@ -6,17 +6,17 @@
   // display: inline-block;
   // margin-left:  50px;
   // margin-right: 50px;
-//   align-items: center;
+  //   align-items: center;
 
-// @include display-flex();
-// @include flex-direction(row);
-// @include justify-content(center);
-// @include align-items(center);
-// 商品画像
-// .product-image {
-//   height: 80px;
-//   width : 70px;
-// }
+  // @include display-flex();
+  // @include flex-direction(row);
+  // @include justify-content(center);
+  // @include align-items(center);
+  // 商品画像
+  // .product-image {
+  //   height: 80px;
+  //   width : 70px;
+  // }
 
   // 商品名
   .title {
@@ -181,4 +181,12 @@
 
 label {
   display: block;
+}
+
+.error {
+  color: red;
+}
+
+.error-field {
+  border: 1px solid red;
 }

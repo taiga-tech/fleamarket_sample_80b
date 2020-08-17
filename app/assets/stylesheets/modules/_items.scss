@@ -344,8 +344,10 @@
             background-color: white;
             &__item-image {
               height: 60%;
-              object-fit: cover;
               background-color: gray;
+              img {
+                object-fit: cover;
+              }
             }
             .item_status {
               padding: 20px 13px;
@@ -387,6 +389,9 @@
             &__item-image {
               height: 60%;
               background-color: gray;
+              img {
+                object-fit: cover;
+              }
             }
             .item_status2 {
               padding: 20px 13px;

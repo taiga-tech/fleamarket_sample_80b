@@ -102,23 +102,24 @@
           - @items.first(5).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
-              .itemPickBox
-                .itemPickBox__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status
-                  %li.item_status__stock
-                    = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
-                  %li.item_status__price
-                    価格:
-                    = item.price
-                  %li.item_status__title
-                    商品名:
-                    = link_to item.title, item_path(item)
-                  %li.item_status__title
-                    出品者
-                    = link_to item.user.name, user_path(item.user.id)
-                  %li.item_status__title
+              = link_to item_path(item) do
+                .itemPickBox
+                  .itemPickBox__item-image
+                    - item.images.first(1).each do |image|
+                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                  %ul.item_status
+                    %li.item_status__stock
+                      = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
+                    %li.item_status__price
+                      価格:
+                      = item.price
+                    %li.item_status__title
+                      商品名:
+                      = item.title
+                    %li.item_status__title
+                      出品者
+                      = link_to item.user.name, user_path(item.user.id)
+                    %li.item_status__title
               - if user_signed_in? && current_user.id == item.user_id
                 メニュー
                 = link_to "編集", root_path, class: "item_edit"
@@ -151,22 +152,23 @@
           - @items.first(5).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
-              .itemPickBox2
-                .itemPickBox2__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status2
-                  %li.item_status2__stock
-                    = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
-                  %li.item_status2__price
-                    価格:
-                    = item.price
-                  %li.item_status2__title
-                    商品名:
-                    = link_to item.title, item_path(item)
-                  %li.item_status__title
-                    出品者
-                    = link_to item.user.name, user_path(item.user.id)
+              = link_to item_path(item) do
+                .itemPickBox2
+                  .itemPickBox2__item-image
+                    - item.images.first(1).each do |image|
+                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                  %ul.item_status2
+                    %li.item_status2__stock
+                      = "在庫: #{item.stock}" #ここは条件分岐在庫の有無を表示する
+                    %li.item_status2__price
+                      価格:
+                      = item.price
+                    %li.item_status2__title
+                      商品名:
+                      = item.title
+                    %li.item_status__title
+                      出品者
+                      = link_to item.user.name, user_path(item.user.id)
             - else
               .itemPickBox2
                 .itemPickBox2__item-image

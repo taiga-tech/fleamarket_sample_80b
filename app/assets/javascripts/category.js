@@ -1,7 +1,9 @@
 $(function() {
 
   function appendOption(category) {
-    let html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    let html = `<option value="${category.id}" data-category="${category.id}">
+                  ${category.name}
+                </option>`;
     return html;
   }
 
@@ -27,8 +29,7 @@ $(function() {
     $(".categorySelect").append(grandChildren);
   }
 
-  $("#parent_category").change(function() {
-    let parentId = $(this).val();
+  function childrenAjax(parentId) {
     $.ajax({
       url: "get_category_children",
       type: "GET",
@@ -47,10 +48,9 @@ $(function() {
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
     })
-  });
+  }
 
-  $(".categorySelect").on("change", "#child_category", function() {
-    let childId = $(this).val();
+  function grandChildrenAjax(childId) {
     $.ajax({
       url: "get_category_grandchildren",
       type: "GET",
@@ -67,7 +67,48 @@ $(function() {
     })
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
-    })
+    });
+  }
+
+  $("#parent_category").change(function() {
+    let parentId = $(this).val();
+      return childrenAjax(parentId)
   });
 
+  $(".categorySelect").on("change", "#child_category", function() {
+    let childId = $(this).val();
+    return grandChildrenAjax(childId);
+  });
+
+  // items#edit
+  if ( location.pathname.includes("items") && location.pathname.includes("edit") ) {
+    let selectedChildData = $(".hiddenData").data();
+    console.log(selectedChildData);
+
+    $(document).ready(function() {
+      let selectedParentId = $("#parent_category option:selected").val();
+      let selectedChildId = $("#child_category option:selected").val();
+      // let selectedChildId = $(".hiddenData").data();
+      // console.log(selectedChildId);
+      $("#parent_category").change(function() {
+      });
+      return childrenAjax(selectedParentId);
+      return grandChildrenAjax(selectedChildId);
+    });
+
+    $("#parent_category").change(function() {
+
+    });
+
+    // $(function() {
+    //   let childoptions = $("#child_category");
+    //   var aryCmp = [];
+    //   $("#child_category option").each(function(key, value) {
+    //     aryCmp.push($(value).attr('value'));
+    //   })
+    //   console.log(aryCmp.join("\r\n"))
+    //   // console.log($("#catagory-children").html());
+    //   // childoptions[1].selected = true
+    // });
+  }
 });
