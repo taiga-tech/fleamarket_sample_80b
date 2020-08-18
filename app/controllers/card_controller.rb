@@ -1,7 +1,4 @@
 class CardController < ApplicationController
-  # before_action :move_to_root
-  # before_action :set_card, only: [:new, :show, :destroy, :buy, :pay ]
-  # before_action :set_item, only: [:buy, :pay]
 
   require "payjp"
 
@@ -30,18 +27,6 @@ class CardController < ApplicationController
     end
   end
 
-  def delete #PayjpとCardデータベースを削除します
-    card = Credit.where(user_id: current_user.id).first
-    if card.blank?
-    else
-      Payjp.api_key = "sk_test_f47e2234a107e305901f65aa"
-      customer = Payjp::Customer.retrieve(card.customer_id)
-      customer.delete
-      card.delete
-    end
-      redirect_to action: "new"
-  end
-
   def show #Creditのデータpayjpに送り情報を取り出します
     card = Credit.where(user_id: current_user.id).first
     if card.blank?
@@ -53,4 +38,16 @@ class CardController < ApplicationController
     end
   end
 
+  def delete #PayjpとCardデータベースを削除します
+    card = Credit.where(user_id: current_user.id).first
+    if card.blank?
+      redirect_to action: "delete"
+    else
+      Payjp.api_key = "sk_test_f47e2234a107e305901f65aa"
+      customer = Payjp::Customer.retrieve(card.customer_id)
+      customer.delete
+      card.delete
+    end
+      # redirect_to action: "new"
+  end
 end

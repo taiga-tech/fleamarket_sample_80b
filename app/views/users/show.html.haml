@@ -5,9 +5,15 @@
   .wrapper 
     .header 
       .profile_name
-        = @name 
+<<<<<<< Updated upstream
+        = @name
       .profile_image 
         = image_tag @profile.image.url, class: "photo" if @profile.image.present?                     
+=======
+        = @name 
+      .profile_image
+        = image_tag @profile.image.url, class: "photo" if @profile.image.present?
+>>>>>>> Stashed changes
       .selfy
         %p.mypage_edit
           - if user_signed_in? && current_user.id = @profile.id
@@ -20,9 +26,15 @@
         %h1.user_area= "配送元地域：福岡" 
         %h1.user_count= "現在の出品数：#{@items.count}"
         %h1.user_name  
-          - if user_signed_in? && current_user.id == @card
+<<<<<<< Updated upstream
+          - if user_signed_in? && current_user.id == @user.id
             = link_to "クレジットカード情報", new_card_path, method: :get  
           - else  
+=======
+          - if user_signed_in? && current_user.id
+            = link_to "クレジットカード情報", new_card_path, method: :get   
+          - else
+>>>>>>> Stashed changes
             = link_to "クレジットカード情報(本人のみ)"
         %h1.user_like 
           - if user_signed_in? && current_user.id
