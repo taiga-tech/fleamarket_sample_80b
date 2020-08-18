@@ -60,8 +60,6 @@
           カテゴリー
           .icon 必須
         .categorySelect
-
-
           - if action_name == "new" || action_name == "create"
             .category-parent
               = f.select :category_id, options_for_select(@category_parents.collect{ |c| [c.name, c.id]}), {include_blank: '選択してください'}, class: 'category', id: 'parent_category'
@@ -74,7 +72,9 @@
               = f.select :category_id, options_for_select(@grandchild_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @category.id), {include_blank: "選択してください"}, class: "category", id: "grandchild_category"
 
 
+
           = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+
 
     .form-group
       .temporaryclass

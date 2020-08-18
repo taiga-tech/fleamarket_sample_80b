@@ -1,3 +1,6 @@
+-# パンくず
+- breadcrumb :users
+
 .container
   .wrapper 
     .header 
@@ -17,7 +20,7 @@
         %h1.user_area= "配送元地域：福岡" 
         %h1.user_count= "現在の出品数：#{@items.count}"
         %h1.user_name  
-          - if user_signed_in? && current_user.id
+          - if user_signed_in? && current_user.id == @card
             = link_to "クレジットカード情報", new_card_path, method: :get  
           - else  
             = link_to "クレジットカード情報(本人のみ)"
