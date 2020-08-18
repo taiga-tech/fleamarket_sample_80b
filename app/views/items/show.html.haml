@@ -67,21 +67,23 @@
 
 .Chat 
   .MessageField
-    .MessageBox 
-      - @item.comments.each do |comment|
-        .Message
+    - @item.comments.each do |comment| 
+      .MessageInfo__userimage 
+        = image_tag comment.user.profile.image.url, class: "self_image"
+      .MessageBox 
+        .Message 
           %h1= comment.text 
         .MessageInfo
           .MessageInfo__userName
-            %p= comment.user.name             
+            %p= comment.user.name   
+
   .warning
     %p.text-waring
       %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
       %br
       %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。       
   .form
-    = form_with model: [@item, @comment], local: true, id: "new_comment" do |f|
-      = f.hidden_field :item_id, { value: @item.id}
-      = f.hidden_field :user_id, { value: 1 }
-      = f.text_area :text, class: "form-area"
+    = form_with model: [@item, @comment], local: true, id: "new_comment" do |f| 
+      = f.hidden_field :user_id, { value: current_user.id}
+      = f.text_area :text, class: "form-area" 
       = f.submit "💬コメントする", class: "submit"

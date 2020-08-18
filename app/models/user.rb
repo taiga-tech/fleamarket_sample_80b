@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_one   :address
   has_many  :items#, dependent: :destroy
   has_many  :comments#, dependent: :destroy 
-  has_many :profiles  
+  has_one :profile
   has_many :likes, dependent: :destroy 
   has_many :liked_items, through: :likes, source: :item 
   def already_liked?(item) 

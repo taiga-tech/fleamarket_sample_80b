@@ -1,5 +1,6 @@
 class LikesController < ApplicationController 
-  def create 
+  def create  
+    binding.pry
     @item = Item.find(params[:item_id])
     @like = current_user.likes.create(item_id: params[:item_id]) 
     # redirect_back(fallback_location: root_path) 
