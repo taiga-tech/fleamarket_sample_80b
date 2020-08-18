@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     # @area = user.area
     # @city = user.city
     # @street = user.street
-    @card = Credit.where(user_id: current_user.id)
+    # @card = Credit.where(user_id: current_user.id)
   end
   
   def likes 
