@@ -40,6 +40,12 @@ crumb :card do
   parent :users
 end
 
+# クレカ削除完了
+crumb :delete do
+  link "クレカ削除完了", delete_card_index_path
+  parent :users
+end
+
 # 2.出品ページ内---------------------------------
 # 出品ページ
 crumb :new do

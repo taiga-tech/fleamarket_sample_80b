@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   end
   
   def show
-    user = User.find(params[:id])
-    @name = user.name
-    @items = user.items
+    @user = User.find(params[:id])
+    @name = @user.name
+    @items = @user.items
     # @profile = Profile.new
     @profile = Profile.find_by(user_id: current_user.id)
-    @created_at = user.created_at   
+    @created_at = @user.created_at   
     # @zipcode = user.zipcode
     # @area = user.area
     # @city = user.city
