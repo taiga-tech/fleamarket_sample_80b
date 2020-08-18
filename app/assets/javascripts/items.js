@@ -19,6 +19,7 @@ $(function() {
   let fileIndex = [1,2,3,4,5,6,7,8,9,10];
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
+  firstIndex = $(".js-file_group:first").data("index");
   fileIndex.splice(0, lastIndex);
 
   $('.hidden-destroy').hide();
@@ -27,7 +28,7 @@ $(function() {
   $(document).on("click", ".fa-camera", function(e){
     let file_field = $(".js-file:last");
     file_field.trigger("click");
-  })
+  });
 
 
   $('#image-box').on('change', '.js-file', function(e) {
@@ -35,7 +36,6 @@ $(function() {
     // ファイルのブラウザ上でのURLを取得する
     const file = e.target.files[0];
     const blobUrl = window.URL.createObjectURL(file);
-
     // 該当indexを持つimgがあれば取得して変数imgに入れる(画像変更の処理)
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
@@ -64,4 +64,5 @@ $(function() {
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
+
 });

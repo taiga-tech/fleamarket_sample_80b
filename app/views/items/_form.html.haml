@@ -1,6 +1,6 @@
 .container
 
-  = form_with model: @item, local: true do |f|
+  = form_with model: @item, local: true , id: "items-form" do |f|
 
     - if @item.errors.any?
       .SettingitemForm__errors
