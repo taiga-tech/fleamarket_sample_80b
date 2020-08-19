@@ -1,6 +1,5 @@
 $(function(){
   function buildHTML(comment){  
-    console.log(comment)
     var html = `
     <div class="MessageInfo__userimage"> 
     <img src="${comment.image}" width="50px" height="50px" style="border-radius: 50%;">  
@@ -11,13 +10,14 @@ $(function(){
 </div>
 <div class="MessageInfo">
 <div class="MessageInfo__userName">
-<p>${comment.user_name}</p>
+<p>${comment.user_name}</p> 
+</div>
 </div>
 </div> 
 </div> 
 `
-  return html;
-  }
+  return html; 
+    } 
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);
@@ -41,3 +41,4 @@ $(function(){
     })
   })
 });
+
