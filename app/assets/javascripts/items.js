@@ -64,4 +64,20 @@ $(function() {
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
   });
+
+
+
+  // items#show
+  $('.slider-5-thum').slick({
+    arrows:false,
+    asNavFor:'.slider-5-nav',
+  });
+  $('.slider-5-nav').slick({
+    autoplay: true,
+    asNavFor:'.slider-5-thum',
+    focusOnSelect: true,
+    slidesToShow:3,
+    slidesToScroll:1,
+    centerMode: true,
+  });
 });
