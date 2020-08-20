@@ -3,7 +3,7 @@ class Item < ApplicationRecord
   belongs_to :delivery
   belongs_to :category
   has_many   :buys#, dependent: :destroy
-  has_many   :comments#, dependent: :destroy
+  has_many   :comments, dependent: :destroy
   has_many   :images, dependent: :destroy
   has_many   :likes, dependent: :destroy
   has_many   :liked_users, through: :likes, source: :user
@@ -23,8 +23,7 @@ class Item < ApplicationRecord
     if search
       Item.where('title LIKE(?)', "%#{search}%")
     else
-      redirect_to root_path
+      Item.all
     end
   end
 end
-  

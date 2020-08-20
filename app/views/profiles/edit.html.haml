@@ -2,14 +2,6 @@
 -# パンくず
 - breadcrumb :profiles
 
-.container  
-  .selfish
-    .profile 
-      = form_with model: [@user, @profile], local: true do |f| 
-        %h2.edit_introduce 自己紹介
-        = f.text_area :text, rows: 8, cols: 50, class: "form-area"  
-        = f.submit "作成", class: "button"
-
 .contents
   = form_with model: [@user, @profile], local: true do |f| 
     %h2.profile.image プロフィール画像

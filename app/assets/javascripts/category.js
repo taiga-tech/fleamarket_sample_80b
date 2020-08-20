@@ -71,26 +71,21 @@ $(function() {
   }
 
   $("#parent_category").change(function() {
-    let parentId = $(this).val();
-      return childrenAjax(parentId)
+    if ($("#parent_category").val() != "") {
+      let parentId = $(this).val();
+        return childrenAjax(parentId)
+    } else {
+      $(".catagory-children").remove();
+      $(".catagory-grandchildren").remove();
+    }
   });
 
   $(".categorySelect").on("change", "#child_category", function() {
-    let childId = $(this).val();
-    return grandChildrenAjax(childId);
+    if ($("#child_category").val() != "") {
+      let childId = $(this).val();
+      return grandChildrenAjax(childId);
+    } else {
+      $(".catagory-grandchildren").remove();
+    }
   });
-
-  // items#edit
-  // if ( location.pathname.includes("items") && location.pathname.includes("edit") ) {
-  //   let selectedChildData = $(".hiddenData").data();
-  //   console.log(selectedChildData);
-  //   $(document).ready(function() {
-  //     let selectedParentId = $("#parent_category option:selected").val();
-  //     let selectedChildId = $("#child_category option:selected").val();
-  //     // let selectedChildId = $(".hiddenData").data();
-  //     // console.log(selectedChildId);
-  //     // return childrenAjax(selectedParentId);
-  //     // return grandChildrenAjax(selectedChildId);
-  //   });
-  // }
 });

@@ -11,22 +11,24 @@ Rails.application.routes.draw do
   end  # devise_for :users
 
   root "items#index"
-  
-  resources :users, only: [:show, :edit, :update] do 
-    resources :profiles, only: [:new, :create, :edit, :update] 
+
+  resources :users, only: [:show, :edit, :update] do
+    resources :profiles, only: [:edit, :update]
     collection do 
-      get :likes 
-    end 
+      get :likes
+    end
   end
-  
-  resources :items do  
+
+  resources :items do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do 
-      get "search"
+      get "search" 
+      get "detail"
+      match "detail" => "items#detail", via: [:get, :post]
       get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' } 
-    end
+      get 'get_category_grandchildren', defaults: { format: 'json' }
+    end  
     member do
       get "get_category_children",        defaults: { format: "json" }
       get "get_category_grandchildren",   defaults: { format: "json" }

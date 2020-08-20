@@ -94,4 +94,5 @@ gem "ancestry"
 gem 'font-awesome-sass', '~> 5.4.1'
 
 # パンくず(8/17導入)
-gem 'gretel'
+gem 'gretel' 
+gem "ransack"

@@ -1,6 +1,6 @@
 .container
 
-  = form_with model: @item, local: true do |f|
+  = form_with model: @item, local: true , id: "items-form" do |f|
 
     - if @item.errors.any?
       .SettingitemForm__errors
@@ -70,11 +70,6 @@
               = f.select :category_id, options_for_select(@child_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @child_category.id), {include_blank: "選択してください"}, class: "category", id: "child_category"
             .catagory-grandchildren
               = f.select :category_id, options_for_select(@grandchild_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @category.id), {include_blank: "選択してください"}, class: "category", id: "grandchild_category"
-
-
-
-          = f.select :category_id, @category_parents.collect{ |p| [p.name, p.id] }, { include_blank: '選択してください'}, class: 'category', id: 'parent_category'
-
 
     .form-group
       .temporaryclass

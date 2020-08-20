@@ -1,8 +1,10 @@
-class ItemsController < ApplicationController
+class ItemsController < ApplicationController 
+  before_action :search 
+  before_action :detail  
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:new, :create, :edit]
-  before_action :move_to_index, except: [:index, :show, :search]
+  before_action :set_categories, only: [:new, :create, :edit] 
+  # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
@@ -65,23 +67,35 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])
+    @items = Item.search(params[:keyword])  
+  end  
+  def detail
+    if params[:q].present?
+      # 検索フォームからアクセスした時の処理
+        @detail = Item.ransack(detail_params)
+        @items = @detail.result
+      else
+      # 検索フォーム以外からアクセスした時の処理
+        params[:q] = { sorts: 'id desc' }
+        @detail = Item.ransack()
+        @items = Item.all
+      end
   end
 
   private
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:id]) 
   end
 
   def set_categories
     @category_parents = Category.where(ancestry: nil)
   end
 
-  def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
-  end
+  # def move_to_index
+  #   unless user_signed_in?
+  #     redirect_to action: :index
+  #   end
+  # end
 
   # ストロングパラメータ
   def item_params
@@ -97,5 +111,8 @@ class ItemsController < ApplicationController
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
     ).merge(user_id: current_user.id)
-  end
-end
+  end 
+  def detail_params
+    params.require(:q).permit(:sorts)
+end 
+end 
