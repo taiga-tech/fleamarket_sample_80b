@@ -25,7 +25,7 @@ end
 # 出品商品詳細
 crumb :show do
   link "商品詳細", item_path
-  parent :users
+  # parent :users
 end
 
 # クレカ登録

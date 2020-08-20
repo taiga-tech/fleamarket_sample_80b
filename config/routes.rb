@@ -48,6 +48,11 @@ Rails.application.routes.draw do
       post 'show', to: 'card#show'
       post 'pay', to: 'card#pay'
       post 'delete', to: 'card#delete'
+      get 'done', to: 'card#done'
+      # get 'purchase', to: 'card#purchase'
     end
+    # member do
+    # end
   end
+
 end
