@@ -32,10 +32,10 @@
 
 
   // 基本の形
-  .title, 
-  .price, 
-  .condition, 
-  .leadtime, 
+  .title,
+  .price,
+  .condition,
+  .leadtime,
   .brand{
     height: 50px;
     width:  500px;
@@ -221,4 +221,21 @@ label {
 .fas.fa-camera{
   font-size: 30px;
   text-align: center;
+}
+
+p.invalid {
+  color: red;
+  text-align: right;
+}
+
+input.invalid {
+  border: 1px solid red;
+}
+
+select.invalid {
+  border: 1px solid red;
+}
+
+textarea.invalid {
+  border: 1px solid red;
 }
