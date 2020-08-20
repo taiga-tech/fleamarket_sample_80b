@@ -64,13 +64,14 @@
         %td 送料込み(出品者負担)
       %tr
         %th 配送元の地域
-        %td 東京
+        %td=@item.user.address.area
       %tr
         %th 配送方法
         %td= @item.delivery.name
       %tr
         %th 配送目安
-
+        %td=  "#{@item.leadtime}日で発送"  
+  .btn-bar 
         %td=  "#{@item.leadtime}日で発送"
   .btn-bar
     .btn-box
