@@ -7,15 +7,12 @@
     .header 
       .profile_name
         = @name 
-
-      .profile_image
-        = image_tag @profile.image.url, class: "photo" if @profile.image.present?
-      .selfy
+      .profile_image 
+        - if user_signed_in? && current_user.id == @user.id 
+          = image_tag @profile.image.url, class: "photo" if @profile.image.present? 
+      .selfy  
         %p.mypage_edit
-          - if user_signed_in? && current_user.id = @profile.id
-            = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
-          -else
-            = link_to "自己紹介編集", root_path
+          = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
 
     .content_1
       .content_left

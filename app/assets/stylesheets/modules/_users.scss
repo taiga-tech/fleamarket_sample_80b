@@ -20,13 +20,14 @@
   .selfy { 
     background-color: lightgray;
     width: 100px; 
+    display: inline-block;
     color: #fff;
     padding: 2px;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 15px; 
+    }
   }
-}
 
     .content_1 {    
       width: 100%;     
