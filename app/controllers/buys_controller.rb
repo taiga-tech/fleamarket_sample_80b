@@ -4,12 +4,14 @@ class BuysController < ApplicationController
   require 'payjp'
 
   def new
+    @area = Address.find_by(user_id: current_user.id)
+    # @area = Address.find(params[:id])
     @item = Item.find(params[:id])
     card = Credit.where(user_id: current_user.id).first
     #Cardテーブルは前回記事で作成、テーブルからpayjpの顧客IDを検索
     if card.blank?
       #登録された情報がない場合にカード登録画面に移動
-      redirect_to controller: "card", action: "new"
+      # redirect_to controller: "card", action: "new"
     else
       Payjp.api_key = "sk_test_f47e2234a107e305901f65aa"
       #保管した顧客IDでpayjpから情報取得
@@ -25,14 +27,20 @@ class BuysController < ApplicationController
   def done
   end
 
+  def show
+  end
+
   def pay
     card = Credit.where(user_id: current_user.id).first
     Payjp.api_key = "sk_test_f47e2234a107e305901f65aa"
-    Payjp::Charge.create(
-    :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
-    :customer => card.customer_id, #顧客ID
-    :currency => 'jpy', #日本円
-    )
+    if card.blank?
+    else
+      Payjp::Charge.create(
+      :amount => @item.price, #支払金額を入力（itemテーブル等に紐づけても良い）
+      :customer => card.customer_id, #顧客ID
+      :currency => 'jpy', #日本円
+      )
+    end
     @item.stock = 0
     @item.save
     redirect_to action: 'done' #完了画面に移動
