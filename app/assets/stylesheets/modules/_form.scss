@@ -40,10 +40,10 @@
 
   // 基本の形
 
-  .title, 
-  // .price, 
-  .condition, 
-  .leadtime, 
+  .title,
+  // .price,
+  .condition,
+  .leadtime,
   .brand{
     height: 50px;
     width:  500px;
@@ -290,8 +290,6 @@ label {
 //   height: 100px;
 // }
 
-}
-
 p.invalid {
   color: red;
   text-align: right;
@@ -308,4 +306,3 @@ select.invalid {
 textarea.invalid {
   border: 1px solid red;
 }
-
