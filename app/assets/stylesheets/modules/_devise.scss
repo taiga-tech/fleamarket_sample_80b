@@ -1,5 +1,6 @@
 .Devise {
-  height: 100vh;
+  // height: 100vh;
+  padding: 100px 0;
   background-color: rgb(38, 43, 48);
   color: #fff;
   display: flex;
@@ -39,11 +40,17 @@ $curve: linear;
   }
 
   form{
-
     .text-input{
       overflow: hidden;
       margin-bottom: .875em;
       font-size: 20px;
+      p {
+        text-align: right;
+        color: rgb(218, 86, 86);
+      }
+      input.invalid {
+        outline: 1px solid red;
+      }
     }
 
     input[type="text"],
@@ -68,9 +75,10 @@ $curve: linear;
     input[type="submit"]{
       color: white;
       background: $light-blue;
-      padding: 1em 1.4em;
+      padding: 0.5em 1.4em;
       font-size: 1.2em;
       border:none;
+      cursor: pointer;
       border-radius: 10px;
     }
   }
@@ -98,9 +106,10 @@ $curve: linear;
   }
 
   .form-bottom {
-    margin-top:1.25em;
+    margin-top:2em;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    // flex-direction: row;
+    // justify-content: end;
+    justify-content: flex-start;
   }
 }

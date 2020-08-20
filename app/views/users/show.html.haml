@@ -1,35 +1,41 @@
-.container  
-  .wrapper
-    .room 
-      = @name
-    .mypage 
-      %p.mypage_new
-        = link_to "プロフィール", root_path
-      %p.mypage_edit 
-        - if user_signed_in? && current_user.id == @profile.id  
-          = link_to "自己紹介", edit_user_profile_path(current_user)
-        -else 
-          = link_to "自己紹介", root_path
-    .content_1  
+= render "header"
+-# パンくず
+- breadcrumb :users
+
+.container
+  .wrapper 
+    .header 
+      .profile_name
+        = @name 
+      .profile_image 
+        - if user_signed_in? && current_user.id == @user.id 
+          = image_tag @profile.image.url, class: "photo" if @profile.image.present? 
+      .selfy  
+        %p.mypage_edit
+          = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
+
+    .content_1
       .content_left
         %h1.user_created_at= "登録日：#{@created_at.strftime("%Y年%-m月%-d日")}" 
-        %h1.user_area= "配送元地域：福岡" 
+        %h1.user_area= "配送元地域：#{@address.area}" 
         %h1.user_count= "現在の出品数：#{@items.count}"
         %h1.user_name  
-          - if user_signed_in? && current_user.id == @profile.id
+          - if user_signed_in? && current_user.id == @user.id
             = link_to "クレジットカード情報", new_card_path, method: :get  
           - else  
             = link_to "クレジットカード情報(本人のみ)"
         %h1.user_like 
-          - if user_signed_in? && current_user.id  == @profile.id 
+          - if user_signed_in? && current_user.id == @user.id 
             = link_to "いいね！した商品をみる", likes_users_path, method: :get  
           - else 
             = link_to "いいね！した商品をみる(本人のみ)"
       .content_right
         %h1.user_introduce
-          = @profile.text 
-    .between         
+          = @user.profile.text
+    .between
       %p.between_image
+
+  
         = link_to "出品一覧", root_path 
 .container 
   .index_mypage         

@@ -8,7 +8,20 @@
   display: inline-block;
   // margin-left:  50px;
   // margin-right: 50px;
+
   // align-items: center;
+
+  // @include display-flex();
+  // @include flex-direction(row);
+  // @include justify-content(center);
+  // @include align-items(center);
+  // 商品画像
+  // .product-image {
+  //   height: 80px;
+  //   width : 70px;
+  // }
+
+//   align-items: center;
   .image-box{
     height: 700px;
     width: 700px;
@@ -24,7 +37,9 @@
 //   width : 70px;
 // }
 
+
   // 基本の形
+
   .title, 
   // .price, 
   .condition, 
@@ -199,6 +214,14 @@ label {
   display: block;
 }
 
+.error {
+  color: red;
+}
+
+.error-field {
+  border: 1px solid red;
+}
+
 #image-box{
   height: auto;
   width: 500px;
@@ -266,3 +289,23 @@ label {
 // .iconnooya {
 //   height: 100px;
 // }
+
+}
+
+p.invalid {
+  color: red;
+  text-align: right;
+}
+
+input.invalid {
+  border: 1px solid red;
+}
+
+select.invalid {
+  border: 1px solid red;
+}
+
+textarea.invalid {
+  border: 1px solid red;
+}
+

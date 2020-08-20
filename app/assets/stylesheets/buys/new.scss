@@ -1,0 +1,186 @@
+// @include box1;
+@mixin box1 {
+  height: 100px;
+  width: 100%;
+  padding-top: 20px;
+  border-bottom: 2px solid gray;
+}
+
+// @include box2;
+@mixin box2 {
+  height: 100px;
+  width: 100%;
+  // padding-top: 10px;
+  border-bottom: 2px solid gray;
+}
+
+// 購入ボタン用
+// @include box3;
+@mixin box3 {
+  height: 100px;
+  width: 100%;
+  padding-top: 20px;
+}
+
+// @include box4;
+@mixin box4 {
+  height: 100px;
+  width: 100%;
+  padding-top: 10px;
+  border-bottom: 2px solid gray;
+}
+
+// モーダル用
+// @include box5;
+@mixin box5 {
+  height: 40px;
+  padding-top: 5px;
+  border-bottom: 1px solid gray;
+  button {
+    font-size: 17px;
+  }
+}
+
+// @include box6;
+@mixin box6 {
+  height: 40px;
+  font-weight: bold;
+}
+
+
+
+// 以下より---------------------------------
+// 全体
+.confirm-box {
+  height: 600px;
+  width: 500px;
+  margin: auto;
+  text-align: center;
+  padding: 20px 20px;
+  // background-color: royalblue;
+
+  &__info {
+    // 1.「購入を確定しますか？」
+    &--1 {
+      @include box1;
+      font-size: 20px;
+      // background-color: salmon;
+    }
+    // 2.購入商品情報
+    &--2 {
+      @include box2;
+      display: flex;
+      // background-color: green;
+      &--image {
+        height: 100%;
+        width: 30%;
+        // background-color: yellow;
+      }
+      &--titpre {
+        padding: 20px 40px;
+        font-size: 20px;
+      }
+    }
+  }
+
+  // 3.支払い方法
+  &__credit {
+    @include box4;
+    // background-color: salmon;
+    &--creBox {
+      .creBoxIn {
+        &__btnBox {
+          margin-top: 10px;
+        }
+        // モーダル画面
+        .content {
+          display: none;
+          position: fixed;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          // 黒背景（なし）
+          &__overlay {
+            // width: 100%;
+            // height: 100vh;
+            // background-color: rgba(0, 0, 0, 0.5);
+          }
+          // モーダルメイン
+          &__modal {
+            position: absolute;
+            background-color: white;
+            top: 50%;
+            left: 15%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            height: 300px;
+            box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .5);
+            .textBox {
+              height: 250px;
+              width: 300px;
+              margin: auto;
+              &__text {
+                height: 220px;
+                margin-top: 30px;
+                // background-color: yellow;
+                .how2 {
+                  @include box6;
+                }
+                .creditCard {
+                  @include box5;
+                }
+                .conveni {
+                  @include box5;
+                }
+                .cash {
+                  @include box5;
+                }
+                .atm {
+                  @include box5;
+                }
+              }
+              &__close {
+                height: 30px;
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+        body.fixed {
+          position: fixed;
+          left: 0;
+        }
+      }
+    }
+  }
+
+  // 追加.配送先情報
+  &__address {
+    @include box1;
+    &--addBox {
+      .delivery {
+        font-weight: bold;
+      }
+    }
+  }
+
+  //.4,購入ボタン
+  &__addBtn {
+    @include box3;
+    // background-color: yellow;
+    &--btnBox {
+      height: 50px;
+      width: 200px;
+      margin: auto;
+      border: none;
+      border-radius: 5px;
+      background-color: #3CCACE;
+      .purchase {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        padding-top: 15px;
+      }
+    }
+  }
+}

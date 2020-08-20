@@ -1,7 +1,9 @@
 $(function() {
 
   function appendOption(category) {
-    let html = `<option value="${category.id}" data-category="${category.id}">${category.name}</option>`;
+    let html = `<option value="${category.id}" data-category="${category.id}">
+                  ${category.name}
+                </option>`;
     return html;
   }
 
@@ -27,8 +29,7 @@ $(function() {
     $(".categorySelect").append(grandChildren);
   }
 
-  $("#parent_category").change(function() {
-    let parentId = $(this).val();
+  function childrenAjax(parentId) {
     $.ajax({
       url: "get_category_children",
       type: "GET",
@@ -42,17 +43,14 @@ $(function() {
       children.forEach(function(child) {
         insertHtml += appendOption(child);
       });
-      if (childrenBox(insertHtml) == true) {
-        parentId.remove();
-      }
+      childrenBox(insertHtml)
     })
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
     })
-  });
+  }
 
-  $(".categorySelect").on("change", "#child_category", function() {
-    let childId = $(this).val();
+  function grandChildrenAjax(childId) {
     $.ajax({
       url: "get_category_grandchildren",
       type: "GET",
@@ -65,13 +63,29 @@ $(function() {
       grandChildren.forEach(function(grandchild) {
         insertHtml += appendOption(grandchild);
       });
-      if (grandChildrenBox(insertHtml) == true) {
-        childId.remove();
-      }
+      grandChildrenBox(insertHtml)
     })
     .fail(function() {
       alert("カテゴリーの取得に失敗しました")
-    })
+    });
+  }
+
+  $("#parent_category").change(function() {
+    if ($("#parent_category").val() != "") {
+      let parentId = $(this).val();
+        return childrenAjax(parentId)
+    } else {
+      $(".catagory-children").remove();
+      $(".catagory-grandchildren").remove();
+    }
   });
 
+  $(".categorySelect").on("change", "#child_category", function() {
+    if ($("#child_category").val() != "") {
+      let childId = $(this).val();
+      return grandChildrenAjax(childId);
+    } else {
+      $(".catagory-grandchildren").remove();
+    }
+  });
 });

@@ -12,7 +12,7 @@
 
 // @include box;
 @mixin box {
-  height: 170px;
+  height: 150px;
   padding: 10px 0;
 }
 
@@ -75,7 +75,7 @@
         // フォーム
         &--field {
           margin: 10px 0;
-          #number {
+          .number {
             @include form;
           }
         }
@@ -122,7 +122,7 @@
       }
       // 4.「追加する」ボタン
       &--btn {
-        margin-top: 10px;
+        // margin-top: 10px;
         height: 120px;
         .submit-btn {
           height: 60px;
@@ -131,6 +131,7 @@
           border-radius: 4px;
           color: white;
           font-weight: bold;
+          font-size: 20px;
           background-color: #3CCACE;
         }
       }
