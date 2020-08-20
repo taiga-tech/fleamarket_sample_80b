@@ -115,7 +115,8 @@
                       = item.price
                     %li.item_status__title
                       商品名:
-                      = link_to item.title, item_path(item)
+                      = link_to item.title, item_path(item) 
+                  - if user_signed_in? && current_user.id 
                     %li.item_status__title
                       出品者:
                       = link_to item.user.name, user_path(item.user.id)
