@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
   #商品情報
   def create
     @item = Item.new(item_params) 
-    @post.user_id = current_user.id 
+    # @post.user_id = current_user.id 
     if @item.save
       redirect_to root_path
     else

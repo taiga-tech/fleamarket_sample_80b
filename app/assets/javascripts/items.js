@@ -11,7 +11,10 @@ $(function() {
     }
     // プレビュー用のimgタグを生成する関数
     const buildImg = (index, url)=> {
-      const html = `<img data-index="${index}" src="${url}" width="100px" height="100px">`;
+      const html = `<div>
+                      <img data-index="${index}" src="${url}" width="100px" height="100px">
+                      <span class="js-remove">削除</span>
+                    </div>`;
       return html;
     }
 
@@ -24,10 +27,10 @@ $(function() {
     $('.hidden-destroy').hide();
 
     // カメラをクリックで画像選択
-    $(document).on("click", ".fa-camera", function(e){
-      let file_field = $(".js-file:last");
-      file_field.trigger("click");
-    })
+    // $(document).on("click", ".fa-camera", function(e){
+    //   let file_field = $(".js-file:last");
+    //   file_field.trigger("click");
+    // })
 
     $('#image-box').on('change', '.js-file', function(e) {
       const targetIndex = $(this).parent().data('index');
@@ -64,3 +67,52 @@ $(function() {
       if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
     });
 });
+
+$(document).ready(function(){
+  $('.sortable').sortable();
+});
+
+// 販売手数料の記述
+$(function(){
+  $("#item_price").on('keyup', function(){
+    var price = $("#item_price").val();
+    if( 300 <= price && price <= 9999999) {
+    var fee = Math.floor(price / 10);
+    var profit = (price - fee);
+    $(".fee-span").text(fee);
+    $(".profit-span").text(profit);
+    }else{
+    $(".fee-span").text('');
+    $(".profit-span").text('');
+    }
+  })
+});
+
+  //DropzoneJS snippet - js
+    // instantiate the uploader
+  $('#file-dropzone').dropzone({ 
+    url: "/items",
+    maxFilesize: 100,
+    paramName: "uploadfile",
+    maxThumbnailFilesize: 99999,
+    previewsContainer: '.visualizacao', 
+    previewTemplate : $('.preview').html(),
+    init: function() {
+      this.on('completemultiple', function(file, json) {
+        $('.sortable').sortable('enable');
+      });
+      this.on('success', function(file, json) {
+        alert('aa');
+      });
+      
+      this.on('addedfile', function(file) {
+        
+      });
+      
+      this.on('drop', function(file) {
+        console.log('File',file)
+      }); 
+    }
+  });
+  $(document).ready(function() {});
+

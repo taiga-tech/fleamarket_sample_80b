@@ -90,3 +90,9 @@ gem "ancestry"
 
 # font-awesome導入(8/16)
 gem 'font-awesome-sass', '~> 5.4.1'
+
+# jquery-ui-rails(8/18)
+gem 'jquery-ui-rails'
+
+# ActiveHash::Baseを継承したモデルを自作するため導入(8/20)
+gem 'active_hash'
