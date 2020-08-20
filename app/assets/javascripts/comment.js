@@ -1,23 +1,45 @@
 $(function(){
-  function buildHTML(comment){  
-    var html = `
-    <div class="MessageInfo__userimage"> 
-    <img src="${comment.image}" width="50px" height="50px" style="border-radius: 50%;">  
+  function buildHTML(comment){   
+    if ( comment.image !== true) { 
+      var html = `
+        <div class="MessageInfo__userimage"> 
+        <img src="/assets/default.png" width="50px" height="50px" style="border-radius: 50%;">  
+        </div>
+        <div class="MessageBox">
+    <div class="Message">
+    <h1>${comment.text}</h1>
     </div>
-    <div class="MessageBox">
-<div class="Message">
-<h1>${comment.text}</h1>
-</div>
-<div class="MessageInfo">
-<div class="MessageInfo__userName">
-<p>${comment.user_name}</p> 
-</div>
-</div>
-</div> 
-</div> 
-`
+    <div class="MessageInfo">
+    <div class="MessageInfo__userName">
+    <p>${comment.user_name}</p> 
+    </div>
+    </div>
+    </div> 
+    </div> 
+    `
+      return html; 
+    }
+    else { 
+      var html = `
+      <div class="MessageInfo__userimage"> 
+      <img src="${comment.image_url} width="50px" height="50px" style="border-radius: 50%;"> 
+      </div>
+      <div class="MessageBox">
+  <div class="Message">
+  <h1>${comment.text}</h1>
+  </div>
+  <div class="MessageInfo">
+  <div class="MessageInfo__userName">
+  <p>${comment.user_name}</p> 
+  </div>
+  </div>
+  </div> 
+  </div> 
+  ` 
   return html; 
-    } 
+  }; 
+}
+
   $('#new_comment').on('submit', function(e){
     e.preventDefault();
     var formData = new FormData(this);

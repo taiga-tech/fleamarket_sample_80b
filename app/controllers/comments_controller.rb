@@ -1,16 +1,16 @@
-class CommentsController < ApplicationController
-  def create
-    @item = Item.find(params[:item_id])
-    @comment = Comment.create(comment_params)
-    respond_to do |format|
-      format.html { redirect_to item_path(@item)}
+class CommentsController < ApplicationController 
+  def create  
+    @item = Item.find(params[:item_id]) 
+    @comment = Comment.create(comment_params) 
+    respond_to do |format| 
+      format.html { redirect_to item_path(@item)} 
       format.json
-    end
-  end
-  def destroy
-    @item = Item.find(params[:item_id])
-    @comment = @item.comments.find(params[:id])
-    @comment.destroy
+  end    
+end 
+  def destroy  
+    @item = Item.find(params[:item_id]) 
+    @comment = @item.comments.find(params[:id]) 
+    @comment.destroy 
     redirect_to item_path(@item)
   end 
   
