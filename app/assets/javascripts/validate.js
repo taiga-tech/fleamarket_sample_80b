@@ -1,12 +1,14 @@
 $(function() {
   let methods = {
-    email: function(value, element) {
+    email: function (value, element) {
       return this.optional(element) || /^[A-Za-z0-9]{1}[A-Za-z0-9_.-]*@{1}[A-Za-z0-9_.-]{1,}\.[A-Za-z0-9]{1,}$/.test(value);
     },
     password: function (value, element) {
       return this.optional(element) || /^(?=.*?[a-z])(?=.*?\d)[a-z\d]{7,100}$/i.test(value);
     },
-
+    zipcode: function (value, element) {
+      return this.optional(element) || /^\d{3}-?\d{4}$/.test(value);
+    },
   }
 
   $.each(methods, function(key) {
@@ -28,7 +30,7 @@ $(function() {
       },
       "user[password_confirmation]": {
         required: true,
-        password: true
+        equalTo: 'input[name="user[password]"]'
       },
     },
     messages: {
@@ -44,23 +46,53 @@ $(function() {
       },
       "user[password_confirmation]": {
         required: "確認用パスワードを入力してください",
-        password: "パスワードが一致しません"
+        equalTo: "パスワードが一致しません"
       },
     },
-    errorPlacement: function(error, element) {
-      if(element.attr("name") == "") {
-        error.insertAfter(".text-input");
-      } else {
-        error.insertAfter(element);
+    // errorPlacement: function(error, element) {
+    //   if(element.attr("name") == "") {
+    //     error.insertAfter(".text-input");
+    //   } else {
+    //     error.insertAfter(element);
+    //   }
+    // },
+    errorClass: "invalid",
+    errorElement: "p",
+    valudClass: "valid",
+  });
+  // $("#user_name", "#user_email", "#user_password").blur(function() {
+  //   $(this).valid();
+  // });
+
+  $("#new_address").validate ({
+    rules: {
+      "address[zipcode]": {
+        required: true,
+        zipcode: true,
+      },
+      "address[area]": {
+        required: true,
+      },
+      "address[city]": {
+        required: true,
+      },
+      "address[street]": {
+        required: true,
+      },
+    },
+    messages: {
+      "address[zipcode]": {
+        required: "必須項目です",
+        zipcode: "フォーマットが違います"
       }
     },
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
   });
-  $("#user_name", "#user_email", "#user_password").blur(function() {
+  $("#address_zipcode", "#address_area", "#address_city", "#address_street").blur(function() {
     $(this).valid();
-  })
+  });
 
   $("#items-form").validate({
     rules: {
@@ -93,4 +125,28 @@ $(function() {
     errorElement: "p",
     valudClass: "valid",
   });
+
+  $("#charge-form").validate ({
+    rules: {
+      "number": {
+        required: true,
+      },
+      "exp_month": {
+        required: true,
+      },
+      "exp_year": {
+        required: true,
+      },
+      "cvc": {
+        required: true,
+      },
+    },
+    errorClass: "invalid",
+    errorElement: "p",
+    valudClass: "valid",
+  });
+  // $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
+  //   $(this).valid();
+  // });
 });
+  

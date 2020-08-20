@@ -23,7 +23,7 @@
     - unless user_signed_in? && current_user.id == @item.user_id
       %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
-    %table{:border => 1, :width => "50%"} 
+    %table{:border => 1, :width => "50%"}
       %tr
         %th 登録日時
         %td= @item.created_at.strftime("%Y年%-m月%-d日")
@@ -61,7 +61,7 @@
         %th 配送目安
         %td=  "#{@item.leadtime}日で発送"
 
-  .btn-bar 
+  .btn-bar
     .btn-box
       = render partial: "items/like", locals: { item: @item, like: @like }
 
@@ -71,20 +71,7 @@
       %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
         %tr
           %th ユーザー名
-          %td 
-            %td__title コメント
-          %th
-      - @item.comments.each do |comment|
-        %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
-          %tr
-            %th= comment.user.name
-            %td 
-              %td__text=comment.text  
-    - else 
-      %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
-        %tr
-          %th ユーザー名
-          %td 
+          %td
             %td__title コメント
           %th
       - @item.comments.each do |comment|
@@ -92,7 +79,20 @@
           %tr
             %th= comment.user.name
             %td
-              %td__text=comment.text 
+              %td__text=comment.text
+    - else
+      %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
+        %tr
+          %th ユーザー名
+          %td
+            %td__title コメント
+          %th
+      - @item.comments.each do |comment|
+        %table{:border => 1, :width => "50%", :flame => "box", :rules => "none"}
+          %tr
+            %th= comment.user.name
+            %td
+              %td__text=comment.text
 
 .warning
   %p.text-waring
