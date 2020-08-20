@@ -22,11 +22,13 @@ Rails.application.routes.draw do
   resources :items do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    collection do
-      get "search"
+    collection do 
+      get "search" 
+      get "detail"
+      match "detail" => "items#detail", via: [:get, :post]
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
+    end  
     member do
       get "get_category_children",        defaults: { format: "json" }
       get "get_category_grandchildren",   defaults: { format: "json" }
