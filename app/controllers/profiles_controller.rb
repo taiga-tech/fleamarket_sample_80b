@@ -16,9 +16,11 @@ class ProfilesController < ApplicationController
   # end
 
   def edit
+    @user.profile.image = "default.png"
   end
 
   def update
+    @user.profile.image = "default.png"
     if @profile.update(profile_params)
       redirect_to user_path(@user)
     else

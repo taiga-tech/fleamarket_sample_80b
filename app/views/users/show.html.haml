@@ -5,12 +5,12 @@
   .wrapper 
     .header 
       .profile_name
-        = @name
+        = @name 
       .profile_image 
-      - if user_signed_in? && current_user.id == @user.id  
+      - if user_signed_in? && current_user.id == @user.id 
         .profile_image 
-          = image_tag @profile.image.url, class: "photo" if @profile.image.present?      
-          .selfy
+          = image_tag @profile.image.url, class: "photo" if @profile.image.present? 
+          .selfy  
             %p.mypage_edit
               = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
     .content_1
@@ -24,13 +24,13 @@
           - else  
             = link_to "クレジットカード情報(本人のみ)"
         %h1.user_like 
-          - if user_signed_in? && current_user.id
+          - if user_signed_in? && current_user.id == @user.id 
             = link_to "いいね！した商品をみる", likes_users_path, method: :get  
           - else 
             = link_to "いいね！した商品をみる(本人のみ)"
       .content_right
         %h1.user_introduce
-          = @profile.text
+          = @user.profile.text
     .between
       %p.between_image
 
