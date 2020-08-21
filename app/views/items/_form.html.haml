@@ -14,11 +14,6 @@
           - @item.images.each_with_index do |image, i|
             = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
 
-        -# =f.label :images, class:"image-field", for: "item_images_attributes_0_image" do
-        -# .iconnooya
-        -#   .iconnooya2
-        -#     = icon "fas","camera"
-
       %span.product_up 最大10枚までアップロードできます
 
       =f.fields_for :images do |i|
@@ -37,35 +32,12 @@
       .underline
     .form-group 
       .onegai 以下の欄に必要な情報をご入力の上「出品する」を押してください。
-    
-    -# ドラッグアンドドロップの跡
-    -# #file-dropzone.dropzone{action: "/items", "drop-zone" => ""}
-    -#   = f.hidden_field :images
-    -#   %ul.visualizacao.sortable.dropzone-previews{:style => "border:1px solid #000"}
-    -#   .preview
-    -#     %li
-    -#       %div
-    -#         .dz-preview.dz-file-preview
-    -#         %img{"data-dz-thumbnail" => ""}/
-    -#         .dz-progress
-    -#           %span.dz-upload{"data-dz-uploadprogress" => ""}
-    -#         .dz-success-mark
-    -#           %span ✔
-    -#         .dz-error-mark
-    -#           %span ✘
-    -#         .dz-error-message
-    -#           %span{"data-dz-errormessage" => ""}
 
     .form-group
       .temporaryclass
         = f.label :title do
           商品名
           .icon 必須
-          -# - if @item.errors.include?(:title)
-          -#   %span.error= @item.errors.full_messages_for(:title).first
-          -#   = f.text_field :title, placeholder: "40文字まで", class: "title error-field"
-          -# - else
-          -#   %div
         = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title"
 
     .form-group
@@ -108,14 +80,7 @@
         =f.label :condition do
           商品の状態
           .icon 必須
-        -# =f.text_field :condition, class: "condition"
-        %select{:name => "condition", class: "condition"}
-          %option 選択してくださいませ
-          %option{value:'1'} 新品同様
-          %option{value:'2'} 美品
-          %option{value:'3'} 普通
-          %option{value:'4'} やや汚れあり
-          %option{value:'5'} あまりよろしくない
+        =f.select :condition, {"新品同様": 1, "美品": 2, "普通": 3, "やや汚れあり": 4, "あまりよろしくない": 5}, { include_blank: '選択してください'}, class: "condition"
       .underline
       
     .supplement 配送について
@@ -124,13 +89,7 @@
         =f.label :leadtime do
           発送の日数
           .icon 必須
-        -# =f.number_field :leadtime, class: "leadtime"
-        -# =f.select :leadtime, { include_blank: '選択してください'}, class: "leadtime"
-        %select{name: "leadtime", class: "leadtime"}
-          %option 選択してくださいませ
-          %option{value:'1'} １日
-          %option{value:'2'} ２〜６日
-          %option{value:'3'} １週間以上
+        =f.select :leadtime, {"１日": 1, "2~6日": 2, "1週間以上": 3}, { include_blank: '選択してください'}, class: "leadtime"
     
     .form-group
       .temporaryclass
@@ -160,6 +119,3 @@
       .submit
         =f.submit '出品する', class: 'submit-btn'
 
-    -# .form-group
-    -#   .draft
-    -#     =f.submit '下書きに保存', class: 'draft-btn'
