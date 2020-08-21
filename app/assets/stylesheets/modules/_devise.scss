@@ -1,5 +1,5 @@
 .Devise {
-  // height: 100vh;
+  height: 100vh;
   padding: 100px 0;
   background-color: rgb(38, 43, 48);
   color: #fff;
@@ -9,7 +9,6 @@
   &__header {
     font-size: 30px;
     margin-bottom: 30px;
-
     h2 {
       margin-top: 20px;
     }
@@ -49,7 +48,7 @@ $curve: linear;
         color: rgb(218, 86, 86);
       }
       input.invalid {
-        outline: 1px solid red;
+        outline: 1.5px solid red;
       }
     }
 

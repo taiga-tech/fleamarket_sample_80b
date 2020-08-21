@@ -49,20 +49,13 @@ $(function() {
         equalTo: "パスワードが一致しません"
       },
     },
-    // errorPlacement: function(error, element) {
-    //   if(element.attr("name") == "") {
-    //     error.insertAfter(".text-input");
-    //   } else {
-    //     error.insertAfter(element);
-    //   }
-    // },
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
   });
-  // $("#user_name", "#user_email", "#user_password").blur(function() {
-  //   $(this).valid();
-  // });
+  $("#user_name", "#user_email", "#user_password").blur(function() {
+    $(this).valid();
+  });
 
   $("#new_address").validate ({
     rules: {
@@ -82,7 +75,6 @@ $(function() {
     },
     messages: {
       "address[zipcode]": {
-        required: "必須項目です",
         zipcode: "フォーマットが違います"
       }
     },
@@ -94,7 +86,7 @@ $(function() {
     $(this).valid();
   });
 
-  $("#items-form").validate({
+  $("#items-form").validate ({
     rules: {
       "item[images_attributes]": {
         required: true
@@ -112,7 +104,7 @@ $(function() {
         required: true,
       },
       "item[leadtime]": {
-        required: true
+        required: true,
       },
       "item[delivery_id]": {
         required: true,
@@ -124,6 +116,18 @@ $(function() {
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
+  });
+  $("#item_title",
+    "#item_text",
+    "#parent_category",
+    "#child_category",
+    "#grandchild_category",
+    "#item_condition",
+    "#item_leadtime",
+    "#item_delivery_id",
+    "#item_price"
+  ).blur(function() {
+    $(this).valid();
   });
 
   $("#charge-form").validate ({
@@ -145,8 +149,7 @@ $(function() {
     errorElement: "p",
     valudClass: "valid",
   });
-  // $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
-  //   $(this).valid();
-  // });
+  $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
+    $(this).valid();
+  });
 });
-  
