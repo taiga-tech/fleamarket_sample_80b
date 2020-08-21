@@ -122,15 +122,11 @@
                   %ul.item_status
                     %li.item_status__stock
                       完売しました
-                    %li.item_status__price
-                      = "¥#{item.price}"
-                    %li.item_status__title
-                      = link_to "🤍#{item.liked_users.count}", item_path(item) 
     
     .main__box--itemBox
       .main__box--itemBox--archive
         .main__box--itemBox--archive--text1
-          カテゴリー 
+          カテゴリー
           .main__box--textBox--content3--head--bar2
         .main__box--itemBox--archive--text2
         .main__box--itemBox--archive--textItem3
@@ -154,11 +150,7 @@
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status2
                   %li.item_status__stock
-                    完売
-                  %li.item_status2__price
-                    = "¥#{item.price}"
-                  %li.item_status2__title
-                    = link_to "❤️#{item.liked_users.count}", item_path(item) 
+                    完売しました
     .main__box--itemBox
       .main__box--itemBox--archive
         .main__box--itemBox--archive--text1
@@ -185,15 +177,11 @@
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status2
                   %li.item_status__stock
-                    完売
-                  %li.item_status2__price
-                    = "¥#{item.price}"
-                  %li.item_status2__title
-                    = link_to "❤️#{item.liked_users.count}", item_path(item) 
+                    完売しました 
 
     .main__box--itemBox
       .main__box--itemBox--archive 
-        メンズ
+        家電
         .main__box--itemBox--archive--text1 
         .main__box--itemBox--archive--text2 
         .main__box--itemBox--archive--textItem3
@@ -217,13 +205,8 @@
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                 %ul.item_status2
                   %li.item_status__stock
-                    完売
-                  %li.item_status2__price
-                    = "¥#{item.price}"
-                  %li.item_status2__title
-                    = link_to "❤️#{item.liked_users.count}", item_path(item)  
+                    完売しました
 
-    6.今すぐ無料ダウンロード
     .main__box--download
       .main__box--download--DLtextBox
         .main__box--download--DLtextBox--comment1
