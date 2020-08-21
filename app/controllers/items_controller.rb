@@ -1,9 +1,9 @@
-class ItemsController < ApplicationController 
-  before_action :search 
-  before_action :detail  
+class ItemsController < ApplicationController
+  before_action :search
+  before_action :detail
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:new, :create, :edit] 
+  before_action :set_categories, only: [:new, :create, :edit]
   # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
@@ -35,9 +35,9 @@ class ItemsController < ApplicationController
 
   #商品編集
   def edit
-    @category = @item.category
-    @child_category = @category.parent
-    @grandparent_category = @category.root
+    @category = @item.category #@itemの孫カテゴリー
+    @child_category = @category.parent #@itemの子カテゴリー
+    @grandparent_category = @category.root #@itemの親カテゴリー
     @child_categories = @grandparent_category.children
     @grandchild_categories = @child_category.children
   end
@@ -67,8 +67,8 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])  
-  end  
+    @items = Item.search(params[:keyword])
+  end
   def detail
     if params[:q].present?
       # 検索フォームからアクセスした時の処理
@@ -84,7 +84,7 @@ class ItemsController < ApplicationController
 
   private
   def set_item
-    @item = Item.find(params[:id]) 
+    @item = Item.find(params[:id])
   end
 
   def set_categories
@@ -111,8 +111,8 @@ class ItemsController < ApplicationController
       :category_id,
       images_attributes:  [:image, :_destroy, :id],
     ).merge(user_id: current_user.id)
-  end 
+  end
   def detail_params
     params.require(:q).permit(:sorts)
-end 
-end 
+end
+end

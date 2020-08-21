@@ -6,13 +6,12 @@ $(function() {
                       <input class="js-file" type="file"
                       name="item[images_attributes][${num}][image]"
                       id="item_images_attributes_${num}_image">
-                      <span class="js-remove">削除</span>
                     </div>`;
       return html;
     }
     // プレビュー用のimgタグを生成する関数
     const buildImg = (index, url)=> {
-      const html = `<div>
+      const html = `<div class="preview__item" data-index="${index}">
                       <img data-index="${index}" src="${url}" width="100px" height="100px">
                       <span class="js-remove">削除</span>
                     </div>`;
@@ -35,7 +34,10 @@ $(function() {
     //   file_field.trigger("click");
     // })
 
-
+    $(".product_up").click(function(e) {
+      let file_field = $(".js-file:last");
+      file_field.trigger("click");
+    })
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -48,7 +50,16 @@ $(function() {
     } else {  // 新規画像追加の処理
       $('#previews').append(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
-      if (targetIndex < 9) {
+      let imglength = $("#previews").children().length;
+      var num = imglength
+      // $(".js-remove").click(function() {
+      //   let rmlength = $("#previews").children().length - 1;
+      //   var num = rmlength
+      //   if (num < 10) {
+      //     $('#image-box').append(buildFileField(fileIndex[0]));
+      //   }
+      // })
+      if (num < 10) {
         $('#image-box').append(buildFileField(fileIndex[0]));
       }
       fileIndex.shift();
@@ -66,6 +77,7 @@ $(function() {
 
     $(this).parent().remove();
     $(`img[data-index="${targetIndex}"]`).remove();
+    $(`div[data-index="${targetIndex}"]`).remove();
 
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
@@ -110,29 +122,29 @@ $(function(){
 
   //DropzoneJS snippet - js
     // instantiate the uploader
-  $('#file-dropzone').dropzone({ 
-    url: "/items",
-    maxFilesize: 100,
-    paramName: "uploadfile",
-    maxThumbnailFilesize: 99999,
-    previewsContainer: '.visualizacao', 
-    previewTemplate : $('.preview').html(),
-    init: function() {
-      this.on('completemultiple', function(file, json) {
-        $('.sortable').sortable('enable');
-      });
-      this.on('success', function(file, json) {
-        alert('aa');
-      });
-      
-      this.on('addedfile', function(file) {
-        
-      });
-      
-      this.on('drop', function(file) {
-        console.log('File',file)
-      }); 
-    }
-  });
-  $(document).ready(function() {});
+  // $('#file-dropzone').dropzone({
+  //   url: "/items",
+  //   maxFilesize: 100,
+  //   paramName: "uploadfile",
+  //   maxThumbnailFilesize: 99999,
+  //   previewsContainer: '.visualizacao',
+  //   previewTemplate : $('.preview').html(),
+  //   init: function() {
+  //     this.on('completemultiple', function(file, json) {
+  //       $('.sortable').sortable('enable');
+  //     });
+  //     this.on('success', function(file, json) {
+  //       alert('aa');
+  //     });
+
+  //     this.on('addedfile', function(file) {
+
+  //     });
+
+  //     this.on('drop', function(file) {
+  //       console.log('File',file)
+  //     });
+  //   }
+  // });
+  // $(document).ready(function() {});
 

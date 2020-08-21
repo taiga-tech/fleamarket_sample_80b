@@ -132,7 +132,7 @@
 
   // 削除アイコン
   .js-remove{
-    display: inline-block;
+    display: block;
     height: 20px;
     width:  35px;
     color: white;
@@ -228,9 +228,12 @@ label {
   flex-wrap: wrap;
   background-color:darkgray;
 }
+
 #previews{
   display: flex;
+  flex-wrap: wrap;
 }
+
 // .js-file{
 //   display: none;
 // }
