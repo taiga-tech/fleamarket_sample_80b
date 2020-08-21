@@ -108,14 +108,7 @@
         =f.label :condition do
           商品の状態
           .icon 必須
-        -# =f.text_field :condition, class: "condition"
-        %select{:name => "condition", class: "condition"}
-          %option 選択してくださいませ
-          %option{value:'1'} 新品同様
-          %option{value:'2'} 美品
-          %option{value:'3'} 普通
-          %option{value:'4'} やや汚れあり
-          %option{value:'5'} あまりよろしくない
+        =f.select :condition, {"新品同様": 1, "美品": 2, "普通": 3, "やや汚れあり": 4, "あまりよろしくない": 5}, { include_blank: '選択してください'}, class: "condition"
       .underline
       
     .supplement 配送について
@@ -124,13 +117,7 @@
         =f.label :leadtime do
           発送の日数
           .icon 必須
-        -# =f.number_field :leadtime, class: "leadtime"
-        -# =f.select :leadtime, { include_blank: '選択してください'}, class: "leadtime"
-        %select{name: "leadtime", class: "leadtime"}
-          %option 選択してくださいませ
-          %option{value:'1'} １日
-          %option{value:'2'} ２〜６日
-          %option{value:'3'} １週間以上
+        =f.select :leadtime, {"１日": 1, "2-6日": 2, "1週間": 3}, { include_blank: '選択してください'}, class: "leadtime"
     
     .form-group
       .temporaryclass
