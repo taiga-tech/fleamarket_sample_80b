@@ -14,11 +14,6 @@
           - @item.images.each_with_index do |image, i|
             = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
 
-        -# =f.label :images, class:"image-field", for: "item_images_attributes_0_image" do
-        -# .iconnooya
-        -#   .iconnooya2
-        -#     = icon "fas","camera"
-
       %span.product_up 最大10枚までアップロードできます
 
       =f.fields_for :images do |i|
@@ -37,35 +32,12 @@
       .underline
     .form-group 
       .onegai 以下の欄に必要な情報をご入力の上「出品する」を押してください。
-    
-    -# ドラッグアンドドロップの跡
-    -# #file-dropzone.dropzone{action: "/items", "drop-zone" => ""}
-    -#   = f.hidden_field :images
-    -#   %ul.visualizacao.sortable.dropzone-previews{:style => "border:1px solid #000"}
-    -#   .preview
-    -#     %li
-    -#       %div
-    -#         .dz-preview.dz-file-preview
-    -#         %img{"data-dz-thumbnail" => ""}/
-    -#         .dz-progress
-    -#           %span.dz-upload{"data-dz-uploadprogress" => ""}
-    -#         .dz-success-mark
-    -#           %span ✔
-    -#         .dz-error-mark
-    -#           %span ✘
-    -#         .dz-error-message
-    -#           %span{"data-dz-errormessage" => ""}
 
     .form-group
       .temporaryclass
         = f.label :title do
           商品名
           .icon 必須
-          -# - if @item.errors.include?(:title)
-          -#   %span.error= @item.errors.full_messages_for(:title).first
-          -#   = f.text_field :title, placeholder: "40文字まで", class: "title error-field"
-          -# - else
-          -#   %div
         = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title"
 
     .form-group
@@ -147,6 +119,3 @@
       .submit
         =f.submit '出品する', class: 'submit-btn'
 
-    -# .form-group
-    -#   .draft
-    -#     =f.submit '下書きに保存', class: 'draft-btn'
