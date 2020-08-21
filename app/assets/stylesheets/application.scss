@@ -14,19 +14,20 @@
  *= require_tree .
  *= require_self
  */
+@import "font-awesome-sprockets";
+@import "font-awesome";
 @import "reset";
 @import "modules/header";
 @import "modules/items";
 @import "modules/footer";
-@import "modules/show"; 
+@import "modules/show";
 @import "modules/form";
 @import "modules/show";
 @import "modules/devise";
-@import "modules/users"; 
+@import "modules/users";
 @import "modules/profiles";
-@import "font-awesome-sprockets";
-@import "font-awesome";
 @import "modules/search";
+@import "modules/validate";
 
 body { 
   font-family: Arial, Helvetica, sans-serif;

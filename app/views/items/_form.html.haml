@@ -19,18 +19,16 @@
       =f.fields_for :images do |i|
         .js-file_group{"data-index" => "#{i.index}"}
           =i.file_field :image, class: 'js-file'
-          %span.js-remove 削除
         - if @item.persisted?
           = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
 
       - if @item.persisted?
         .js-file_group{"data-index" => "#{@item.images.count}"}
           = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-          %span.js-remove 削除
 
     .form-group
       .underline
-    .form-group 
+    .form-group
       .onegai 以下の欄に必要な情報をご入力の上「出品する」を押してください。
 
     .form-group
@@ -50,7 +48,7 @@
 
     .form-group
       = f.hidden_field :stock, value:1
-    
+
     .supplement 商品の詳細
     .form-group
       .temporaryclass
@@ -82,7 +80,7 @@
           .icon 必須
         =f.select :condition, {"新品同様": 1, "美品": 2, "普通": 3, "やや汚れあり": 4, "あまりよろしくない": 5}, { include_blank: '選択してください'}, class: "condition"
       .underline
-      
+
     .supplement 配送について
     .form-group
       .temporaryclass
@@ -90,13 +88,12 @@
           発送の日数
           .icon 必須
         =f.select :leadtime, {"１日": 1, "2~6日": 2, "1週間以上": 3}, { include_blank: '選択してください'}, class: "leadtime"
-    
     .form-group
       .temporaryclass
         = f.label :derivery_id do
           配送方法
           .icon 必須
-        = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください'}, class: "delivery"
+        = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください' }, class: "delivery"
     .form-group
       .underline
 
@@ -118,4 +115,3 @@
     .form-group
       .submit
         =f.submit '出品する', class: 'submit-btn'
-

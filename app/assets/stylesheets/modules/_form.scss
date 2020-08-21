@@ -131,7 +131,7 @@
 
   // 削除アイコン
   .js-remove{
-    display: inline-block;
+    display: block;
     height: 20px;
     width:  35px;
     color: white;
@@ -213,9 +213,17 @@ label {
   flex-wrap: wrap;
   background-color:darkgray;
 }
+
 #previews{
   display: flex;
+  flex-wrap: wrap;
 }
+
+
+// .js-file{
+//   display: none;
+// }
+
 
 .fas.fa-camera{
   font-size: 30px;
@@ -272,19 +280,3 @@ label {
 //   height: 100px;
 // }
 
-p.invalid {
-  color: red;
-  text-align: right;
-}
-
-input.invalid {
-  border: 1px solid red;
-}
-
-select.invalid {
-  border: 1px solid red;
-}
-
-textarea.invalid {
-  border: 1px solid red;
-}
