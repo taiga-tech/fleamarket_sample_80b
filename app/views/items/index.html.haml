@@ -100,7 +100,7 @@
           .main__box--textBox--content3--head--bar2
         .main__box--itemBox--itemIndex--text2
         .main__box--itemBox--itemIndex--textItem3
-          - @items.first(10).each do |item|
+          - @items.first(8).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
               = link_to item_path(item) do
@@ -134,7 +134,7 @@
         .main__box--itemBox--archive--text1 
         .main__box--itemBox--archive--text2
         .main__box--itemBox--archive--textItem3
-          - @items.first(4).each do |item|
+          - @ladies.first(4).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
               = link_to item_path(item) do
@@ -162,7 +162,7 @@
         .main__box--itemBox--archive--text1 
         .main__box--itemBox--archive--text2 
         .main__box--itemBox--archive--textItem3
-          - @items.first(4).each do |item|
+          - @mens.first(4).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
               = link_to item_path(item) do
@@ -189,7 +189,7 @@
         .main__box--itemBox--archive--text1 
         .main__box--itemBox--archive--text2 
         .main__box--itemBox--archive--textItem3
-          - @items.first(4).each do |item|
+          - @home_appliances.first(4).each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
               = link_to item_path(item) do

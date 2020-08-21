@@ -7,7 +7,10 @@ class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC') 
+    @items = Item.includes(:user).order('created_at DESC')  
+    @ladies = Item.where(category_id: 1..199).order('created_at DESC')
+    @mens = Item.where(category_id: 200..345).order('created_at DESC')
+    @home_appliances = Item.where(category_id: 898..983).order('created_at DESC')
   end
 
   def show

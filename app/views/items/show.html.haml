@@ -31,8 +31,9 @@
       %span.card-text
       = @item.text
   .card-cash
-    - unless user_signed_in? && current_user.id == @item.user_id
-      %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
+    - unless user_signed_in? && current_user.id == @item.user_id  
+      - if user_signed_in? && current_user.id
+        %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
@@ -90,7 +91,7 @@
             .MessageInfo__userName
               %p= comment.user.name 
             .MessageInfo__userTrash 
-              - if @comment.id && current_user.id == true 
+              - if user_signed_in? && current_user.id == @comment.id  
                 %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"} 
     .warning
       %p.text-waring
