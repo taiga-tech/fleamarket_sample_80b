@@ -222,7 +222,7 @@
       }
       // 4.FURIMAの特徴 (※要チェック。画像が見切れる)
       &--content3 {
-        // height: 100%;
+        // height: 90%;
         // width: 100%;
         &--head {
           height: 150px;
@@ -316,47 +316,68 @@
           }
         }
       }
-    }
-    // 5.商品一覧
-    &--itemBox {
-      &--itemIndex {
-        height: 550px;
-        background-color: #eeeeee;
-        padding-top: 80px;
+    }  
+    // 5.商品一覧 
+    &--itemBox { 
+      width: 100%; 
+      padding: 20px;
+      &--itemIndex { 
+        height: 680px;
+        // padding-top: 50px; 
+        text-align: center;
+        // margin-bottom: 40px;
+        font-size: 26px;
+        font-weight: bold;
         &--text1 {
-          text-align: center;
-          font-size: 28px;
-          font-weight: bold; 
-        }   
+          height: 4px;
+          margin: auto;
+          margin-top: 10px;
+          padding-bottom: 30px; 
+      }
         &--text2 {
-          color: #3CCACE;
           font-size: 24px;
           text-align: center;
           font-weight: bold;
         }
         &--textItem3 {
-          margin-top: 50px;
+          margin-top: 30px;
           height: 335px;
-          display: flex;
+          display: flex; 
+          flex-wrap: wrap;
           .itemPickBox {
             height: 80%;
             width: 25%;
-            background-color: white;
+            background-color: #fff; 
+            position: relative;
             &__item-image {
-              height: 60%;
-              background-color: gray;
+              height: 90%; 
+              background-color: #fff;
+              margin-right: 5px; 
               img {
                 object-fit: cover;
               }
             }
-            .item_status {
-              padding: 20px 13px;
-              font-weight: bold;
+            .item_status { 
+              padding: 13px 7px;
+              font-weight: bold; 
+              position: absolute;
+              top: 160px; 
+              color: #e6e6e6;
+              background-color: #333333; 
+              border-radius: 10%; 
+              margin-left: 3px;
+              width: 120px;
+              text-align: center;
               &__stock {
                 font-size: 10px;
               }
               &__price {
-                font-size: 23px;
+                font-size: 17px;
+              } 
+              &__title {  
+                font-size: 17px; 
+                letter-spacing: 5px;
+
               }
             }
           } 
@@ -366,57 +387,69 @@
             padding-left: 570px; 
           } 
         }
-      }
+      } 
       // アーカイバ
       &--archive {
-        height: 550px;
-        background-color: #eeeeee;
-        padding-top: 80px;
-        &--text1 {
+        height: 220px;
+        color: #000;
+        &--text1 { 
           text-align: center;
           font-size: 28px;
           font-weight: bold;
         }
-        &--text2 {
-          color: #3CCACE;
+        &--text2 { 
           font-size: 24px;
           text-align: center;
           font-weight: bold;
         }
         &--textItem3 {
-          margin-top: 50px;
-          height: 335px;
-          display: flex;
-          .itemPickBox2 {
-            height: 80%;
+          margin-top: 30px;
+          height: 335px; 
+          display: flex; 
+          .itemPickBox2 { 
+            height: 75%; 
             width: 25%;
             background-color: white;
+            position: relative; 
             &__item-image {
-              height: 60%;
-              background-color: gray;
+              height: 95%;
+              background-color: #fff;
+              margin-right: 5px;
               img {
                 object-fit: cover;
               }
             }
             .item_status2 {
-              padding: 20px 13px;
-              font-weight: bold;
+              padding: 13px 7px;
+              font-weight: bold; 
+              position: absolute;
+              top: 150px; 
+              color: #e6e6e6;
+              background-color: #333333; 
+              border-radius: 10%; 
+              margin-left: 3px; 
+              text-align: center;
               &__stock {
                 font-size: 10px;
               }
               &__price {
-                font-size: 23px;
+                font-size: 17px;
+              } 
+              &__title { 
+                font-size: 17px; 
+                letter-spacing: 5px;
               }
             }
           }
         }
-      }
-    }
+      }  
+    } 
     // 今すぐ無料ダウンロード
     &--download {
       background-image: image-url("/images/images/bg-appBanner-pict.jpg");
       background-size: cover;
-      height: 400px;
+      height: 400px; 
+      margin-top:250px;
       &--DLtextBox {
         font-weight: bold;
         text-align: center;
@@ -437,7 +470,13 @@
           }
         }
       }
-    }
-  }
+    } 
+  } 
 }
-
+.detail-text { 
+  font-size: 15px;
+  height: 40px; 
+  width: 130px; 
+  color:#606060;
+  margin-top: 2px;
+}

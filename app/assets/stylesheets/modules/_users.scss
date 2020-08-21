@@ -18,14 +18,14 @@
     }
   }   
   .selfy { 
-    background-color: lightgray;
+    background-color: #fff;
     width: 100px; 
     display: inline-block;
-    color: #fff;
+    color: gray;
     padding: 2px;
     border-radius: 10px;
     font-weight: bold;
-    font-size: 15px; 
+    font-size: 15px;  
     }
   }
 
@@ -41,30 +41,34 @@
         border: 3px solid #fff; 
         .user_created_at {   
           color: #000;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold; 
           margin-left: 20px;
           margin-top: 18px;
+          margin-bottom: 5px;
         }
         .user_name {   
           margin-right: 0px;
           color: #000;
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bold; 
           margin-left: 20px;
+          margin-bottom: 5px;
         } 
         .user_area { 
-          font-size: 20px;  
+          font-size: 18px;  
           font-weight: bold; 
           margin-left: 20px;
+          margin-bottom: 5px;
         } 
         .user_count{ 
-          font-size: 20px; 
+          font-size: 18px; 
           font-weight: bold; 
           margin-left: 20px;
+          margin-bottom: 5px;
         } 
         .user_like {  
-          font-size: 20px; 
+          font-size: 18px; 
           font-weight: bold;
           margin-left: 20px; 
         }  
@@ -76,7 +80,7 @@
         background-color: #f5f5f5; 
         border: 3px solid #fff;
         .user_introduce { 
-          padding-top: 10px;   
+          padding-top: 13px;   
           height: 200px; 
           font-size: 18px;
         } 
