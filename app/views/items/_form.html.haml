@@ -89,7 +89,7 @@
         =f.label :leadtime do
           発送の日数
           .icon 必須
-        =f.select :leadtime, {"１日": 1, "2-6日": 2, "1週間": 3}, { include_blank: '選択してください'}, class: "leadtime"
+        =f.select :leadtime, {"１日": 1, "2~6日": 2, "1週間以上": 3}, { include_blank: '選択してください'}, class: "leadtime"
     
     .form-group
       .temporaryclass
