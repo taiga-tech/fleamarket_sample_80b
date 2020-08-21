@@ -89,8 +89,9 @@
           .MessageInfo
             .MessageInfo__userName
               %p= comment.user.name 
-            .MessageInfo__userTrash
-              %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
+            .MessageInfo__userTrash 
+              - if @comment.id && current_user.id == true 
+                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"} 
     .warning
       %p.text-waring
         %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
