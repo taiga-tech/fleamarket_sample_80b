@@ -14,8 +14,11 @@
           - @item.images.each_with_index do |image, i|
             = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
 
-      -# =f.label :images, class:"image-field", for: "item_images_attributes_0_image" do
-      = icon "fas","camera"
+        -# =f.label :images, class:"image-field", for: "item_images_attributes_0_image" do
+        -# .iconnooya
+        -#   .iconnooya2
+        -#     = icon "fas","camera"
+
       %span.product_up 最大10枚までアップロードできます
 
       =f.fields_for :images do |i|
@@ -30,7 +33,28 @@
           = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
           %span.js-remove 削除
 
-    .form-group 以下の欄に必要な情報をご入力の上「出品する」を押してください。
+    .form-group
+      .underline
+    .form-group 
+      .onegai 以下の欄に必要な情報をご入力の上「出品する」を押してください。
+    
+    -# ドラッグアンドドロップの跡
+    -# #file-dropzone.dropzone{action: "/items", "drop-zone" => ""}
+    -#   = f.hidden_field :images
+    -#   %ul.visualizacao.sortable.dropzone-previews{:style => "border:1px solid #000"}
+    -#   .preview
+    -#     %li
+    -#       %div
+    -#         .dz-preview.dz-file-preview
+    -#         %img{"data-dz-thumbnail" => ""}/
+    -#         .dz-progress
+    -#           %span.dz-upload{"data-dz-uploadprogress" => ""}
+    -#         .dz-success-mark
+    -#           %span ✔
+    -#         .dz-error-mark
+    -#           %span ✘
+    -#         .dz-error-message
+    -#           %span{"data-dz-errormessage" => ""}
 
     .form-group
       .temporaryclass
@@ -50,10 +74,12 @@
           商品の説明
           .icon 必須
         = f.text_area :text, maxlength: "1000", placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
+      .underline
 
     .form-group
       = f.hidden_field :stock, value:1
-
+    
+    .supplement 商品の詳細
     .form-group
       .temporaryclass
         = f.label :category_id do
@@ -70,7 +96,6 @@
               = f.select :category_id, options_for_select(@child_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @child_category.id), {include_blank: "選択してください"}, class: "category", id: "child_category"
             .catagory-grandchildren
               = f.select :category_id, options_for_select(@grandchild_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @category.id), {include_blank: "選択してください"}, class: "category", id: "grandchild_category"
-
     .form-group
       .temporaryclass
         = f.label :brand do
@@ -83,28 +108,53 @@
         =f.label :condition do
           商品の状態
           .icon 必須
-        =f.text_field :condition, class: "condition"
-
+        -# =f.text_field :condition, class: "condition"
+        %select{:name => "condition", class: "condition"}
+          %option 選択してくださいませ
+          %option{value:'1'} 新品同様
+          %option{value:'2'} 美品
+          %option{value:'3'} 普通
+          %option{value:'4'} やや汚れあり
+          %option{value:'5'} あまりよろしくない
+      .underline
+      
+    .supplement 配送について
     .form-group
       .temporaryclass
         =f.label :leadtime do
           発送の日数
           .icon 必須
-        =f.number_field :leadtime, class: "leadtime"
-
+        -# =f.number_field :leadtime, class: "leadtime"
+        -# =f.select :leadtime, { include_blank: '選択してください'}, class: "leadtime"
+        %select{name: "leadtime", class: "leadtime"}
+          %option 選択してくださいませ
+          %option{value:'1'} １日
+          %option{value:'2'} ２〜６日
+          %option{value:'3'} １週間以上
+    
     .form-group
       .temporaryclass
         = f.label :derivery_id do
           配送方法
           .icon 必須
         = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください'}, class: "delivery"
+    .form-group
+      .underline
 
+    .supplement 価格(¥300~¥9,999,999)
     .form-group
       .temporaryclass
         = f.label :price do
           販売価格
           .icon 必須
         = f.number_field :price, class: "price"
+        = f.label :fee do
+          販売手数料(10%)
+        %span.fee-span
+        = f.label :profit do
+          販売利益
+        %span.profit-span
+    .underline
 
     .form-group
       .submit

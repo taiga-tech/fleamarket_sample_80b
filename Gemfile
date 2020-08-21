@@ -85,6 +85,9 @@ gem 'rails-i18n'
 # jquery追加(8/7)
 gem 'jquery-rails'
 
+# jquery-ui-rails(8/18)
+gem 'jquery-ui-rails'
+
 # payjp導入(8/11)
 gem 'payjp'
 
@@ -93,6 +96,12 @@ gem "ancestry"
 # font-awesome導入(8/16)
 gem 'font-awesome-sass', '~> 5.4.1'
 
+
+
+# ActiveHash::Baseを継承したモデルを自作するため導入(8/20)
+gem 'active_hash'
+
 # パンくず(8/17導入)
 gem 'gretel' 
 gem "ransack"
+
