@@ -9,7 +9,11 @@ $(function() {
     zipcode: function (value, element) {
       return this.optional(element) || /^\d{3}-?\d{4}$/.test(value);
     },
+    // price: function (value, element) {
+    //   return this.optional(element) || 	/^\w{300,9999999}$/.test(value);
+    // },
   }
+
 
   $.each(methods, function(key) {
     $.validator.addMethod(key, this);
@@ -111,7 +115,13 @@ $(function() {
       },
       "item[price]": {
         required: true,
+        price: true,
       },
+    },
+    messages: {
+      "item[price]": {
+        price: "¥300~¥9,999,999です。"
+      }
     },
     errorClass: "invalid",
     errorElement: "p",

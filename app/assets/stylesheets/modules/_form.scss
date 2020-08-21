@@ -1,4 +1,7 @@
 // @import url('https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css');
+* {
+  box-sizing: border-box;
+}
 
 .form-group {
   width: 100%;;
@@ -22,13 +25,14 @@
   // }
 
 //   align-items: center;
-  .image-box{
-    height: 700px;
-    width: 700px;
-  }
+  // .image-box{
+  //   height: 700px;
+  //   width: 700px;
+  // }
 
   .onegai{
     color:gray;
+    padding-bottom: 30px;
   }
 
 // 商品画像
@@ -39,10 +43,9 @@
 
 
   // 基本の形
-  .title, 
-  // .price, 
-  .condition, 
-  .leadtime, 
+  .title,
+  .condition,
+  .leadtime,
   .brand{
     height: 50px;
     width:  500px;
@@ -106,55 +109,54 @@
 }
   // 必須アイコン
   .icon {
-    display: inline-block;
-    height: 20px;
-    width: 35px;
+    display: inline;
+    padding: 3px 5px;
     color: white;
     font-size: 13px;
     border-radius: 4px;
-    text-align: center;
     background-color: red;
     margin-left: 10px;
+    font-weight: 700;
   }
 
   // 任意アイコン
   .icon2 {
-    display: inline-block;
-    height: 20px;
-    width:  35px;
+    display: inline;
+    padding: 3px 5px;
     color: white;
     font-size: 13px;
     border-radius: 4px;
-    text-align: center;
     background-color:gray;
+    margin-left: 10px;
+    font-weight: 700;
   }
 
   // 削除アイコン
-  .js-remove{
-    display: block;
-    height: 20px;
-    width:  35px;
+  .js-remove {
+    // display: block;
+    // height: 20px;
+    // width:  35px;
     color: white;
-    font-size: 13px;
-    border-radius: 4px;
-    text-align: center;
-    background-color:blue;
-    cursor: pointer;
-    &:hover {
-      color:white;
-      background-color:gray;
-    }
+    // font-size: 13px;
+    // border-radius: 4px;
+    // text-align: center;
+    // background-color:blue;
+    // cursor: pointer;
+    // &:hover {
+    //   color:white;
+    //   background-color:gray;
+    // }
   }
 
   // 出品ボタン
   .submit-btn {
-    height: 40%;
-    width:  300px;
+    padding: 20px 50px;
     color:white;
     font-size: 20px;
     font-weight: bold;
     background-color:#3CCACE;
     margin-top: 50px;
+    border: none;
     &:hover {
       color:white;
       background-color:#66edf1;
@@ -208,31 +210,63 @@ label {
 }
 
 #image-box{
-  height: auto;
-  width: 500px;
+  // height: auto;
+  width: 510px;
   flex-wrap: wrap;
-  background-color:darkgray;
+  padding-bottom: 30px;
 }
 
-#previews{
+
+
+.js-file_group{
+  display: none;
+}
+
+.preview-box {
+  // outline: 1px solid gray;
   display: flex;
-  flex-wrap: wrap;
+  #previews{
+    display: flex;
+    flex-wrap: wrap;
+    outline: 2px dashed #3CCACE;
+    padding: 5px;
+    img {
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .preview__item {
+      position: relative;
+    }
+    .js-remove {
+      font-size: 20px;
+      color: rgb(255, 64, 64);
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+    .triggericon {
+      border: 2px solid #3CCACE;
+      color: #3CCACE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+    }
+  }
 }
-
-
-// .js-file{
-//   display: none;
-// }
-
 
 .fas.fa-camera{
   font-size: 30px;
   text-align: center;
-  &:hover {
-    color:white;
-    background-color:gray;
-    cursor: pointer;
-  }
 }
 
 .underline{
@@ -250,6 +284,7 @@ label {
   // display: flex;
   text-align: right;
   border: 1px solid #ccc;
+  -webkit-appearance: none;
 }
 // .sortable {
 //   padding: 0;

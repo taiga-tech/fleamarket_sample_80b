@@ -12,8 +12,8 @@ $(function() {
     // プレビュー用のimgタグを生成する関数
     const buildImg = (index, url)=> {
       const html = `<div class="preview__item" data-index="${index}">
+                      <i class="fas fa-times-circle js-remove"></i>
                       <img data-index="${index}" src="${url}" width="100px" height="100px">
-                      <span class="js-remove">削除</span>
                     </div>`;
       return html;
     }
@@ -29,12 +29,7 @@ $(function() {
 
 
     // カメラをクリックで画像選択
-    // $(document).on("click", ".fa-camera", function(e){
-    //   let file_field = $(".js-file:last");
-    //   file_field.trigger("click");
-    // })
-
-    $(".product_up").click(function(e) {
+    $(document).on("click", ".triggericon", function(e){
       let file_field = $(".js-file:last");
       file_field.trigger("click");
     })
@@ -48,25 +43,27 @@ $(function() {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      // $('#previews').append(buildImg(targetIndex, blobUrl));
+      $(".triggericon").before(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
       let imglength = $("#previews").children().length;
-      var num = imglength
-      // $(".js-remove").click(function() {
-      //   let rmlength = $("#previews").children().length - 1;
-      //   var num = rmlength
-      //   if (num < 10) {
-      //     $('#image-box').append(buildFileField(fileIndex[0]));
-      //   }
-      // })
-      if (num < 10) {
-        $('#image-box').append(buildFileField(fileIndex[0]));
+      $(".js-remove").click(function() {
+        $(".triggericon").show();
+      });
+      $('#image-box').append(buildFileField(fileIndex[0]));
+      if (imglength == 11) {
+        $(".triggericon").hide();
       }
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
+
+  let imglength = $("#previews").children().length;
+  if (imglength == 11) {
+    $(".triggericon").hide();
+  }
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
@@ -81,9 +78,13 @@ $(function() {
 
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+
+    let imglength = $("#previews").children().length;
+    $(".triggericon").show();
+    if (imglength == 11) {
+      $(".triggericon").hide();
+    }
   });
-
-
 
   // items#show
   $('.slider-5-thum').slick({
