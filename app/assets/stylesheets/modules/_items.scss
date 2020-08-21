@@ -8,7 +8,7 @@
 
 // メインページ
 .main {
-  &__box {
+  &__box { 
     // 1.人生を変えるフリマアプリ
     &--textBox {
       // トップ画像
@@ -317,15 +317,15 @@
         }
       }
     }  
+  
     // 5.商品一覧 
     &--itemBox { 
       width: 100%; 
-      padding: 20px;
+      padding-left: 60px; 
+      padding-right: 60px; 
       &--itemIndex { 
-        height: 680px;
-        // padding-top: 50px; 
+        height: 680px; 
         text-align: center;
-        // margin-bottom: 40px;
         font-size: 26px;
         font-weight: bold;
         &--text1 {
@@ -347,11 +347,9 @@
           .itemPickBox {
             height: 80%;
             width: 25%;
-            background-color: #fff; 
             position: relative;
             &__item-image {
               height: 90%; 
-              background-color: #fff;
               margin-right: 5px; 
               img {
                 object-fit: cover;
@@ -369,7 +367,9 @@
               width: 120px;
               text-align: center;
               &__stock {
-                font-size: 10px;
+                font-size: 16px; 
+                padding-top: 5px; 
+                padding-bottom: 5px;
               }
               &__price {
                 font-size: 17px;
@@ -377,7 +377,6 @@
               &__title {  
                 font-size: 17px; 
                 letter-spacing: 5px;
-
               }
             }
           } 
@@ -391,11 +390,13 @@
       // アーカイバ
       &--archive {
         height: 220px;
-        color: #000;
+        color: #000; 
+        margin-bottom: 40px; 
         &--text1 { 
           text-align: center;
           font-size: 28px;
-          font-weight: bold;
+          font-weight: bold; 
+      
         }
         &--text2 { 
           font-size: 24px;
@@ -409,11 +410,9 @@
           .itemPickBox2 { 
             height: 75%; 
             width: 25%;
-            background-color: white;
             position: relative; 
             &__item-image {
               height: 95%;
-              background-color: #fff;
               margin-right: 5px;
               img {
                 object-fit: cover;
@@ -430,7 +429,9 @@
               margin-left: 3px; 
               text-align: center;
               &__stock {
-                font-size: 10px;
+                font-size: 16px; 
+                padding-top: 10px; 
+                padding-bottom: 16px; 
               }
               &__price {
                 font-size: 17px;
@@ -443,13 +444,14 @@
           }
         }
       }  
-    } 
+    }  
+
     // 今すぐ無料ダウンロード
     &--download {
       background-image: image-url("/images/images/bg-appBanner-pict.jpg");
       background-size: cover;
       height: 400px; 
-      margin-top:250px;
+      margin-top:350px;
       &--DLtextBox {
         font-weight: bold;
         text-align: center;
@@ -471,8 +473,8 @@
         }
       }
     } 
-  } 
-}
+  }  
+} 
 .detail-text { 
   font-size: 15px;
   height: 40px; 
