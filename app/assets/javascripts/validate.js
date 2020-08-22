@@ -9,7 +9,17 @@ $(function() {
     zipcode: function (value, element) {
       return this.optional(element) || /^\d{3}-?\d{4}$/.test(value);
     },
+    price: function (value, element) {
+      return this.optional(element) || 	/^[3-9][0-9]{2}|[1-9][0-9]{3,6}$/.test(value);
+    },
+    number: function (value, element) {
+      return this.optional(element) || /^\d+$/.test(value);
+    },
+    cvc: function(value, element) {
+      return this.optional(element) || /^\d{3,4}$/.test(value);
+    }
   }
+
 
   $.each(methods, function(key) {
     $.validator.addMethod(key, this);
@@ -49,7 +59,7 @@ $(function() {
         equalTo: "パスワードが一致しません"
       },
     },
-    errorClass: "invalid",
+    errorClass: "devise-invalid",
     errorElement: "p",
     valudClass: "valid",
   });
@@ -78,7 +88,7 @@ $(function() {
         zipcode: "フォーマットが違います"
       }
     },
-    errorClass: "invalid",
+    errorClass: "devise-invalid",
     errorElement: "p",
     valudClass: "valid",
   });
@@ -111,11 +121,18 @@ $(function() {
       },
       "item[price]": {
         required: true,
+        price: true,
       },
+    },
+    messages: {
+      "item[price]": {
+        price: "¥300以上で出品してください"
+      }
     },
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
+    
   });
   $("#item_title",
     "#item_text",
@@ -134,6 +151,7 @@ $(function() {
     rules: {
       "number": {
         required: true,
+        number: true
       },
       "exp_month": {
         required: true,
@@ -143,6 +161,15 @@ $(function() {
       },
       "cvc": {
         required: true,
+        cvc: true,
+      },
+    },
+    messages: {
+      "number": {
+        number: "半角数字で入力してください"
+      },
+      "cvc": {
+        cvc: "3~4桁の数字を入力してください"
       },
     },
     errorClass: "invalid",

@@ -12,14 +12,15 @@ $(function() {
     // プレビュー用のimgタグを生成する関数
     const buildImg = (index, url)=> {
       const html = `<div class="preview__item" data-index="${index}">
+                      <i class="fas fa-times-circle js-remove"></i>
                       <img data-index="${index}" src="${url}" width="100px" height="100px">
-                      <span class="js-remove">削除</span>
                     </div>`;
       return html;
     }
 
   // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [...Array(100).keys()].map(i => ++i)
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   firstIndex = $(".js-file_group:first").data("index");
@@ -29,12 +30,7 @@ $(function() {
 
 
     // カメラをクリックで画像選択
-    // $(document).on("click", ".fa-camera", function(e){
-    //   let file_field = $(".js-file:last");
-    //   file_field.trigger("click");
-    // })
-
-    $(".product_up").click(function(e) {
+    $(document).on("click", ".triggericon", function(e){
       let file_field = $(".js-file:last");
       file_field.trigger("click");
     })
@@ -48,25 +44,27 @@ $(function() {
     if (img = $(`img[data-index="${targetIndex}"]`)[0]) {
       img.setAttribute('src', blobUrl);
     } else {  // 新規画像追加の処理
-      $('#previews').append(buildImg(targetIndex, blobUrl));
+      // $('#previews').append(buildImg(targetIndex, blobUrl));
+      $(".triggericon").before(buildImg(targetIndex, blobUrl));
       // fileIndexの先頭の数字を使ってinputを作る
       let imglength = $("#previews").children().length;
-      var num = imglength
-      // $(".js-remove").click(function() {
-      //   let rmlength = $("#previews").children().length - 1;
-      //   var num = rmlength
-      //   if (num < 10) {
-      //     $('#image-box').append(buildFileField(fileIndex[0]));
-      //   }
-      // })
-      if (num < 10) {
-        $('#image-box').append(buildFileField(fileIndex[0]));
+      $(".js-remove").click(function() {
+        $(".triggericon").show();
+      });
+      $('#image-box').append(buildFileField(fileIndex[0]));
+      if (imglength == 11) {
+        $(".triggericon").hide();
       }
       fileIndex.shift();
       // 末尾の数に1足した数を追加する
       fileIndex.push(fileIndex[fileIndex.length - 1] + 1);
     }
   });
+
+  let imglength = $("#previews").children().length;
+  if (imglength == 11) {
+    $(".triggericon").hide();
+  }
 
   $('#image-box').on('click', '.js-remove', function() {
     const targetIndex = $(this).parent().data('index');
@@ -81,21 +79,27 @@ $(function() {
 
     // 画像入力欄が0個にならないようにしておく
     if ($('.js-file').length == 0) $('#image-box').append(buildFileField(fileIndex[0]));
+
+    let imglength = $("#previews").children().length;
+    $(".triggericon").show();
+    if (imglength == 11) {
+      $(".triggericon").hide();
+    }
   });
-
-
 
   // items#show
   $('.slider-5-thum').slick({
-    arrows:false,
+    arrows: true,
     asNavFor:'.slider-5-nav',
+    slidesToShow: 1,
+    fade: true,
   });
   $('.slider-5-nav').slick({
     autoplay: true,
     asNavFor:'.slider-5-thum',
     focusOnSelect: true,
-    slidesToShow:3,
-    slidesToScroll:1,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     centerMode: true,
   });
 });
@@ -109,13 +113,13 @@ $(function(){
   $("#item_price").on('keyup', function(){
     var price = $("#item_price").val();
     if( 300 <= price && price <= 9999999) {
-    var fee = Math.floor(price / 10);
-    var profit = (price - fee);
-    $(".fee-span").text(fee);
-    $(".profit-span").text(profit);
+      var fee = Math.floor(price / 10);
+      var profit = (price - fee);
+      $(".fee-span").text(fee);
+      $(".profit-span").text(profit);
     }else{
-    $(".fee-span").text('');
-    $(".profit-span").text('');
+      $(".fee-span").text('');
+      $(".profit-span").text('');
     }
   })
 });
