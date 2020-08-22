@@ -96,7 +96,6 @@
         = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください' }, class: "delivery"
     .form-group
       .underline
-
     .supplement 価格(¥300~¥9,999,999)
     .form-group
       .temporaryclass
@@ -109,7 +108,7 @@
         %span.fee-span
         = f.label :profit do
           販売利益
-        %span.profit-span
+        %span.profit-span 
     .underline
 
     .form-group
