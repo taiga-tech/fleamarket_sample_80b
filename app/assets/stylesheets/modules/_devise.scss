@@ -1,6 +1,6 @@
 .Devise {
   height: 100vh;
-  padding: 100px 0;
+  // padding: 100px 0;
   background-color: rgb(38, 43, 48);
   color: #fff;
   display: flex;
@@ -43,12 +43,13 @@ $curve: linear;
       overflow: hidden;
       margin-bottom: .875em;
       font-size: 20px;
-      p {
-        text-align: right;
-        color: rgb(218, 86, 86);
+      input.devise-invalid {
+        border-bottom: 2px solid rgb(255, 86, 86);
       }
-      input.invalid {
-        outline: 1.5px solid red;
+      p.devise-invalid {
+        color: rgb(255, 86, 86);
+        text-align: right;
+        font-weight: bold;
       }
     }
 
@@ -90,7 +91,7 @@ $curve: linear;
     transform: scaleX(0) translateY(-2px);
     transform-origin: 50%;
     opacity: 0;
-    transition: all .15s $curve;
+    transition: all .50s $curve;
   }
 
   * :focus {

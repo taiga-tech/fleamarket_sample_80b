@@ -19,7 +19,8 @@ $(function() {
     }
 
   // file_fieldのnameに動的なindexをつける為の配列
-  let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  // let fileIndex = [1,2,3,4,5,6,7,8,9,10];
+  let fileIndex = [...Array(100).keys()].map(i => ++i)
   // 既に使われているindexを除外
   lastIndex = $('.js-file_group:last').data('index');
   firstIndex = $(".js-file_group:first").data("index");
@@ -88,15 +89,17 @@ $(function() {
 
   // items#show
   $('.slider-5-thum').slick({
-    arrows:false,
+    arrows: true,
     asNavFor:'.slider-5-nav',
+    slidesToShow: 1,
+    fade: true,
   });
   $('.slider-5-nav').slick({
     autoplay: true,
     asNavFor:'.slider-5-thum',
     focusOnSelect: true,
-    slidesToShow:3,
-    slidesToScroll:1,
+    slidesToShow: 3,
+    slidesToScroll: 1,
     centerMode: true,
   });
 });
@@ -110,13 +113,13 @@ $(function(){
   $("#item_price").on('keyup', function(){
     var price = $("#item_price").val();
     if( 300 <= price && price <= 9999999) {
-    var fee = Math.floor(price / 10);
-    var profit = (price - fee);
-    $(".fee-span").text(fee);
-    $(".profit-span").text(profit);
+      var fee = Math.floor(price / 10);
+      var profit = (price - fee);
+      $(".fee-span").text(fee);
+      $(".profit-span").text(profit);
     }else{
-    $(".fee-span").text('');
-    $(".profit-span").text('');
+      $(".fee-span").text('');
+      $(".profit-span").text('');
     }
   })
 });

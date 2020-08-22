@@ -3,13 +3,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
+
   def new
     @user = User.new
   end
+
   # GET /resource/sign_up
   # def new
   #   super
   # end
+  
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
@@ -21,8 +24,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @address = @user.build_address
     render :new_address
   end
+
   #   super
   # end
+
   def create_address
     @user = User.new(session["devise.regist_data"]["user"])
     @address = Address.new(address_params)
@@ -36,6 +41,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
   end
+
   # GET /resource/edit
   # def edit
   #   super

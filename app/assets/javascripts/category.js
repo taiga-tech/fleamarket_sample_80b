@@ -10,7 +10,7 @@ $(function() {
   function childrenBox(insertHtml) {
     var childrenHtml = ``;
     var childrenHtml = `<div class="catagory-children">
-                          <select class="category" name="item[category_id]" id="child_category">
+                          <select class="category field" name="item[category_id]" id="child_category">
                             <option value="">選択してください</option>
                             ${insertHtml}
                           <select>
@@ -21,7 +21,7 @@ $(function() {
   function grandChildrenBox(insertHtml) {
     var grandChildren = "";
     var grandChildren = `<div class="catagory-grandchildren">
-                          <select class="category" name="item[category_id]" id="grandchild_category">
+                          <select class="category field" name="item[category_id]" id="grandchild_category">
                             <option value="">選択してください</option>
                             ${insertHtml}
                           <select>
