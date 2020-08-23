@@ -92,6 +92,10 @@
 
     .underline
       .supplement 配送について
+    
+    .form-group
+      .temporaryclass
+        = f.label :
 
     .form-group
       .temporaryclass
@@ -120,7 +124,8 @@
               = f.text_field :price, placeholder: "¥300~¥9,999,999", maxlength: "7", class: "price field"
         .price_contents__content
           = f.label :fee, class: "price_contents__content--label" do
-            販売手数料(10%)
+            販売手数料(3%)
+          %span.yen ¥
           %span.fee-span
         .price_contents__content
           = f.label :profit, class: "price_contents__content--label" do
