@@ -107,7 +107,7 @@
             .MessageInfo__userName
               %p= comment.user.name
             .MessageInfo__userTrash
-              - if user_signed_in? && current_user.id == @comment.id
+              - if user_signed_in? && current_user.id == comment.user_id
                 %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
     .warning
       %p.text-waring
