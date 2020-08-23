@@ -18,10 +18,10 @@
         = link_to "購入する", buys_path
     - elsif user_signed_in? && current_user.email != @item.reservation_email.present? && @item.reservation_email
       .card-warning
-        = link_to "出品一時停止中", root_path,class:"disabled-button bold"
+        = link_to "出品一時停止中", root_path, class:"disabled-button bold"
     - else
       .card-cash
-        = link_to "購入する",buy_path,class:"product-purchase__btn"
+        = link_to "購入する", buy_path, class:"product-purchase__btn"
   .card-title
     %h1.text-title
       %span.card-text
@@ -46,10 +46,10 @@
       %span.card-text
       = @item.text
   -# .card-cash
-  -#   - unless user_signed_in? && current_user.id == @item.user_id
-  -#     - if user_signed_in? && current_user.id
-  -#       - if @item.reservation_email.present? && @item.reservation_email != current_user.email
-  -#         %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
+  -#   -# - unless user_signed_in? && current_user.id == @item.user_id
+  -#   - if user_signed_in? && current_user.id != @item.user_id
+  -#     - if @item.reservation_email.present? == false# && @item.reservation_email != current_user.email
+  -#       %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
