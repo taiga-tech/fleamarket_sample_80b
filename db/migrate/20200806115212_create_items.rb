@@ -10,8 +10,9 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer     :leadtime,   null: false
       t.references  :category,   foreign_key: true
       t.references  :user,       foreign_key: true
-      t.references  :delivery,   foreign_key: true
-      t.timestamps
+      t.references  :delivery,   foreign_key: true 
+      t.string :reservation_email 
+      t.timestamps 
     end
   end
 end

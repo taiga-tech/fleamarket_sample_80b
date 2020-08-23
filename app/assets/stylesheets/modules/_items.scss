@@ -324,15 +324,15 @@
       padding-left: 60px; 
       padding-right: 60px; 
       &--itemIndex { 
-        height: 680px; 
+        height: 700px; 
         text-align: center;
         font-size: 26px;
         font-weight: bold;
-        &--text1 {
+        &--text1 { 
+          color: #fff;
           height: 4px;
           margin: auto;
-          margin-top: 10px;
-          padding-bottom: 30px; 
+          margin-top: 10px; 
       }
         &--text2 {
           font-size: 24px;
@@ -390,12 +390,13 @@
       // アーカイバ
       &--archive {
         height: 220px;
-        color: #000; 
         margin-bottom: 40px; 
+        color: #fff;
         &--text1 { 
           text-align: center;
           font-size: 28px;
           font-weight: bold; 
+          
       
         }
         &--text2 { 
@@ -451,7 +452,7 @@
       background-image: image-url("/images/images/bg-appBanner-pict.jpg");
       background-size: cover;
       height: 400px; 
-      margin-top:350px;
+      margin-top: 190px;
       &--DLtextBox {
         font-weight: bold;
         text-align: center;
