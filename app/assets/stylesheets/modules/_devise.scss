@@ -1,11 +1,23 @@
+$page-bg: #282F32;
+$light-blue: #3599FF;
+$bright-blue: #68B3FF;
+$light-gray: #999;
+$curve: cubic-bezier(0, 0, 0.52, 1.11);
+$curve: linear;
+$devise-bg: rgb(38, 43, 48);
+
 .Devise {
   height: 100vh;
   // padding: 100px 0;
-  background-color: rgb(38, 43, 48);
+  background-color: $devise-bg;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0 auto;
+  text-align: left;
+  // margin-top: 10em;
+
   &__header {
     font-size: 30px;
     margin-bottom: 30px;
@@ -16,20 +28,6 @@
   &__main {
     width: 480px;
   }
-}
-
-$page-bg: #282F32;
-$light-blue: #3599FF;
-$bright-blue: #68B3FF;
-$light-gray: #999;
-$curve: cubic-bezier(0, 0, 0.52, 1.11);
-$curve: linear;
-
-.Devise {
-  // width: 450px;
-  margin: 0 auto;
-  text-align: left;
-  // margin-top: 10em;
 
   label{
     display: block;
@@ -111,5 +109,114 @@ $curve: linear;
     // flex-direction: row;
     // justify-content: end;
     justify-content: flex-start;
+  }
+}
+
+#Signup_modal, #Login_modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%!important;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  z-index: 1;
+  .Signup, .Login {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .link {
+      // display: flex;
+      // justify-content: center;
+      // flex-direction: column;
+      // border: 1px solid #000;
+      width: 500px;
+      height: 600px;
+      padding: 30px 20px;
+      border-radius: 2px;
+      background-color: #fff;
+      .title {
+        color: rgb(38, 43, 48);
+        text-align: center;
+        border-bottom: 1px solid rgb(99, 119, 139);
+        font-size: 28px;
+        font-weight: 700;
+        // margin-bottom: 30px;
+      }
+      .Link {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        &__button {
+          width: 100%;
+          text-align: center;
+          button {
+            border-radius: 3px;
+            padding: 15px 10px;
+            margin: 20px 0;
+            font-weight: 600;
+            font-size: 16px;
+            width: 60%;
+            img {
+              width: 18px;
+              height: 18px;
+              float: left;
+            }
+            i {
+              color: #fff;
+              float: left;
+              font-size: 19px;
+            }
+          }
+          .email {
+            background-color: #ea352d;
+            color: #fff;
+          }
+          .google {
+            font-family: 'Roboto', sans-serif;
+            border: 1px solid $devise-bg;
+          }
+          .facebook {
+            background-color: #1877F2;
+            color: #fff;
+          }
+          .apple {
+            background-color: #000;
+            color: #fff;
+          }
+        }
+        &__close {
+          cursor: pointer;
+          margin-top: 10px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.comming {
+  text-align: center;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: calc(100vh - 436px);
+  button {
+    padding: 10px 40px;
+    color: #fff;
+    background-color: #000;
+    font-size: 30px;
   }
 }

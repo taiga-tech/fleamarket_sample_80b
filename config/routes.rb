@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get '/users/item.user.id', to: 'users#show'
+  # get '/users/item.user.id', to: 'users#show'
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
   }
   devise_scope :user do
     get  'addresses', to: 'users/registrations#new_address'
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
 
   root "items#index"
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:new, :show, :edit, :update] do
     resources :profiles, only: [:edit, :update]
     collection do
       get :likes
