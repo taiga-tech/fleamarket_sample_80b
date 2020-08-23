@@ -1,5 +1,6 @@
-Rails.application.routes.draw do
-  # get '/users/item.user.id', to: 'users#show'
+Rails.application.routes.draw do 
+  get '/users/item.user.id', to: 'users#show'
+
   devise_for :users, controllers: {
     omniauth_callbacks: 'users/omniauth_callbacks',
     registrations: 'users/registrations'
@@ -7,7 +8,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     get  'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
-  end
+  end 
+
 
   root "items#index"
 
@@ -57,6 +59,8 @@ Rails.application.routes.draw do
     end
     # member do
     # end
+  end 
+  Rails.application.routes.draw do
+    resources :relationships, only: [:create, :destroy]
   end
-
-end
+end 
