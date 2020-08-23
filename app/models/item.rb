@@ -17,7 +17,8 @@ class Item < ApplicationRecord
             :leadtime,
             :category_id,
             :user_id,
-            :delivery_id,
+            :delivery_id, 
+            :reservation_email,
             presence: true
   def self.search(search)
     if search

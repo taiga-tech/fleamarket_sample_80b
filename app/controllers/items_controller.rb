@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :search
   before_action :detail
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :reserved, :reserve, :reserve_cancel]
   before_action :set_categories, only: [:new, :create, :edit]
   # before_action :move_to_index, except: [:index, :show, :search]
 
@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
     @ladies = Item.where(category_id: 1..199).order('created_at DESC')
     @mens = Item.where(category_id: 200..345).order('created_at DESC')
     @home_appliances = Item.where(category_id: 898..983).order('created_at DESC') 
-    @interiors = Item.where(category_id: 481..624)
+    @interiors = Item.where(category_id: 481..624).order('created_at DESC')
   end
 
   def show
@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
   #商品出品
   def new
     @item = Item.new
-    @item.images.new
+    @item.images.new 
   end
 
   #商品情報
@@ -46,9 +46,30 @@ class ItemsController < ApplicationController
     @grandchild_categories = @child_category.children
   end
 
+  def reserve
+
+  end 
+
+  def reserved 
+    @item.update(item_params)  
+    if @item.reservation_email.present?
+      else
+      render :reserve 
+  end 
+end 
+  
+  def reserve_cancel
+  if @item.update(reservation_email:"")
+  redirect_to item_path
+  else
+  redirect_to item_path
+    end
+  end 
+
+
   #商品更新機能
   def update
-    if @item.update(item_params)
+    if @item.update(update_params)
       redirect_to item_path(@item)
     else
       render :edit
@@ -84,11 +105,11 @@ class ItemsController < ApplicationController
         @detail = Item.ransack()
         @items = Item.all
       end
-  end
+  end 
 
   private
-  def set_item
-    @item = Item.find(params[:id])
+  def set_item 
+    @item = Item.includes(:comments).find(params[:id])
   end
 
   def set_categories
@@ -113,9 +134,15 @@ class ItemsController < ApplicationController
       :leadtime,
       :delivery_id,
       :category_id,
-      images_attributes:  [:image, :_destroy, :id],
+      :reservation_email, 
+      images_attributes:  [:image, :_destroy, :id]
     ).merge(user_id: current_user.id)
-  end
+  end 
+
+  def update_params  
+    params.require(:item).permit(:title, :price, :text, :stock, :brand, :condition, :leadtime, :delivery_id, :category_id, images_attributes: [:image, :_destroy, :id])
+  end  
+
   def detail_params
     params.require(:q).permit(:sorts)
 end
