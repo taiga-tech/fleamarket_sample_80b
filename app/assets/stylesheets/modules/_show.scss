@@ -15,8 +15,8 @@
       background-color: #48d1cc;
       border-radius: 5px;
       color: #f5f5f5;
-      font-size: 16px; 
-      
+      font-size: 16px;
+
       font-weight: bold;
       position: absolute;
       top: 0px;
@@ -32,18 +32,18 @@
       position: absolute;
       top: 30px;
       right: 250px;
-    } 
+    }
     .card-serve {
       width: 10%;
-      background-color: navy; 
+      background-color: navy;
       border-radius: 5px;
       color: #f5f5f5;
       font-size: 16px;
       font-weight: bold;
       position: absolute;
       top: 59px;
-      right: 250px; 
-    } 
+      right: 250px;
+    }
     .card-cash {
       width: 10%;
       background-color: red;
@@ -51,21 +51,21 @@
       color: #f5f5f5;
       font-size: 22px;
       font-weight: bold;
-      position: absolute; 
+      position: absolute;
       padding: 5px;
       top: 20px;
-      right: 250px; 
-    } 
-    .card-warning { 
+      right: 250px;
+    }
+    .card-warning {
       background-color: gray;
       border-radius: 5px;
       color: #f5f5f5;
       font-size: 18px;
       font-weight: bold;
-      position: absolute; 
+      position: absolute;
       padding: 5px;
       top: 14px;
-      right: 250px; 
+      right: 250px;
     }
   }
   .card-title{
@@ -90,7 +90,7 @@
   }
   .cash-cash {
     background-color: red;
-    display: inline-block;  
+    display: inline-block;
     margin-bottom: 10px;
     padding: 15px;
     border-radius: 5px;
@@ -219,7 +219,7 @@
 }
 .form {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 .form-area {
   height: 40px;
   font-size: 15px;
@@ -233,7 +233,7 @@
   font-size: 12px;
   float: right;
   color: #fff;
-  background-color: #666666; 
+  background-color: #666666;
   border: 3px solid #000;
 }
 }
@@ -259,48 +259,56 @@
     }
   }
 }
-.form-group {  
-  font-weight: bold; 
+.form-group {
+  font-weight: bold;
   font-size: 20px;
-  // height: 400px; 
-  display: flex;
+  // height: 400px;
+  // display: flex;
 }
-  .form-group__require { 
-    background-color: red;
-    width: 50px; 
-    color: #fff; 
-    border-radius: 5px; 
-    font-size: 18px; 
-    margin-bottom: 2px;
-  } 
-  .form-group__input { 
-    padding-top: 10px;
-  } 
-  .reserve { 
-    margin-top: 2px;
-    background-color: gray; 
-    color: #fff; 
-    border-radius: 3px;
+.form-group__require {
+  background-color: red;
+  width: 50px;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+.form-group__input {
+  padding: 10px;
+  width: 50%;
+  div.invalid {
+    color: rgb(255, 86, 86);
   }
-  .btn-default { 
-    font-size: 21px;
-    font-weight: bold;
-    color: gray;  
+}
+.reserve {
+  margin: 2px 0 30px 0;
+  background-color: gray;
+  color: #fff;
+  border-radius: 3px;
+}
+.btn-default {
+  font-size: 21px;
+  font-weight: bold;
+  color: gray;
+}
+.reserved{
+  background: #fff;
+  height: 200px;
+  color: gray;
+  margin-top: 20px;
+  font-weight: bold;
+  &-header{
+    font-size: 24px;
+    padding: 8px 24px;
+    border-bottom: 1px solid #f5f5f5;
+    text-align: center;
+    line-height: 1.4;
   }
-  .reserved{
-    background: #fff; 
-    height: 200px; 
-    color: gray; 
-    margin-top: 20px; 
-    font-weight: bold;
-    &-header{
-      font-size: 24px;
-      padding: 8px 24px;
-      border-bottom: 1px solid #f5f5f5;
-      text-align: center;
-      line-height: 1.4;
-    }
-    &-title{
-      font-size: 16px;
-    } 
+  &-title{
+    font-size: 16px;
   }
+}
+
+img {
+  object-fit: cover;
+}

@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def new
   #   super
   # end
-  
+
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
@@ -36,7 +36,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
     @user.build_address(@address.attributes)
     @user.save
-    Profile.create(text: "", user_id: @user.id)
+    Profile.create(text: "", image: File.open("./public/images/default.png"), user_id: @user.id)
     redirect_to root_path
     session["devise.regist_data"]["user"].clear
     sign_in(:user, @user)
