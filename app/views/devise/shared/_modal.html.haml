@@ -19,6 +19,11 @@
               = icon("fab", "facebook-square")
               FaceBookで登録
         .Link__button
+          = link_to  user_twitter_omniauth_authorize_path, method: :post do
+            %button.twitter
+              = icon("fab", "twitter")
+              Twitterで登録
+        .Link__button
           = link_to  new_user_path do
             %button.apple
               = icon("fab", "apple")
@@ -46,6 +51,11 @@
             %button.facebook
               = icon("fab", "facebook-square")
               FaceBookでログイン
+        .Link__button
+          = link_to  user_twitter_omniauth_authorize_path, method: :post do
+            %button.twitter
+              = icon("fab", "twitter")
+              Twitterでログイン
         .Link__button
           = link_to  new_user_path do
             %button.apple
