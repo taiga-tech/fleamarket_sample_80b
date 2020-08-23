@@ -6,13 +6,18 @@
   .wrapper 
     .header 
       .profile_name
-        = @name   
+        = @name 
       .profile_image 
         - if user_signed_in? && current_user.id == @user.id 
           = image_tag @profile.image.url, class: "photo" if @profile.image.present? 
       .selfy     
         - if user_signed_in? && current_user.id == @user.id 
           = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
+      .profile_follow 
+        = render partial: "follow_button"
+        = "フォロー：#{@user.followings.count}" 
+      .profile_follow  
+        = "フォローワー：#{@user.followers.count}"
     .content_1
       .content_left 
         %h1.user_created_at= "登録日：#{@created_at.strftime("%Y年%-m月%-d日")}" 
@@ -27,14 +32,12 @@
           - if user_signed_in? && current_user.id == @user.id 
             = link_to "いいね！した商品をみる", likes_users_path, method: :get  
           - else 
-            = link_to "いいね！した商品をみる(本人のみ)"   
+            = link_to "いいね！した商品をみる(本人のみ)"  
       .content_right
         %h1.user_introduce
-          = @user.profile.text
-    .between
+          = @user.profile.text 
+    .between 
       %p.between_image
-
-  
         = link_to "出品一覧", root_path 
 .container 
   .index_mypage         
@@ -53,8 +56,6 @@
               = "価格：¥#{item.price}" 
             %li.user.like
               = "いいね数：#{item.liked_users.count}個"
-
-
 
 
 
