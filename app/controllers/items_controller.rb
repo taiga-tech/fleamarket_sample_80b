@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
   before_action :search
   before_action :detail
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :search, :detail]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, only: [:new, :create, :edit]
   # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC') 
+    @items = Item.includes(:user).order('created_at DESC')
   end
 
   def show
@@ -69,6 +69,7 @@ class ItemsController < ApplicationController
   def search
     @items = Item.search(params[:keyword])
   end
+
   def detail
     if params[:q].present?
       # 検索フォームからアクセスした時の処理
@@ -114,5 +115,5 @@ class ItemsController < ApplicationController
   end
   def detail_params
     params.require(:q).permit(:sorts)
-end
+  end
 end

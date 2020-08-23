@@ -208,7 +208,7 @@
   display: flex;
   justify-content: center;
   .slick_inner {
-    width: 70vw;
+    width: 55%;
     .slick-track {
       display: flex;
       align-items: center;
@@ -218,6 +218,8 @@
       display: flex;
       justify-content: center;
       img {
+        width: 60%;
+        height: 60%;
         object-fit: cover;
       }
     }

@@ -20,10 +20,11 @@
           - @item.images.each do |image|
             .slick_image
               = image_tag image.image.url, class: "item_image" if image.image.present?
-        .slider-5-nav
-          - @item.images.each do |image|
-            .slick_image
-              = image_tag image.image.url, class: "item_image", width: "400px", height: "300px" if image.image.present?
+        - if @item.images.length > 2
+          .slider-5-nav
+            - @item.images.each do |image|
+              .slick_image
+                = image_tag image.image.url, class: "item_image", width: "300px", height: "200px" if image.image.present?
     %h4.text-center
       %span.card-proce
       = "¥#{@item.price}"
@@ -70,7 +71,7 @@
         %td= @item.delivery.name
       %tr
         %th 配送目安
-        %td=  "#{@item.leadtime}日で発送"  
+        %td=  "#{@item.leadtime}日で発送"
   .btn-bar
     .btn-box
       = render partial: "items/like", locals: { item: @item, like: @like }
@@ -88,10 +89,10 @@
             %h1= comment.text
           .MessageInfo
             .MessageInfo__userName
-              %p= comment.user.name 
-            .MessageInfo__userTrash 
-              - if @comment.id && current_user.id == true 
-                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"} 
+              %p= comment.user.name
+            .MessageInfo__userTrash
+              - if @comment.id && current_user.id == true
+                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
     .warning
       %p.text-waring
         %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
@@ -102,3 +103,5 @@
         -# = f.hidden_field :user_id, { value: current_user.id}
         = f.text_area :text, class: "form-area"
         = f.submit "💬コメントする", class: "submit"
+
+#graydisplay

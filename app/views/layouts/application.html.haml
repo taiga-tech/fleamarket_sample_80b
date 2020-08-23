@@ -5,12 +5,15 @@
     %title FleamarketSample80bb
     %script{src: "https://js.pay.jp/", type: "text/javascript"}
     %script{src: "https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.js", type: "text/javascript"}
-
+    %link{href: "https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap", rel: "stylesheet"}
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application'
   %body
     = render partial: 'layouts/breadcrumbs'
+    = render "devise/shared/modal"
+    #Login_modal
+      = render "devise/shared/modal"
     = yield
     = render partial: 'layouts/footer'
