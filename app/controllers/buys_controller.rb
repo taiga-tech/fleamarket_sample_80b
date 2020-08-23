@@ -3,7 +3,10 @@ class BuysController < ApplicationController
 
   require 'payjp'
 
-  def new
+  def new 
+    unless current_user
+      redirect_to new_user_session_path
+    else 
     @area = Address.find_by(user_id: current_user.id)
     # @area = Address.find(params[:id])
     @item = Item.find(params[:id])
@@ -19,7 +22,8 @@ class BuysController < ApplicationController
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
-  end
+  end 
+end 
 
   def index
   end
