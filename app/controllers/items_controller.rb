@@ -110,6 +110,7 @@ class ItemsController < ApplicationController
       :stock,
       :brand,
       :condition,
+      :shipping,
       :leadtime,
       :delivery_id,
       :category_id,

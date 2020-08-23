@@ -95,10 +95,10 @@
     
     .form-group
       .temporaryclass
-        = f.label :shippingcharges, class: "form-group__label" do
+        = f.label :shipping, class: "form-group__label" do
           配送料の負担
           .icon 必須
-        = f.select :shippingcharges, {"出品者": 1, "購入者": 2}, { include_blank: '選択してください'}, class: "deliveryside field"
+        = f.select :shipping, {"出品者": "出品者", "購入者": "購入者"}, { include_blank: '選択してください'}, class: "deliveryside field"
 
     .form-group
       .temporaryclass
@@ -129,6 +129,12 @@
           = f.label :fee, class: "price_contents__content--label" do
             販売手数料(3%)
           %span.fee-span
+
+        .price_contents__content
+          = f.label :shipping_dis, class: "price_contents__content--label" do
+            配送料の負担
+          %span.shipping_dis-span
+
         .price_contents__content
           = f.label :profit, class: "price_contents__content--label" do
             販売利益
