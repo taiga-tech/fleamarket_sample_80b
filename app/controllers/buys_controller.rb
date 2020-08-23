@@ -1,12 +1,9 @@
 class BuysController < ApplicationController
   before_action :set_item, only: [:new, :done, :pay]
-
+  before_action :authenticate_user!
   require 'payjp'
 
   def new 
-    unless current_user
-      redirect_to new_user_session_path
-    else 
     @area = Address.find_by(user_id: current_user.id)
     # @area = Address.find(params[:id])
     @item = Item.find(params[:id])
@@ -23,7 +20,6 @@ class BuysController < ApplicationController
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
   end 
-end 
 
   def index
   end
