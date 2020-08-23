@@ -1,0 +1,27 @@
+= render "header"
+.card 
+  .card-title
+    %h1.text-title
+      %span.card-text
+      = @item.title
+    %p.text-top
+      %span.card-text
+    .slick_container
+      .slick_inner
+        .slider-5-thum
+          - @item.images.each do |image|
+            .slick_image
+              = image_tag image.image.url, class: "item_image" if image.image.present?
+        .slider-5-nav
+          - @item.images.each do |image|
+            .slick_image
+              = image_tag image.image.url, class: "item_image", width: "400px", height: "300px" if image.image.present?
+        =form_for(@item, url: reserved_item_path, method: :patch) do |f|
+          .form-group
+            =f.label :出品を一時停止される際はご本人確認の為、メールアドレスが必要です
+            .form-group__require 必須
+            = f.email_field :reservation_email, {autofocus: true, autocomplete: "email", placeholder: "本人のメールアドレスを入力してください",class:'form-group__input'}
+            = f.submit '出品を一時停止する', class: "reserve"
+        - if @item.reservation_email.present?
+          =link_to reserve_cancel_item_path,method: :patch, class:"btn-default" do
+            出品を再開する

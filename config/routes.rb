@@ -26,11 +26,15 @@ Rails.application.routes.draw do
       get "detail"
       match "detail" => "items#detail", via: [:get, :post]
       get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-    end
+      get 'get_category_grandchildren', defaults: { format: 'json' } 
+    end  
     member do
       get "get_category_children",        defaults: { format: "json" }
-      get "get_category_grandchildren",   defaults: { format: "json" }
+      get "get_category_grandchildren",   defaults: { format: "json" } 
+      get "reserve" 
+      patch "reserved" 
+      patch "reserve_cancel"
+      # get "get_selected_category",        defaults: { format: "json" }
     end
   end
 

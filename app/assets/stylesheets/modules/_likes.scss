@@ -1,8 +1,8 @@
 .container {  
   display: flex;  
-  justify-content: space-around;   
+  justify-content: space-around;  
   .wrapper {    
-    width: 900px; 
+    width: 900px;
     display: flex;
     flex-direction: column;
     .upper{    
@@ -24,7 +24,7 @@
 .container { 
   .index_mypage{  
     display: flex; 
-    justify-content: flex-start;
+    justify-content: flex-start; 
     .content_2 {   
       height: 400px;
       margin-top: 20px; 
