@@ -122,20 +122,25 @@ $(function(){
       $(".profit-span").text('');
     }
   })
+
   $("#item_delivery_id").change(function () {
     let delivery_id = $(this).val();
-    $.ajax({
-      url:     "get_delively_fee",
-      dateType: "JSON",
-      type:     "GET",
-      data:     { delivery_id: delivery_id}
-    })
-    .done(function(delivery) {
-      $(".shippingfee-span").text(`¥ ${delivery.price}`)
-    })
-    .fail(function() {
-      alert("失敗しました")
-    })
+    if (delivery_id != "") {
+      $.ajax({
+        url:     "get_delivery_fee",
+        dateType: "JSON",
+        type:     "GET",
+        data:     { delivery_id: delivery_id}
+      })
+      .done(function(delivery) {
+        $(".shippingfee-span").text(`¥ ${delivery.price}`)
+      })
+      .fail(function() {
+        alert("失敗しました")
+      });
+    } else {
+      $(".shippingfee-span").text("");
+    }
   })
 });
 

@@ -87,7 +87,7 @@ class ItemsController < ApplicationController
     end
 
     # 配送料の負担
-    def get_delively_fee
+    def get_delivery_fee
       @delively_fee = Delivery.find(params[:delivery_id])
     end
 
