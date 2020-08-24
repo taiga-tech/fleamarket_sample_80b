@@ -12,8 +12,6 @@
     = javascript_include_tag 'application'
   %body
     = render partial: 'layouts/breadcrumbs'
-    = render "devise/shared/modal"
-    #Login_modal
-      = render "devise/shared/modal"
+    = render partial: "devise/shared/modal"
     = yield
     = render partial: 'layouts/footer'

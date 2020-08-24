@@ -3,25 +3,25 @@
 = render "header"
 .card
   .card-menu
-    - if user_signed_in? && current_user.id == @item.user_id 
+    - if user_signed_in? && current_user.id == @item.user_id
       .card-edit
-        = link_to "編集する", edit_item_path 
-      .card-delete 
-        = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" } 
-      .card-serve   
-        = link_to "出品一時停止", reserve_item_path(@item.id),class:"product-details-resorve__btn"
-    - elsif @item.buy_ids.present? 
-      .card-warning     
-        = link_to "売り切れました" 
+        = link_to "編集する", edit_item_path
+      .card-delete
+        = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
+      .card-serve
+        = link_to "出品一時停止", reserve_item_path(@item.id), class:"product-details-resorve__btn"
+    - elsif @item.buy_ids.present?
+      .card-warning
+        = link_to "売り切れました"
     - elsif user_signed_in? && current_user.email == @item.reservation_email.present? && @item.reservation_email
-      .card-cash 
-        = link_to "購入する", buys_path 
+      .card-cash
+        = link_to "購入する", buys_path
     - elsif user_signed_in? && current_user.email != @item.reservation_email.present? && @item.reservation_email
-      .card-warning   
-        = link_to "出品一時停止中", root_path,class:"disabled-button bold" 
-    - else 
-      .card-cash   
-        = link_to "購入する",buy_path,class:"product-purchase__btn"    
+      .card-warning
+        = link_to "出品一時停止中", root_path, class:"disabled-button bold"
+    - else
+      .card-cash
+        = link_to "購入する", buy_path, class:"product-purchase__btn"
   .card-title
     %h1.text-title
       %span.card-text
@@ -46,10 +46,10 @@
       %span.card-text
       = @item.text
   -# .card-cash
-  -#   - unless user_signed_in? && current_user.id == @item.user_id  
-  -#     - if user_signed_in? && current_user.id 
-  -#       - if @item.reservation_email.present? && @item.reservation_email != current_user.email 
-  -#         %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
+  -#   -# - unless user_signed_in? && current_user.id == @item.user_id
+  -#   - if user_signed_in? && current_user.id != @item.user_id
+  -#     - if @item.reservation_email.present? == false# && @item.reservation_email != current_user.email
+  -#       %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
@@ -105,10 +105,10 @@
             %h1= comment.text
           .MessageInfo
             .MessageInfo__userName
-              %p= comment.user.name 
-            .MessageInfo__userTrash 
-              - if user_signed_in? && current_user.id == @comment.id  
-                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"} 
+              %p= comment.user.name
+            .MessageInfo__userTrash
+              - if user_signed_in? && current_user.id == comment.user_id
+                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
     .warning
       %p.text-waring
         %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
@@ -119,5 +119,3 @@
         -# = f.hidden_field :user_id, { value: current_user.id}
         = f.text_area :text, class: "form-area"
         = f.submit "💬コメントする", class: "submit"
-
-#graydisplay
