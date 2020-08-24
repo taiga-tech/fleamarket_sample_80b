@@ -1,0 +1,4 @@
+.follower 
+  - @users.each do |user| 
+    %h1.text 
+      = link_to "#{user.name}", user_path(user), method: :get 
