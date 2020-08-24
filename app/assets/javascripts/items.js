@@ -29,11 +29,11 @@ $(function() {
   $('.hidden-destroy').hide();
 
 
-    // カメラをクリックで画像選択
-    $(document).on("click", ".triggericon", function(e){
-      let file_field = $(".js-file:last");
-      file_field.trigger("click");
-    })
+  // カメラをクリックで画像選択
+  $(document).on("click", ".triggericon", function(){
+    let file_field = $(".js-file:last");
+    file_field.trigger("click");
+  })
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -104,9 +104,9 @@ $(function() {
   });
 });
 
-$(document).ready(function(){
-  $('.sortable').sortable();
-});
+// $(document).ready(function(){
+//   $('.sortable').sortable();
+// });
 
 // 販売手数料の記述
 $(function(){

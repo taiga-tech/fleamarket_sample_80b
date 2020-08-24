@@ -1,9 +1,8 @@
-
 $(function() {
-  
+
   // ライブラリー「jQuery ui」
   jQuery( function() {
-      jQuery( "#pareUl" ).menu();
+    jQuery( "#pareUl" ).menu();
   });
 
   // 「カテゴリー」色変更
@@ -36,26 +35,31 @@ $(function() {
 
 
   // 親カテゴリー処理
-  $('.cateBtn').click(function() {
+  // $('.cateBtn').click(function() {
 
-      // カテゴリー表示
-      $(this).next('.pareUl').slideDown('fast');
-  });
+  //   // カテゴリー表示
+  //   $(this).next('.pareUl').slideDown('fast');
+  // });
+
 
 
   // マウスカーソルがカテゴリー上/カテゴリー外
   $('.cateBtn, .pareUl').hover(function() {
-    over_flg = true;
+    // over_flg = true;
+    $(".cateBtn").next(".pareUl").slideDown("fast");
   }, function() {
-    over_flg = false;
+    // over_flg = false;
+    $("body").click(function() {
+      $(".cateBtn").next(".pareUl").slideUp("fast");
+    });
   });
 
   // カテゴリー領域外をクリックしたらカテゴリーを閉じる
-  $('body').click(function() {
-    if (over_flg == false) {
-      $('.cateBtn').removeClass('selected');
-      $('.pareUl').slideUp('fast');
-    }
-  });
+  // $('body').click(function() {
+  //   if (over_flg == false) {
+  //     // $('.cateBtn').removeClass('selected');
+  //     $('.pareUl').slideUp('fast');
+  //   }
+  // });
 
 });
