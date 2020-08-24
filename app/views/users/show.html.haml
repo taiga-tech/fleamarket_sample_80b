@@ -15,9 +15,9 @@
           = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
       .profile_follow
         = render partial: "follow_button"
-        = "フォロー：#{@user.followings.count}"
+        = link_to "フォロー中：#{@user.followings.count}", followings_user_path(@user), class: "following"
       .profile_follow
-        = "フォローワー：#{@user.followers.count}"
+        = link_to "フォローワー：#{@user.followers.count}", followers_user_path(@user), class: "follower"
     .content_1
       .content_left
         %h1.user_created_at= "登録日：#{@created_at.strftime("%Y年%-m月%-d日")}"
