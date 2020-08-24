@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
 
   #商品更新機能
   def update
-    if @item.update(update_params)
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render :edit
@@ -148,21 +148,21 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def update_params
-    params.require(:item).permit(
-      :title,
-      :price,
-      :text,
-      :stock,
-      :brand,
-      :condition,
-      :leadtime,
-      :delivery_id,
-      :category_id,
-      :reservation_email,
-      images_attributes: [:image, :_destroy, :id]
-    )
-  end
+  # def update_params
+  #   params.require(:item).permit(
+  #     :title,
+  #     :price,
+  #     :text,
+  #     :stock,
+  #     :brand,
+  #     :condition,
+  #     :leadtime,
+  #     :delivery_id,
+  #     :category_id,
+  #     :reservation_email,
+  #     images_attributes: [:image, :_destroy, :id]
+  #   )
+  # end
 
   def detail_params
     params.require(:q).permit(:sorts)

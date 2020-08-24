@@ -12,10 +12,14 @@
         = link_to "出品一時停止", reserve_item_path(@item.id), class:"product-details-resorve__btn"
     - elsif @item.reservation_email.present? && @item.reservation_email
       .card-warning
-        = link_to "出品一時停止中", root_path, class:"disabled-button bold"
+        = link_to "現在購入できません", root_path, class:"disabled-button bold"
     - else
-      .card-cash
-        = link_to "購入する", buy_path, class:"product-purchase__btn"
+      - if @item.stock == 0
+        .card-cash
+          完売しました
+      - else
+        .card-cash
+          = link_to "購入する", buy_path, class:"product-purchase__btn"
   .card-title
     %h1.text-title
       %span.card-text
