@@ -3,7 +3,7 @@
 -#     クレジットカード情報入力
 -#   -# ②全フォーム
 -#   .credit__form
--#     =form_with model: @card, id: "all-form", local: true do |f| 
+-#     =form_with model: @card, id: "all-form", local: true do |f|
 -#       .credit__form--cardNumber
 -#         -# 1.カード番号フォーム
 -#         .credit__form--cardNumber--box
@@ -39,7 +39,7 @@
 -#           %span.required3
 -#             必須
 -#           .credit__form--cardNumber--security--form2
--#             = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", maxlength: "4", id: "cvc" 
+-#             = f.text_field :security_code, placeholder: "カード背面４桁もしくは３桁の番号", maxlength: "4", id: "cvc"
 -#         // 4.「追加する」ボタン
 -#         .credit__form--cardNumber--btn
 -#           =f.submit "追加する", class: "submit-btn", id: "charge_form"
@@ -97,17 +97,8 @@
               月/
             %select#exp_year{name: "exp_year", type: "text"}
               %option{value: ""} --
-              %option{value: "2019"}19
-              %option{value: "2020"}20
-              %option{value: "2021"}21
-              %option{value: "2022"}22
-              %option{value: "2023"}23
-              %option{value: "2024"}24
-              %option{value: "2025"}25
-              %option{value: "2026"}26
-              %option{value: "2027"}27
-              %option{value: "2028"}28
-              %option{value: "2029"}29
+              - 10.times do |i|
+                %option{value: "#{@year.years_since(i).strftime("%Y")}"}= @year.years_since(i).strftime("%g")
             %span.expiration-text
               年
 

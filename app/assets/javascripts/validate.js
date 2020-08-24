@@ -15,9 +15,9 @@ $(function() {
     number: function (value, element) {
       return this.optional(element) || /^\d+$/.test(value);
     },
-    cvc: function(value, element) {
+    cvc: function (value, element) {
       return this.optional(element) || /^\d{3,4}$/.test(value);
-    }
+    },
   }
 
 
@@ -178,6 +178,10 @@ $(function() {
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
+    errorPlacement: function(error, element){
+      error.insertAfter(element)
+      element.css("border", "1.5px solid red");
+    }
   });
   $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
     $(this).valid();
@@ -193,5 +197,20 @@ $(function() {
     errorClass: "invalid",
     errorElement: "div",
     valudClass: "valid",
+  });
+
+  $("#new_comment").validate ({
+    rules: {
+      "comment[text]": {
+        required: true,
+      },
+    },
+    errorClass: "invalid",
+    errorElement: "p",
+    valudClass: "valid",
+    errorPlacement: function(error, element){
+      error.insertAfter(element.next(".submit"));
+      element.css("border", "1.5px solid red")
+    }
   });
 });

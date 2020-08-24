@@ -54,6 +54,15 @@ $(function() {
     });
   });
 
+  // $(".cateBtn, .pareUl").mouseover(function() {
+  //   $(this).next(".pareUl").slideDown("fast");
+  // })
+  // $(".pareUl").mouseleave(function() {
+  //   $(".cateBtn").next(".pareUl").slideUp("fast");
+  // })
+
+
+
   // カテゴリー領域外をクリックしたらカテゴリーを閉じる
   // $('body').click(function() {
   //   if (over_flg == false) {

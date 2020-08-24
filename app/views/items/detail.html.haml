@@ -1,26 +1,26 @@
 = render "header"
-.container  
+.container
   .wrapper
     %p.between_image
-      = link_to "検索商品一覧", root_path 
-.container 
-  .index_mypage          
-    .content_2  
-      - if @items.any? 
-        - @items.each do |item|  
-          .content  
-            %h2.user_images  
-              - item.images.each do |image|  
-                = image_tag image.image.url, class: "item_image" if image.image.present?                     
-            %ul.user_info  
-              %li.user.created_at 
-                = "登録日：#{item.created_at.strftime("%Y年%-m月%-d日")}" 
-              %li.user.title 
-                = link_to "商品名：#{item.title}", item_path(item) 
+      = link_to "検索商品一覧", root_path
+.container
+  .index_mypage
+    .content_2
+      - if @items.any?
+        - @items.each do |item|
+          .content
+            %h2.user_images
+              - item.images.first(1).each do |image|
+                = image_tag image.image.url, class: "item_image" if image.image.present?
+            %ul.user_info
+              %li.user.created_at
+                = "登録日：#{item.created_at.strftime("%Y年%-m月%-d日")}"
+              %li.user.title
+                = link_to "商品名：#{item.title}", item_path(item)
               %li.user.price
-                = "価格：¥#{item.price}" 
+                = "価格：¥#{item.price}"
               %li.user.like
                 = "いいね数：#{item.liked_users.count}個"
-      - else  
-        .search_result 
-          検索結果はありません                
+      - else
+        .search_result
+          検索結果はありません
