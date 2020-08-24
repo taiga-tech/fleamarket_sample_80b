@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-.container {
+.form_bg {
   background-color: rgb(246, 251, 255);
 }
 
@@ -44,6 +44,7 @@
     height: 50px;
     width:  500px;
     font-size: 20px;
+    font-weight: normal;
     padding: 0 10px;
   }
   // 販売価格
@@ -59,6 +60,7 @@
     resize: none;
     padding: 10px;
     font-size: 20px;
+    font-weight: normal;
   }
   // カテゴリー
   .category {
@@ -238,7 +240,7 @@ label {
 .underline {
   width: 90%;
   border-bottom: 1px solid rgb(189, 189, 189);
-  margin: 20px 0;
+  margin: 40px 0;
   .supplement {
     color: #3CCACE;
     font-weight: 600;

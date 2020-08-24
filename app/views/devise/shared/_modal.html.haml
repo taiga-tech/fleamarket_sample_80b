@@ -1,0 +1,65 @@
+#Signup_modal
+  .Signup
+    .link
+      .title 新規会員登録
+      .Link
+        .Link__button
+          = link_to new_user_registration_path do
+            %button.email
+              = icon("far", "envelope")
+              メールアドレスで登録
+        .Link__button
+          = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+            %button.google
+              = image_tag "googleicon.png"
+              Googleで登録
+        .Link__button
+          = link_to user_facebook_omniauth_authorize_path, method: :post do
+            %button.facebook
+              = icon("fab", "facebook-square")
+              FaceBookで登録
+        .Link__button
+          = link_to  user_twitter_omniauth_authorize_path, method: :post do
+            %button.twitter
+              = icon("fab", "twitter")
+              Twitterで登録
+        .Link__button
+          = link_to  new_user_path do
+            %button.apple
+              = icon("fab", "apple")
+              Appleで登録
+        .Link__close
+          閉じる
+
+#Login_modal
+  .Login
+    .link
+      .title ログイン
+      .Link
+        .Link__button
+          = link_to user_session_path do
+            %button.email
+              = icon("far", "envelope")
+              メールアドレスでログイン
+        .Link__button
+          = link_to user_google_oauth2_omniauth_authorize_path, method: :post do
+            %button.google
+              = image_tag "googleicon.png"
+              Googleでログイン
+        .Link__button
+          = link_to user_facebook_omniauth_authorize_path, method: :post do
+            %button.facebook
+              = icon("fab", "facebook-square")
+              FaceBookでログイン
+        .Link__button
+          = link_to  user_twitter_omniauth_authorize_path, method: :post do
+            %button.twitter
+              = icon("fab", "twitter")
+              Twitterでログイン
+        .Link__button
+          = link_to  new_user_path do
+            %button.apple
+              = icon("fab", "apple")
+              Appleでログイン
+        .Link__close
+          閉じる

@@ -8,6 +8,15 @@
         = link_to "編集する", edit_item_path
       .card-delete
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
+      .card-serve
+        = link_to "出品一時停止", reserve_item_path(@item.id), class:"product-details-resorve__btn"  
+      .card-cash
+    - elsif @item.reservation_email.present? && @item.reservation_email
+      .card-warning 
+        = link_to "出品一時停止中", root_path, class:"disabled-button bold"
+    - else
+      .card-cash
+        = link_to "購入する", buy_path, class:"product-purchase__btn"
   .card-title
     %h1.text-title
       %span.card-text
@@ -20,20 +29,22 @@
           - @item.images.each do |image|
             .slick_image
               = image_tag image.image.url, class: "item_image" if image.image.present?
-        .slider-5-nav
-          - @item.images.each do |image|
-            .slick_image
-              = image_tag image.image.url, class: "item_image", width: "400px", height: "300px" if image.image.present?
+        - if @item.images.length > 2
+          .slider-5-nav
+            - @item.images.each do |image|
+              .slick_image
+                = image_tag image.image.url, class: "item_image", width: "300px", height: "200px" if image.image.present?
     %h4.text-center
       %span.card-proce
       = "¥#{@item.price}"
     %p.text-bottom
       %span.card-text
       = @item.text
-  .card-cash
-    - unless user_signed_in? && current_user.id == @item.user_id  
-      - if user_signed_in? && current_user.id
-        %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
+  -# .card-cash
+  -#   -# - unless user_signed_in? && current_user.id == @item.user_id
+  -#   - if user_signed_in? && current_user.id != @item.user_id
+  -#     - if @item.reservation_email.present? == false# && @item.reservation_email != current_user.email
+  -#       %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
@@ -71,7 +82,7 @@
         %td= @item.delivery.name
       %tr
         %th 配送目安
-        %td=  "#{@item.leadtime}日で発送"  
+        %td=  "#{@item.leadtime}日で発送"
   .btn-bar
     .btn-box
       = render partial: "items/like", locals: { item: @item, like: @like }
@@ -89,10 +100,10 @@
             %h1= comment.text
           .MessageInfo
             .MessageInfo__userName
-              %p= comment.user.name 
-            .MessageInfo__userTrash 
-              - if user_signed_in? && current_user.id == @comment.id  
-                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"} 
+              %p= comment.user.name
+            .MessageInfo__userTrash
+              - if user_signed_in? && current_user.id == comment.user_id
+                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
     .warning
       %p.text-waring
         %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。

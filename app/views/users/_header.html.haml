@@ -8,7 +8,7 @@
         = form_with(url: search_items_path, local: true, method: :get, class: "Form") do |f|
           = f.text_field :keyword, class: "Form__input", placeholder: "キーワードから探す"
           = button_tag type:"submit", class: "Form__submit" do
-            = link_to image_tag ( "icon-search1.png") , class: "submit_image" 
+            = link_to image_tag ( "icon-search1.png") , class: "submit_image"
   .header__headerBox2
     .header__headerBox2--various
       %ul.focus
@@ -23,8 +23,8 @@
             = link_to "マイページ", user_path(current_user)
         - else
           %li.log__signIn
-            = link_to "新規登録", new_user_registration_path
-            = link_to "ログイン", new_user_session_path
+            = link_to "新規登録", "#", class: "signup"
+            = link_to "ログイン", "#", class: "login"
 
         = link_to new_item_path, class: "log__new" do
           出品する

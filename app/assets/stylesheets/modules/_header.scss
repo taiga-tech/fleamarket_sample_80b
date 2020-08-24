@@ -1,6 +1,10 @@
-.header { 
-  padding: 20px 250px; 
+.header {
+  padding: 20px 250px;
   font-weight: bold;
+  // position: fixed;
+  // top: 0;
+  // width: 100%;
+  // background-color: #fff;
   // アイコン・検索フォーム
   &__headerBox {
     display: flex;

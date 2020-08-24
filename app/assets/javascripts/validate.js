@@ -135,7 +135,7 @@ $(function() {
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
-    
+
   });
   $("#item_title",
     "#item_text",
@@ -181,5 +181,17 @@ $(function() {
   });
   $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
     $(this).valid();
+  });
+
+  $("#edit_item_1").validate ({
+    rules: {
+      "item[reservation_email]": {
+        required: true,
+        email: true,
+      },
+    },
+    errorClass: "invalid",
+    errorElement: "div",
+    valudClass: "valid",
   });
 });
