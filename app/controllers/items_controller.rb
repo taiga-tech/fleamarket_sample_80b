@@ -64,6 +64,11 @@ class ItemsController < ApplicationController
       @category_grandchildren = Category.find(params[:child_id]).children
     end
 
+    # 配送料の負担
+    def get_delively_fee
+      @delively_fee = Delivery.find(params[:delivery_id])
+    end
+
   #商品削除
   def destroy
     @item.destroy
