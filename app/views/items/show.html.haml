@@ -10,7 +10,6 @@
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
       .card-serve
         = link_to "出品一時停止", reserve_item_path(@item.id), class:"product-details-resorve__btn"  
-      .card-cash
     - elsif @item.reservation_email.present? && @item.reservation_email
       .card-warning 
         = link_to "出品一時停止中", root_path, class:"disabled-button bold"
