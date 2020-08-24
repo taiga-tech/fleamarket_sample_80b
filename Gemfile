@@ -106,5 +106,8 @@ gem 'font-awesome-sass', '~> 5.4.1'
 gem 'active_hash'
 
 # パンくず(8/17導入)
-gem 'gretel'
+gem 'gretel' 
 gem "ransack"
+
+gem 'jquery-ui-rails'
+
