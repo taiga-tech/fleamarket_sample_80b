@@ -7,7 +7,7 @@
     - @users.each do |user| 
       %h1.self_image 
       - if user.profile.image.present?
-        = image_tag user.profile.image.url, class: "self_image" if user.profile.image.present?
+        = image_tag user.profile.image.url, class: "follow_image" if user.profile.image.present?
       - else
         = image_tag  "default.png", class: "self_image"
       .Messagefollow
