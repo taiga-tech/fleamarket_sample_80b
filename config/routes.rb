@@ -17,7 +17,10 @@ Rails.application.routes.draw do
     resources :profiles, only: [:edit, :update]
     collection do
       get :likes
-    end
+    end 
+    member do  
+      get :followings, :followers 
+    end 
   end
 
   resources :items do
