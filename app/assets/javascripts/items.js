@@ -113,7 +113,7 @@ $(function(){
   $("#item_price").on('keyup', function(){
     var price = $("#item_price").val();
     if( 300 <= price && price <= 9999999) {
-      var fee = Math.floor(price / 10);
+      var fee = Math.floor(price * 0.03);
       var profit = (price - fee);
       $(".fee-span").text(fee);
       $(".profit-span").text(profit);
@@ -122,7 +122,23 @@ $(function(){
       $(".profit-span").text('');
     }
   })
+  $("#item_delivery_id").change(function () {
+    let delivery_id = $(this).val();
+    $.ajax({
+      url:     "get_delively_fee",
+      dateType: "JSON",
+      type:     "GET",
+      data:     { delivery_id: delivery_id}
+    })
+    .done(function(delivery) {
+      $(".shippingfee-span").text(`¥ ${delivery.price}`)
+    })
+    .fail(function() {
+      alert("失敗しました")
+    })
+  })
 });
+
 
   //DropzoneJS snippet - js
     // instantiate the uploader

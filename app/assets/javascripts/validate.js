@@ -113,6 +113,9 @@ $(function() {
       "item[condition]": {
         required: true,
       },
+      "item[shippingcharges]": {
+        required: true,
+      },
       "item[leadtime]": {
         required: true,
       },

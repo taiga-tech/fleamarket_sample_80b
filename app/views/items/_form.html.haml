@@ -87,17 +87,26 @@
         =f.label :condition, class: "form-group__label" do
           商品の状態
           .icon 必須
-        =f.select :condition, { "新品同様": 1, "美品": 2, "普通": 3, "やや汚れあり": 4, "あまりよろしくない": 5 }, { include_blank: '選択してください' }, class: "condition field"
+        =f.select :condition, {"新品同様": "新品同様", "美品": "美品", "普通": "普通", "やや汚れあり": "やや汚れあり", "あまりよろしくない": "あまりよろしくない"}, { include_blank: '選択してください'}, class: "condition field"
+
 
     .underline
       .supplement 配送について
+    
+    .form-group
+      .temporaryclass
+        = f.label :shipping, class: "form-group__label" do
+          配送料の負担
+          .icon 必須
+        = f.select :shipping, {"出品者負担": "出品者負担", "購入者負担": "購入者負担"}, { include_blank: '選択してください'}, class: "deliveryside field"
 
     .form-group
       .temporaryclass
         =f.label :leadtime, class: "form-group__label" do
           発送の日数
           .icon 必須
-        =f.select :leadtime, { "１日": 1, "2~6日": 2, "1週間以上": 3 }, { include_blank: '選択してください' }, class: "leadtime field"
+        =f.select :leadtime, {"１日で発送": "1日で発送", "2~3日で発送": "2~3日で発送", "4〜7日以上": "4〜7日以上"}, { include_blank: '選択してください'}, class: "leadtime field"
+
 
     .form-group
       .temporaryclass
@@ -119,8 +128,14 @@
               = f.text_field :price, placeholder: "¥300~¥9,999,999", maxlength: "7", class: "price field"
         .price_contents__content
           = f.label :fee, class: "price_contents__content--label" do
-            販売手数料(10%)
+            販売手数料(3%)
           %span.fee-span
+
+        .price_contents__content
+          = f.label :shippingfee, class: "price_contents__content--label" do
+            配送料の負担
+          %span.shippingfee-span
+
         .price_contents__content
           = f.label :profit, class: "price_contents__content--label" do
             販売利益

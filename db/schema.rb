@@ -84,7 +84,8 @@ ActiveRecord::Schema.define(version: 2020_08_23_065329) do
     t.integer "stock", null: false
     t.string "brand"
     t.string "condition", null: false
-    t.integer "leadtime", null: false
+    t.string "shipping", null: false
+    t.string "leadtime", null: false
     t.bigint "category_id"
     t.bigint "user_id"
     t.bigint "delivery_id"
