@@ -1,7 +1,16 @@
 .main_followers
   = render partial: "header"
-  .follower 
-    %h1.follower.index フォロワー一覧
+  .follow_title 
+    フォロワー一覧
+  .follow_content 
+    %h1.follow.index 
     - @users.each do |user| 
-      %h1.text 
-        = link_to "#{user.name}", user_path(user), method: :get 
+      %h1.self_image 
+      - if user.profile.image.present?
+        = image_tag user.profile.image.url, class: "self_image" if user.profile.image.present?
+      - else
+        = image_tag  "default.png", class: "self_image"
+      .Messagefollow
+        .follow-message 
+          %p.follow_text 
+            = link_to "#{user.name}", user_path(user), method: :get 
