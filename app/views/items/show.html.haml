@@ -8,23 +8,42 @@
         = link_to "編集する", edit_item_path
       .card-delete
         = link_to "削除する", item_path(@item), method: :delete, class: "item_delete", data: { confirm: "本当に削除しますか？" }
+      .card-serve
+        = link_to "出品一時停止", reserve_item_path(@item.id), class:"product-details-resorve__btn"  
+    - elsif @item.reservation_email.present? && @item.reservation_email
+      .card-warning 
+        = link_to "出品一時停止中", root_path, class:"disabled-button bold"
+    - else
+      .card-cash
+        = link_to "購入する", buy_path, class:"product-purchase__btn"
   .card-title
     %h1.text-title
       %span.card-text
       = @item.title
     %p.text-top
       %span.card-text
-    - @item.images.each do |image|
-      = image_tag image.image.url, class: "item_image" if image.image.present?
+    .slick_container
+      .slick_inner
+        .slider-5-thum
+          - @item.images.each do |image|
+            .slick_image
+              = image_tag image.image.url, class: "item_image" if image.image.present?
+        - if @item.images.length > 2
+          .slider-5-nav
+            - @item.images.each do |image|
+              .slick_image
+                = image_tag image.image.url, class: "item_image", width: "300px", height: "200px" if image.image.present?
     %h4.text-center
       %span.card-proce
       = "¥#{@item.price}"
     %p.text-bottom
       %span.card-text
       = @item.text
-  .card-cash
-    - unless user_signed_in? && current_user.id == @item.user_id
-      %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
+  -# .card-cash
+  -#   -# - unless user_signed_in? && current_user.id == @item.user_id
+  -#   - if user_signed_in? && current_user.id != @item.user_id
+  -#     - if @item.reservation_email.present? == false# && @item.reservation_email != current_user.email
+  -#       %h1.cash-cash= link_to "購入手続きへ", buy_path(@item)
   .card-table
     %table{:border => 1, :width => "50%"}
       %tr
@@ -56,41 +75,41 @@
         %td 送料込み(出品者負担)
       %tr
         %th 配送元の地域
-        %td 東京
+        %td=@item.user.address.area
       %tr
         %th 配送方法
         %td= @item.delivery.name
       %tr
         %th 配送目安
-
-        %td=  "#{@item.leadtime}日で発送"  
-  .btn-bar 
+        %td=  "#{@item.leadtime}日で発送"
+  .btn-bar
     .btn-box
       = render partial: "items/like", locals: { item: @item, like: @like }
 - if user_signed_in?
-  .Chat 
+  .Chat
     .MessageField
-      - @item.comments.each do |comment| 
-        .MessageInfo__userimage 
-        - if comment.user.profile.image.present? 
-          = image_tag comment.user.profile.image.url, class: "self_image" if comment.user.profile.image.present? 
-        - else 
+      - @item.comments.each do |comment|
+        .MessageInfo__userimage
+        - if comment.user.profile.image.present?
+          = image_tag comment.user.profile.image.url, class: "self_image" if comment.user.profile.image.present?
+        - else
           = image_tag  "default.png", class: "self_image"
-        .MessageBox 
-          .Message 
-            %h1= comment.text 
+        .MessageBox
+          .Message
+            %h1= comment.text
           .MessageInfo
             .MessageInfo__userName
-              %p= comment.user.name 
-            .MessageInfo__userTrash   
-              %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}        
+              %p= comment.user.name
+            .MessageInfo__userTrash
+              - if user_signed_in? && current_user.id == comment.user_id
+                %p= link_to icon("fas","trash"), item_comment_path(@item, comment), method: :delete, data: { confirm: "本当に削除しますか？"}
     .warning
       %p.text-waring
         %span.card-warning 相手の事を考え丁寧なコメントを心がけましょう。
         %br
-        %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。           
+        %span.card-warning 不快な言葉遣いは利用制限や退会処分になる事があります。
     .form
-      = form_with model: [@item, @comment], local: true, id: "new_comment" do |f| 
+      = form_with model: [@item, @comment], local: true, id: "new_comment" do |f|
         -# = f.hidden_field :user_id, { value: current_user.id}
-        = f.text_area :text, class: "form-area" 
+        = f.text_area :text, class: "form-area"
         = f.submit "💬コメントする", class: "submit"

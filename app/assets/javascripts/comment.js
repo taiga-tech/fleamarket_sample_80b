@@ -13,6 +13,13 @@ $(function(){
             <div class="MessageInfo__userName">
               <p>${comment.user_name}</p>
             </div>
+            <div class="MessageInfo__userTrash">
+              <p>
+                <a href="/items/${comment.item_id}/comments/${comment.id}" data-method="delete">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </p>
+            </div>
           </div>
         </div>`
       return html;
@@ -29,6 +36,13 @@ $(function(){
           <div class="MessageInfo">
             <div class="MessageInfo__userName">
               <p>${comment.user_name}</p>
+            </div>
+            <div class="MessageInfo__userTrash">
+              <p>
+                <a href="/items/${comment.item_id}/comments/${comment.id}" data-method="delete">
+                  <i class="fas fa-trash"></i>
+                </a>
+              </p>
             </div>
           </div>
         </div>`

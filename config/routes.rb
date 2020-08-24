@@ -1,37 +1,46 @@
-Rails.application.routes.draw do
-  # get 'card/new'
-  # get 'card/show'
+Rails.application.routes.draw do 
   get '/users/item.user.id', to: 'users#show'
+
   devise_for :users, controllers: {
-    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks',
+    registrations: 'users/registrations'
   }
   devise_scope :user do
-    get 'addresses', to: 'users/registrations#new_address'
+    get  'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
-  end  # devise_for :users
+  end 
+
 
   root "items#index"
 
-  resources :users, only: [:show, :edit, :update] do
+  resources :users, only: [:new, :show, :edit, :update] do
     resources :profiles, only: [:edit, :update]
-    collection do 
+    collection do
       get :likes
-    end
+    end 
+    member do  
+      get :followings, :followers 
+    end 
   end
 
   resources :items do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
-    collection do 
-      get "search" 
+    collection do
+      get "search"
       get "detail"
       match "detail" => "items#detail", via: [:get, :post]
       get 'get_category_children', defaults: { format: 'json' }
       get 'get_category_grandchildren', defaults: { format: 'json' }
-    end  
+      get "get_delively_fee", defaults: {format: 'json'}
+    end
+
     member do
       get "get_category_children",        defaults: { format: "json" }
-      get "get_category_grandchildren",   defaults: { format: "json" }
+      get "get_category_grandchildren",   defaults: { format: "json" } 
+      get "reserve" 
+      patch "reserved" 
+      patch "reserve_cancel"
       # get "get_selected_category",        defaults: { format: "json" }
     end
   end
@@ -55,6 +64,8 @@ Rails.application.routes.draw do
     end
     # member do
     # end
+  end 
+  Rails.application.routes.draw do
+    resources :relationships, only: [:create, :destroy]
   end
-
-end
+end 

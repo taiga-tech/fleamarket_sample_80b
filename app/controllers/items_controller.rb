@@ -1,13 +1,19 @@
-class ItemsController < ApplicationController 
-  before_action :search 
-  before_action :detail  
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_categories, only: [:new, :create, :edit] 
+class ItemsController < ApplicationController
+  before_action :search
+  before_action :detail
+
+  before_action :authenticate_user!, except: [:index, :show, :search, :detail]
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :reserved, :reserve, :reserve_cancel]
+
+  before_action :set_categories, only: [:new, :create, :edit]
   # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
     @items = Item.includes(:user).order('created_at DESC')
+    @ladies = Item.where(category_id: 1..199).order('created_at DESC')
+    @mens = Item.where(category_id: 200..345).order('created_at DESC')
+    @home_appliances = Item.where(category_id: 898..983).order('created_at DESC')
+    @interiors = Item.where(category_id: 481..624).order('created_at DESC')
   end
 
   def show
@@ -35,16 +41,35 @@ class ItemsController < ApplicationController
 
   #商品編集
   def edit
-    @category = @item.category
-    @child_category = @category.parent
-    @grandparent_category = @category.root
+    @category = @item.category #@itemの孫カテゴリー
+    @child_category = @category.parent #@itemの子カテゴリー
+    @grandparent_category = @category.root #@itemの親カテゴリー
     @child_categories = @grandparent_category.children
     @grandchild_categories = @child_category.children
   end
 
+  def reserve
+  end
+
+  def reserved
+    @item.update(item_params)
+    if @item.reservation_email.present?
+    else
+      render :reserve
+    end
+  end
+
+  def reserve_cancel
+    if @item.update(reservation_email: "")
+      redirect_to item_path
+    else
+      redirect_to item_path
+    end
+  end
+
   #商品更新機能
   def update
-    if @item.update(item_params)
+    if @item.update(update_params)
       redirect_to item_path(@item)
     else
       render :edit
@@ -60,6 +85,11 @@ class ItemsController < ApplicationController
       @category_grandchildren = Category.find(params[:child_id]).children
     end
 
+    # 配送料の負担
+    def get_delively_fee
+      @delively_fee = Delivery.find(params[:delivery_id])
+    end
+
   #商品削除
   def destroy
     @item.destroy
@@ -67,8 +97,9 @@ class ItemsController < ApplicationController
   end
 
   def search
-    @items = Item.search(params[:keyword])  
-  end  
+    @items = Item.search(params[:keyword])
+  end
+
   def detail
     if params[:q].present?
       # 検索フォームからアクセスした時の処理
@@ -83,8 +114,9 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def set_item
-    @item = Item.find(params[:id]) 
+    @item = Item.includes(:comments).find(params[:id])
   end
 
   def set_categories
@@ -106,13 +138,32 @@ class ItemsController < ApplicationController
       :stock,
       :brand,
       :condition,
+      :shipping,
       :leadtime,
       :delivery_id,
       :category_id,
-      images_attributes:  [:image, :_destroy, :id],
+      :reservation_email,
+      images_attributes:  [:image, :_destroy, :id]
     ).merge(user_id: current_user.id)
-  end 
+  end
+
+  def update_params
+    params.require(:item).permit(
+      :title,
+      :price,
+      :text,
+      :stock,
+      :brand,
+      :condition,
+      :leadtime,
+      :delivery_id,
+      :category_id,
+      :reservation_email,
+      images_attributes: [:image, :_destroy, :id]
+    )
+  end
+
   def detail_params
     params.require(:q).permit(:sorts)
-end 
-end 
+  end
+end

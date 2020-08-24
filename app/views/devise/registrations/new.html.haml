@@ -8,7 +8,7 @@
         = f.text_field :name, autofocus: true, placeholder: "USER NAME"
         %span.separator
       .field.text-input
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "EMAIL"
+        = f.email_field :email, autocomplete: "email", placeholder: "EMAIL"
         %span.separator
       .field.text-input
         = f.password_field :password, autocomplete: "new-password", placeholder: "PASSWORD #{@minimum_password_length}characters minimum"
@@ -17,5 +17,7 @@
         = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "ONE MORE PASSWORD"
         %span.separator
       .actions.form-bottom
-        -# = render "devise/shared/links"
         = f.submit "次へ"
+      = render "devise/shared/links"
+      .signup
+        = link_to "他の方法で新規登録", "#"

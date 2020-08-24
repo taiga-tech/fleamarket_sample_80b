@@ -9,7 +9,17 @@ $(function() {
     zipcode: function (value, element) {
       return this.optional(element) || /^\d{3}-?\d{4}$/.test(value);
     },
+    price: function (value, element) {
+      return this.optional(element) || 	/^[3-9][0-9]{2}|[1-9][0-9]{3,6}$/.test(value);
+    },
+    number: function (value, element) {
+      return this.optional(element) || /^\d+$/.test(value);
+    },
+    cvc: function(value, element) {
+      return this.optional(element) || /^\d{3,4}$/.test(value);
+    }
   }
+
 
   $.each(methods, function(key) {
     $.validator.addMethod(key, this);
@@ -49,20 +59,13 @@ $(function() {
         equalTo: "パスワードが一致しません"
       },
     },
-    // errorPlacement: function(error, element) {
-    //   if(element.attr("name") == "") {
-    //     error.insertAfter(".text-input");
-    //   } else {
-    //     error.insertAfter(element);
-    //   }
-    // },
-    errorClass: "invalid",
+    errorClass: "devise-invalid",
     errorElement: "p",
     valudClass: "valid",
   });
-  // $("#user_name", "#user_email", "#user_password").blur(function() {
-  //   $(this).valid();
-  // });
+  $("#user_name", "#user_email", "#user_password").blur(function() {
+    $(this).valid();
+  });
 
   $("#new_address").validate ({
     rules: {
@@ -82,11 +85,10 @@ $(function() {
     },
     messages: {
       "address[zipcode]": {
-        required: "必須項目です",
         zipcode: "フォーマットが違います"
       }
     },
-    errorClass: "invalid",
+    errorClass: "devise-invalid",
     errorElement: "p",
     valudClass: "valid",
   });
@@ -94,7 +96,7 @@ $(function() {
     $(this).valid();
   });
 
-  $("#items-form").validate({
+  $("#items-form").validate ({
     rules: {
       "item[images_attributes]": {
         required: true
@@ -111,25 +113,48 @@ $(function() {
       "item[condition]": {
         required: true,
       },
+      "item[shippingcharges]": {
+        required: true,
+      },
       "item[leadtime]": {
-        required: true
+        required: true,
       },
       "item[delivery_id]": {
         required: true,
       },
       "item[price]": {
         required: true,
+        price: true,
       },
+    },
+    messages: {
+      "item[price]": {
+        price: "¥300以上で出品してください"
+      }
     },
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
+
+  });
+  $("#item_title",
+    "#item_text",
+    "#parent_category",
+    "#child_category",
+    "#grandchild_category",
+    "#item_condition",
+    "#item_leadtime",
+    "#item_delivery_id",
+    "#item_price"
+  ).blur(function() {
+    $(this).valid();
   });
 
   $("#charge-form").validate ({
     rules: {
       "number": {
         required: true,
+        number: true
       },
       "exp_month": {
         required: true,
@@ -139,14 +164,34 @@ $(function() {
       },
       "cvc": {
         required: true,
+        cvc: true,
+      },
+    },
+    messages: {
+      "number": {
+        number: "半角数字で入力してください"
+      },
+      "cvc": {
+        cvc: "3~4桁の数字を入力してください"
       },
     },
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
   });
-  // $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
-  //   $(this).valid();
-  // });
+  $("#card_number", "#exp_month", "#exp_year", "#cvc").blur(function() {
+    $(this).valid();
+  });
+
+  $("#edit_item_1").validate ({
+    rules: {
+      "item[reservation_email]": {
+        required: true,
+        email: true,
+      },
+    },
+    errorClass: "invalid",
+    errorElement: "div",
+    valudClass: "valid",
+  });
 });
-  

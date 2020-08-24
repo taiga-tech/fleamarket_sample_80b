@@ -18,12 +18,19 @@ class Item < ApplicationRecord
             :category_id,
             :user_id,
             :delivery_id,
+            # :reservation_email,
             presence: true
+
   def self.search(search)
     if search
       Item.where('title LIKE(?)', "%#{search}%")
     else
       Item.all
     end
+  end
+
+  ransacker :likes_count do
+    query = '(SELECT COUNT(likes.item_id) FROM likes where likes.item_id = items.id GROUP BY likes.item_id)'
+    Arel.sql(query)
   end
 end

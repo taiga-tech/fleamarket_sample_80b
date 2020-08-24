@@ -1,115 +1,148 @@
-.container
-
+.container.form_bg
   = form_with model: @item, local: true , id: "items-form" do |f|
-
     - if @item.errors.any?
       .SettingitemForm__errors
         %ul
           - @item.errors.full_messages.each do |message|
             %li.error= message
 
-    #image-box
-      #previews
+    .onegai 以下の欄に必要な情報をご入力の上「出品する」を押してください。
+
+    .form-group
+      #image-box
+        = f.label :images, class: "form-group__label" do
+          商品画像
+          .icon 必須
+          %span.product_up 最大10枚までアップロードできます
+        .preview-box
+          #previews
+            - if @item.persisted?
+              - @item.images.each_with_index do |image, i|
+                .preview__item{ data: { index: i }}
+                  = icon( "fas", "times-circle", class: "js-remove" )
+                  = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+              .triggericon
+                = icon( "fas", "camera" )
+            - else
+              .triggericon
+                = icon( "fas", "camera" )
+
+        =f.fields_for :images do |i|
+          .js-file_group{ "data-index": "#{ i.index }" }
+            =i.file_field :image, class: 'js-file'
+          - if @item.persisted?
+            = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
+          - else
+            .js-file_group{ "data-index": "#{ i.index }" }
+              =i.file_field :image, class: 'js-file'
         - if @item.persisted?
-          - @item.images.each_with_index do |image, i|
-            = image_tag image.image.url, data: { index: i }, width: "100", height: '100'
+          .js-file_group{ "data-index": "#{ @item.images.count }" }
+            = file_field_tag :image, name: "item[images_attributes][#{ @item.images.count }][image]", class: 'js-file'
 
-      -# =f.label :images, class:"image-field", for: "item_images_attributes_0_image" do
-      = icon "fas","camera"
-      %span.product_up 最大10枚までアップロードできます
-
-      =f.fields_for :images do |i|
-        .js-file_group{"data-index" => "#{i.index}"}
-          =i.file_field :image, class: 'js-file'
-          %span.js-remove 削除
-        - if @item.persisted?
-          = i.check_box :_destroy, data:{ index: i.index }, class: 'hidden-destroy'
-
-      - if @item.persisted?
-        .js-file_group{"data-index" => "#{@item.images.count}"}
-          = file_field_tag :image, name: "item[images_attributes][#{@item.images.count}][image]", class: 'js-file'
-          %span.js-remove 削除
-
-    .form-group 以下の欄に必要な情報をご入力の上「出品する」を押してください。
+    .underline
 
     .form-group
       .temporaryclass
-        = f.label :title do
+        = f.label :title, class: "form-group__label" do
           商品名
           .icon 必須
-          -# - if @item.errors.include?(:title)
-          -#   %span.error= @item.errors.full_messages_for(:title).first
-          -#   = f.text_field :title, placeholder: "40文字まで", class: "title error-field"
-          -# - else
-          -#   %div
-        = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title"
+        = f.text_field :title, maxlength: "40", placeholder: "40文字まで", class: "title field"
 
     .form-group
       .temporaryclass
-        = f.label :text, class:"setumei" do
+        = f.label :text, class: "form-group__label" do
           商品の説明
           .icon 必須
         = f.text_area :text, maxlength: "1000", placeholder: "商品の説明（1000文字以内）（色、素材、重さ、定価、注意点など）", class: "product"
 
-    .form-group
-      = f.hidden_field :stock, value:1
+    .underline
+      .supplement 商品の詳細
 
     .form-group
+
       .temporaryclass
-        = f.label :category_id do
+        = f.label :category_id, class: "form-group__label" do
           カテゴリー
           .icon 必須
         .categorySelect
           - if action_name == "new" || action_name == "create"
             .category-parent
-              = f.select :category_id, options_for_select(@category_parents.collect{ |c| [c.name, c.id]}), {include_blank: '選択してください'}, class: 'category', id: 'parent_category'
+              = f.select :category_id, options_for_select( @category_parents.collect{ |c| [ c.name, c.id] } ), { include_blank: '選択してください' }, class: 'category field', id: 'parent_category'
           - else
             .category-parent
-              = f.select :category_id, options_for_select(@category_parents.collect{ |c| [c.name, c.id,  {"data-category": c.id}]}, @grandparent_category.id), {include_blank: '選択してください'}, class: "category", id: "parent_category"
+              = f.select :category_id, options_for_select( @category_parents.collect{ |c| [ c.name, c.id, { "data-category": c.id } ] }, @grandparent_category.id), { include_blank: '選択してください' }, class: "category field", id: "parent_category"
             .catagory-children
-              = f.select :category_id, options_for_select(@child_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @child_category.id), {include_blank: "選択してください"}, class: "category", id: "child_category"
+              = f.select :category_id, options_for_select( @child_categories.collect{ |c| [ c.name, c.id, { "data-category": c.id } ] }, @child_category.id), { include_blank: "選択してください" }, class: "category field", id: "child_category"
             .catagory-grandchildren
-              = f.select :category_id, options_for_select(@grandchild_categories.collect{ |c| [c.name, c.id, {"data-category": c.id}]}, @category.id), {include_blank: "選択してください"}, class: "category", id: "grandchild_category"
-
+              = f.select :category_id, options_for_select( @grandchild_categories.collect{ |c| [ c.name, c.id, { "data-category": c.id } ] }, @category.id), { include_blank: "選択してください" }, class: "category field", id: "grandchild_category"
     .form-group
       .temporaryclass
-        = f.label :brand do
+        = f.label :brand, class: "form-group__label" do
           ブランド名
           .icon2 任意
-        = f.text_field :brand, placeholder: "例）シャネル", class: "brand"
+        = f.text_field :brand, placeholder: "例）シャネル", class: "brand field"
 
     .form-group
       .temporaryclass
-        =f.label :condition do
+        =f.label :condition, class: "form-group__label" do
           商品の状態
           .icon 必須
-        =f.text_field :condition, class: "condition"
+        =f.select :condition, {"新品同様": "新品同様", "美品": "美品", "普通": "普通", "やや汚れあり": "やや汚れあり", "あまりよろしくない": "あまりよろしくない"}, { include_blank: '選択してください'}, class: "condition field"
+
+
+    .underline
+      .supplement 配送について
+    
+    .form-group
+      .temporaryclass
+        = f.label :shipping, class: "form-group__label" do
+          配送料の負担
+          .icon 必須
+        = f.select :shipping, {"出品者負担": "出品者負担", "購入者負担": "購入者負担"}, { include_blank: '選択してください'}, class: "deliveryside field"
 
     .form-group
       .temporaryclass
-        =f.label :leadtime do
+        =f.label :leadtime, class: "form-group__label" do
           発送の日数
           .icon 必須
-        =f.number_field :leadtime, class: "leadtime"
+        =f.select :leadtime, {"１日で発送": "1日で発送", "2~3日で発送": "2~3日で発送", "4〜7日以上": "4〜7日以上"}, { include_blank: '選択してください'}, class: "leadtime field"
+
 
     .form-group
       .temporaryclass
-        = f.label :derivery_id do
+        = f.label :derivery_id, class: "form-group__label" do
           配送方法
           .icon 必須
-        = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください'}, class: "delivery"
-
+        = f.collection_select :delivery_id, Delivery.all, :id, :name, { include_blank: '選択してください' }, class: "delivery field"
+    .underline
+      .supplement 価格 (¥300~¥9,999,999)
     .form-group
-      .temporaryclass
-        = f.label :price do
-          販売価格
-          .icon 必須
-        = f.number_field :price, class: "price"
+      .price_contents
+        .price_contents__content
+          = f.label :price, class: "price_contents__content--label" do
+            販売価格
+            .icon 必須
+          .price_contents__content--price
+            .price-field
+              .yen ¥
+              = f.text_field :price, placeholder: "¥300~¥9,999,999", maxlength: "7", class: "price field"
+        .price_contents__content
+          = f.label :fee, class: "price_contents__content--label" do
+            販売手数料(3%)
+          %span.fee-span
 
+        .price_contents__content
+          = f.label :shippingfee, class: "price_contents__content--label" do
+            配送料の負担
+          %span.shippingfee-span
+
+        .price_contents__content
+          = f.label :profit, class: "price_contents__content--label" do
+            販売利益
+          %span.profit-span
+    .underline
+
+    = f.hidden_field :stock, value:1
     .form-group
       .submit
         =f.submit '出品する', class: 'submit-btn'
-
-    -# .form-group
-    -#   .draft
-    -#     =f.submit '下書きに保存', class: 'draft-btn'

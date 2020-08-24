@@ -1,0 +1,7 @@
+.main_followers
+  = render partial: "header"
+  .follower 
+    %h1.follower.index フォロワー一覧
+    - @users.each do |user| 
+      %h1.text 
+        = link_to "#{user.name}", user_path(user), method: :get 

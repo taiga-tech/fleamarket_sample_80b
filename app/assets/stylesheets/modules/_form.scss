@@ -1,149 +1,135 @@
+// @import url('https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css');
+
+* {
+  box-sizing: border-box;
+}
+
+.form_bg {
+  background-color: rgb(246, 251, 255);
+}
+
+#items-form {
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+  width: 700px;
+}
+
 .form-group {
-  width: 100%;;
+  width: 100%;
   display: flex;
   justify-content: center;
-  // flex-direction: column;
-  // display: inline-block;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0;
   // margin-left:  50px;
   // margin-right: 50px;
-  //   align-items: center;
-
+  // align-items: center;
   // @include display-flex();
   // @include flex-direction(row);
   // @include justify-content(center);
   // @include align-items(center);
-  // 商品画像
-  // .product-image {
-  //   height: 80px;
-  //   width : 70px;
-  // }
 
-//   align-items: center;
-  .image-box{
-    height: 700px;
-    width: 700px;
+  &__label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
   }
-
-// 商品画像
-// .product-image {
-//   height: 80px;
-//   width : 70px;
-// }
-
 
   // 基本の形
-  .title,
-  .price,
-  .condition,
-  .leadtime,
-  .brand{
+  .field {
     height: 50px;
     width:  500px;
-    margin-bottom: 20px;
-    margin-top:    20px;
+    font-size: 20px;
+    font-weight: normal;
+    padding: 0 10px;
   }
-
-  // // 販売価格
-  // .price {
-  //   height: 50px;
-  //   width: 500px;
-  //   margin-bottom: 20px;
-  //   margin-top:    20px;
-  // }
-
+  // 販売価格
+  .price {
+    height: 50px;
+    width: 250px;
+    justify-content: flex-end;
+  }
   // 商品の説明
   .product {
     height: 200px;
     width:  500px;
-    margin-bottom: 20px;
-    margin-top:    20px;
+    resize: none;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: normal;
   }
-
-  // 商品状態
-  // .condition {
-  //   height: 50px;
-  //   width:  500px;
-  //   margin-bottom: 20px;
-  //   margin-top:    20px;
-  // }
-
-  // 発送までの日数
-  // .leadtime {
-  //   height: 50px;
-  //   width:  500px;
-  //   margin-bottom: 20px;
-  //   margin-top:    20px;
-  // }
-
-  // ブランド名
-  // .brand {
-  //   height: 50px;
-  //   width:  500px;
-  //   margin-bottom: 20px;
-  //   margin-top:    20px;
-  // }
-
   // カテゴリー
   .category {
-    height: 50px;
-    width:  500px;
-    margin: 5px 0;
+    margin-bottom: 10px;
   }
 
-  // 配送方法
-  .delivery {
-    height: 50px;
-    width:  500px;
+  // 価格
+  .price_contents {
+    width: 100%;
+    padding: 0 50px;
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+      text-align: center;
+      height: 50px;
+      &--label {
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 50px;
+      }
+      &--price {
+        .price-field {
+          position: relative;
+        }
+        .yen {
+          position: absolute;
+          left: -25px;
+          font-size: 30px;
+          height: 50px;
+        }
+      }
+    }
   }
 }
+
   // 必須アイコン
   .icon {
-    display: inline-block;
-    height: 20px;
-    width: 35px;
+    display: inline;
+    padding: 3px 5px;
     color: white;
     font-size: 13px;
     border-radius: 4px;
-    text-align: center;
     background-color: red;
     margin-left: 10px;
+    font-weight: 700;
   }
 
   // 任意アイコン
   .icon2 {
-    display: inline-block;
-    height: 20px;
-    width:  35px;
+    display: inline;
+    padding: 3px 5px;
     color: white;
     font-size: 13px;
     border-radius: 4px;
-    text-align: center;
     background-color:gray;
-  }
-
-  // 削除アイコン
-  .js-remove{
-    display: inline-block;
-    height: 20px;
-    width:  35px;
-    color: white;
-    font-size: 13px;
-    border-radius: 4px;
-    text-align: center;
-    background-color:blue;
-    cursor: pointer;
-    position: absolute;
+    margin-left: 10px;
+    font-weight: 700;
   }
 
   // 出品ボタン
   .submit-btn {
-    height: 40%;
-    width:  300px;
+    padding: 20px 50px;
     color:white;
     font-size: 20px;
     font-weight: bold;
     background-color:#3CCACE;
     margin-top: 50px;
+    border: none;
     &:hover {
       color:white;
       background-color:#66edf1;
@@ -158,18 +144,6 @@
     margin-bottom: 40px;
   }
 
-  .draft {
-    // height: 20%;
-    width:  500px;
-    display: flex;
-    justify-content: center;
-    font-size: 20px;
-    background-color: gray;
-    margin-bottom: 50px;
-  }
-  // .image-box {
-  //   justify-content: space-around;
-  // }
   .image-field {
     display: flex;
     justify-content: space-around;
@@ -185,17 +159,6 @@
     width: 800px;
   }
 
-// select  {
-//   width: 500px;
-//   height: 50px;
-// }
-
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin: 10px 0;
-}
-
 label {
   display: block;
 }
@@ -209,33 +172,109 @@ label {
 }
 
 #image-box{
-  height: 400px;
-  width: 500px;
-  background-color:darkgray;
+  width: 510px;
+  flex-wrap: wrap;
+  padding-bottom: 30px;
+  .product_up {
+    font-weight: bold;
+    font-size: 13px;
+  }
+  .js-file_group{
+    display: none;
+  }
 }
 
-.js-file{
-  display: none;
+.preview-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  #previews{
+    display: flex;
+    flex-wrap: wrap;
+    outline: 2px dashed #3CCACE;
+    padding: 5px;
+    img {
+      object-fit: cover;
+      border-radius: 5px;
+    }
+    .preview__item {
+      position: relative;
+    }
+    .js-remove {
+      font-size: 20px;
+      color: rgb(255, 64, 64);
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+    .triggericon {
+      border: 2px solid #3CCACE;
+      color: #3CCACE;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 5px;
+      cursor: pointer;
+      opacity: 0.7;
+      &:hover {
+        opacity: 0.9;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-.fas.fa-camera{
+.onegai {
+  color:gray;
+  padding: 30px 0;
+}
+
+.fas.fa-camera {
   font-size: 30px;
   text-align: center;
 }
 
-p.invalid {
-  color: red;
+.underline {
+  width: 90%;
+  border-bottom: 1px solid rgb(189, 189, 189);
+  margin: 40px 0;
+  .supplement {
+    color: #3CCACE;
+    font-weight: 600;
+    font-size: 23px;
+    padding-left: 10px;
+  }
+}
+
+.fee-span, .profit-span{
+  // display: flex;
   text-align: right;
+  // border: 1px solid #ccc;
 }
+// .sortable {
+//   padding: 0;
+//   -webkit-touch-callout: none;
+//   -webkit-user-select: none;
+//   -khtml-user-select: none;
+//   -moz-user-select: none;
+//   -ms-user-select: none;
+//   user-select: none;
 
-input.invalid {
-  border: 1px solid red;
-}
+//   li {
+//     float: left;
+//     width: 120px;
+//     height: 120px;
+//     overflow: hidden;
+//     border: 1px solid red;
+//     text-align: center;
+//     margin: 5px;
+//   }
+// }
 
-select.invalid {
-  border: 1px solid red;
-}
-
-textarea.invalid {
-  border: 1px solid red;
-}
+// li.sortable-placeholder {
+//   border: 1px dashed #CCC;
+//   background: none;
+// }

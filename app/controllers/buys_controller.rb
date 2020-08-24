@@ -1,9 +1,9 @@
 class BuysController < ApplicationController
   before_action :set_item, only: [:new, :done, :pay]
-
+  before_action :authenticate_user!
   require 'payjp'
 
-  def new
+  def new 
     @area = Address.find_by(user_id: current_user.id)
     # @area = Address.find(params[:id])
     @item = Item.find(params[:id])
@@ -19,7 +19,7 @@ class BuysController < ApplicationController
       #保管したカードIDでpayjpから情報取得、カード情報表示のためインスタンス変数に代入
       @default_card_information = customer.cards.retrieve(card.card_id)
     end
-  end
+  end 
 
   def index
   end

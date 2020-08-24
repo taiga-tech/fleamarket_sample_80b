@@ -62,13 +62,13 @@ group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano3-unicorn'
   gem 'capistrano-rails-console'
+  gem 'dotenv-rails'
 end
 
 # 以下全てをGemfile下部にコピー
 group :production do
   gem 'unicorn'
 end
-
 
 # Haml導入:kake(8/6)
 gem "haml-rails", ">= 1.0", '<= 2.0.1'
@@ -82,8 +82,17 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'rails-i18n'
 
+# SNS認証(8/22)
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-twitter'
+gem "omniauth-rails_csrf_protection"
+
 # jquery追加(8/7)
 gem 'jquery-rails'
+
+# jquery-ui-rails(8/18)
+gem 'jquery-ui-rails'
 
 # payjp導入(8/11)
 gem 'payjp'
@@ -93,8 +102,12 @@ gem "ancestry"
 # font-awesome導入(8/16)
 gem 'font-awesome-sass', '~> 5.4.1'
 
+# ActiveHash::Baseを継承したモデルを自作するため導入(8/20)
+gem 'active_hash'
+
 # パンくず(8/17導入)
 gem 'gretel' 
 gem "ransack"
 
 gem 'jquery-ui-rails'
+

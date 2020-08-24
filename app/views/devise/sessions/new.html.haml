@@ -8,7 +8,7 @@
         = f.text_field :name, autofocus: true, placeholder: "USER NAME"
         %span.separator
       .field.text-input
-        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "EMAIL"
+        = f.email_field :email, autocomplete: "email", placeholder: "EMAIL"
         %span.separator
       .field.text-input
         = f.password_field :password, autocomplete: "current-password", placeholder: "PASSWORD"
@@ -20,3 +20,5 @@
       .actions.form-bottom
         = f.submit "Log in"
     = render "devise/shared/links"
+    .login
+      = link_to "他の方法でログイン", "#"
