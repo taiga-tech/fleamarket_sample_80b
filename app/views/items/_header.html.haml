@@ -14,9 +14,27 @@
           = f.select( :sorts, { '並び替え': 'id desc', '価格の安い順': 'price asc', '価格の高い順': 'price desc', '出品の古い順': 'updated_at asc', '出品の新しい順': 'updated_at desc' } , { selected: params[:q][:sorts] }, { onchange: 'this.form.submit()'} )      
   .header__headerBox2
     .header__headerBox2--various
+
       %ul.focus
         %li.focus__category
-          = link_to "カテゴリー", "#", class: "cateBtn"
+          #menu
+            = link_to "カテゴリー", "#", class: "cateBtn"
+
+            %ul#pareUl.pareUl
+              - @category_parents.each do |parent|
+                %li.pareLi
+                  = link_to parent.name, "#", class: "parent", id: "#{parent.id}"
+
+                  %ul.pareUl2
+                    - parent.children.each do |child|
+                      %li.pareLi2
+                        = link_to child.name, "#", class: "child", id: "#{child.id}"
+
+                        %ul.pareUl3
+                          - child.children.each do |grandchild|
+                            %li.pareLi3
+                              = link_to grandchild.name, "#", class: "grandchild", id: "#{grandchild.id}"
+
         %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"
       %ul.log

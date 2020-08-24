@@ -41,6 +41,7 @@
     &--various {
       display: flex;
       justify-content: space-between;
+
       // カテゴリー・ブランド
       .focus {
         display: flex;
@@ -75,4 +76,67 @@
       }
     }
   }
+}
+
+
+// モーダル用-------------------------------
+
+// @include box1;
+@mixin box1 {
+  height: 40px;
+  width: 300px;
+  border-bottom: 1px solid #eeeeee;
+  padding-left: 10px;
+  padding-top: 6px;
+  background-color: white;
+}
+
+// @include box2;
+@mixin box2 {
+  height: 35px;
+  width: 350px;
+  // margin: auto;
+  padding: 5px 0 0 10px;
+  background-color: white;
+  border-bottom: 1px solid gray;
+}
+
+
+
+#menu div {
+  position: relative;
+}
+
+.cateBtn {
+  cursor: pointer;
+}
+
+.pareUl {
+  display: none;
+  position: absolute;
+}
+
+.pareLi {
+  @include box1;
+  cursor: pointer;
+}
+
+.pareUl2 {
+  display: none;
+  position: absolute;
+}
+
+.pareLi2 {
+  @include box1;
+  cursor: pointer;
+}
+
+.pareUl3 {
+  display: none;
+  position: absolute;
+}
+
+.pareLi3 {
+  @include box1;
+  cursor: pointer;
 }
