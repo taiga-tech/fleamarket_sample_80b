@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @items = @user.items
     # @profile = Profile.new
     @user.profile.image = "default.png"
-    @profile = Profile.find_by(user_id: current_user.id)
+    @profile = Profile.find_by(user_id: @user.id)
     @created_at = @user.created_at
     # @zipcode = user.zipcode
     @address = @user.address
