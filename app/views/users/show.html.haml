@@ -1,7 +1,9 @@
 -# パンくず
 - breadcrumb :users
 
-= render "notification"
+.alert
+  - if flash[:success] 
+    = flash[:success]
 .container 
   .wrapper
     .header
