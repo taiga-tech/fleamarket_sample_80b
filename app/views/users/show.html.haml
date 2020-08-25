@@ -6,7 +6,7 @@
     .header
       .profile_name
         = @name
-      .profile_image
+      .profile_image  
         = image_tag @profile.image.url, class: "photo"
       .selfy
         - if user_signed_in? && current_user.id == @user.id
