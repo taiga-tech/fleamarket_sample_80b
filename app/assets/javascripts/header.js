@@ -44,26 +44,26 @@ $(function() {
 
 
   // マウスカーソルがカテゴリー上/カテゴリー外
-  $('.cateBtn, .pareUl').hover(function() {
-    // over_flg = true;
-    $(".cateBtn").next(".pareUl").slideDown("fast");
-  }, function() {
-    // over_flg = false;
-    $("body").click(function() {
-      $(".cateBtn").next(".pareUl").slideUp("fast");
-    });
-  });
+  // $('.cateBtn, .pareUl').hover(function() {
+  //   // over_flg = true;
+  //   $(".cateBtn").next(".pareUl").slideDown("fast");
+  // }, function() {
+  //   // over_flg = false;
+  //   $("body").click(function() {
+  //     $(".cateBtn").next(".pareUl").slideUp("fast");
+  //   });
+  // });
 
-  // $(".cateBtn, .pareUl").mouseover(function() {
-  //   $(this).next(".pareUl").slideDown("fast");
-  // })
-  // $(".pareUl").mouseleave(function() {
-  //   $(".cateBtn").next(".pareUl").slideUp("fast");
-  // })
+  $(".cateBtn, .pareUl").mouseover(function() {
+    $(this).next(".pareUl").slideDown("fast");
+  })
+  $(".pareUl").mouseleave(function() {
+    $(".cateBtn").next(".pareUl").slideUp("fast");
+  })
 
 
 
-  // カテゴリー領域外をクリックしたらカテゴリーを閉じる
+  // // カテゴリー領域外をクリックしたらカテゴリーを閉じる
   // $('body').click(function() {
   //   if (over_flg == false) {
   //     // $('.cateBtn').removeClass('selected');
