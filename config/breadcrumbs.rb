@@ -46,6 +46,22 @@ crumb :delete do
   parent :users
 end
 
+# 検索結果
+crumb :detail do
+  link "検索商品一覧", detail_items_path
+  parent :users
+end
+
+crumb :followers do
+  link "フォロワー一覧", followers_user_path
+  parent :users
+end
+
+crumb :followings do
+  link "フォロー中のユーザー一覧", followings_user_path
+  parent :users
+end
+
 # 2.出品ページ内---------------------------------
 # 出品ページ
 crumb :new do
