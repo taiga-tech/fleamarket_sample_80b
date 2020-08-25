@@ -1,11 +1,13 @@
 .main_followers {
   border: 1px solid #fff;
+  
 }
 .follow_title { 
   text-align: center; 
   font-weight: bold; 
-  font-size: 25px; 
-  margin-top: 20px;
+  font-size: 30px; 
+  margin-top: 60px; 
+  margin-bottom: 30px; 
 }
 .follow_image { 
   height: 100px;
@@ -16,7 +18,9 @@
 .follow_content {
   padding-bottom: 20px;
   margin-left: 250px;
-  margin-right: 250px;
+  margin-right: 250px; 
+  height: 100%; 
+  margin-bottom: 100px;
 }
 
 .Messagefollow { 
