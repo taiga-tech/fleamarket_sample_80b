@@ -10,8 +10,7 @@
       .profile_name
         = @name
       .profile_image
-        - if user_signed_in? && current_user.id == @user.id
-          = image_tag @profile.image.url, class: "photo" if @profile.image.present?
+        = image_tag @profile.image.url, class: "photo"
       .selfy
         - if user_signed_in? && current_user.id == @user.id
           = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
