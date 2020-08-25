@@ -89,6 +89,7 @@ $(function() {
 
   // items#show
   $('.slider-5-thum').slick({
+    autoplay: true,
     arrows: true,
     asNavFor:'.slider-5-nav',
     slidesToShow: 1,
