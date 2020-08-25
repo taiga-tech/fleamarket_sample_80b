@@ -8,6 +8,7 @@ class CardController < ApplicationController
   def new
     card = Credit.where(user_id: current_user.id)
     redirect_to action: "show" if card.exists?
+    @year = Time.current
   end
 
   def pay #payjpとCardのデータベース作成を実施します。

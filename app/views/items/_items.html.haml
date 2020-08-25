@@ -1,13 +1,13 @@
-.main 
+.main
   .main__box
     .main__box--itemBox
       .main__box--itemBox--itemIndex
         .main__box--itemBox--itemIndex--text1-head
-          新着投稿商品 
+          新着投稿商品
           .main__box--textBox--content3--head--bar2
         .main__box--itemBox--itemIndex--text2
         .main__box--itemBox--itemIndex--textItem3
-          - @items.first(8).each do |item|
+          - @first.each do |item|
             - unless item.stock == 0
               -# 仮クラス。商品登録機能完了後以下コメント外す
               = link_to item_path(item) do
@@ -28,119 +28,193 @@
                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
                   %ul.item_status
                     %li.item_status__stock
-                      完売しました 
+                      完売しました
 
     .main__box--itemBox
       .main__box--itemBox--itemIndex--text1-head
         .main__box--itemBox--archive--text1
           カテゴリー
         .main__box--textBox--content3--head--bar2
-    .main__box--itemBox
-      .main__box--itemBox--archive
-        レディース
-        .main__box--itemBox--archive--text1 
-        .main__box--itemBox--archive--text2
-        .main__box--itemBox--archive--textItem3
-          - @ladies.first(4).each do |item|
-            - unless item.stock == 0
-              -# 仮クラス。商品登録機能完了後以下コメント外す
-              = link_to item_path(item) do
-                .itemPickBox2
-                  .itemPickBox2__item-image
-                    - item.images.first(1).each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                  %ul.item_status2
-                    %li.item_status2__price
-                      = "¥#{item.price}"
-                    %li.item_status2__title
-                      = link_to "🤍#{item.liked_users.count}", item_path(item)
-            - else
-              .itemPickBox2
-                .itemPickBox2__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status2
-                  %li.item_status__stock
-                    完売しました 
 
     .main__box--itemBox
-      .main__box--itemBox--archive 
-        メンズ
-        .main__box--itemBox--archive--text1 
-        .main__box--itemBox--archive--text2 
+      - @categories.each do |category|
+        .category_title
+          = category.root.name
         .main__box--itemBox--archive--textItem3
-          - @mens.first(4).each do |item|
-            - unless item.stock == 0
-              -# 仮クラス。商品登録機能完了後以下コメント外す
-              = link_to item_path(item) do
-                .itemPickBox2
-                  .itemPickBox2__item-image
-                    - item.images.first(1).each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                  %ul.item_status2
-                    %li.item_status2__price
-                      = "¥#{item.price}"
-                    %li.item_status2__title
-                      = link_to "🤍#{item.liked_users.count}", item_path(item)
-            - else
-              .itemPickBox2
-                .itemPickBox2__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status2
-                  %li.item_status__stock
-                    完売しました
-    .main__box--itemBox
-      .main__box--itemBox--archive 
-        家電
-        .main__box--itemBox--archive--text1 
-        .main__box--itemBox--archive--text2 
-        .main__box--itemBox--archive--textItem3
-          - @home_appliances.first(4).each do |item|
-            - unless item.stock == 0
-              -# 仮クラス。商品登録機能完了後以下コメント外す
-              = link_to item_path(item) do
-                .itemPickBox2
-                  .itemPickBox2__item-image
-                    - item.images.first(1).each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                  %ul.item_status2
-                    %li.item_status2__price
-                      = "¥#{item.price}"
-                    %li.item_status2__title
-                      = link_to "🤍#{item.liked_users.count}", item_path(item)
-            - else
-              .itemPickBox2
-                .itemPickBox2__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status2
-                  %li.item_status__stock
-                    完売しました
-    .main__box--itemBox
-      .main__box--itemBox--archive 
-        インテリア
-        .main__box--itemBox--archive--text1 
-        .main__box--itemBox--archive--text2 
-        .main__box--itemBox--archive--textItem3
-          - @interiors.first(4).each do |item|
-            - unless item.stock == 0
-              -# 仮クラス。商品登録機能完了後以下コメント外す
-              = link_to item_path(item) do
-                .itemPickBox2
-                  .itemPickBox2__item-image
-                    - item.images.first(1).each do |image|
-                      = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                  %ul.item_status2
-                    %li.item_status2__price
-                      = "¥#{item.price}"
-                    %li.item_status2__title
-                      = link_to "🤍#{item.liked_users.count}", item_path(item)
-            - else
-              .itemPickBox2
-                .itemPickBox2__item-image
-                  - item.images.first(1).each do |image|
-                    = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
-                %ul.item_status2
-                  %li.item_status__stock
-                    完売しました
+          - category.children.each do |child|
+            - child.children.each do |grandchild|
+              - grandchild.items.first(4).shuffle.each do |item|
+                - unless item.stock == 0
+                  -# 仮クラス。商品登録機能完了後以下コメント外す
+                  = link_to item_path(item) do
+                    .itemPickBox2
+                      .itemPickBox2__item-image
+                        - item.images.first(1).each do |image|
+                          = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                      %ul.item_status2
+                        %li.item_status2__price
+                          = "¥#{item.price}"
+                        %li.item_status2__title
+                          = link_to "🤍#{item.liked_users.count}", item_path(item)
+                - else
+                  .itemPickBox2
+                    .itemPickBox2__item-image
+                      - item.images.first(1).each do |image|
+                        = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+                    %ul.item_status2
+                      %li.item_status__stock
+                        完売しました
+
+
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--itemIndex--text1-head
+    -#     .main__box--itemBox--archive--text1
+    -#       カテゴリー
+    -#     .main__box--textBox--content3--head--bar2
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--archive
+    -#     -# レディース
+    -#     .main__box--itemBox--archive--text1
+    -#     .main__box--itemBox--archive--text2
+    -#     .main__box--itemBox--archive--textItem3
+    -#       - @ladies.first(4).each do |item|
+    -#         - unless item.stock == 0
+    -#           -# 仮クラス。商品登録機能完了後以下コメント外す
+    -#           = link_to item_path(item) do
+    -#             .itemPickBox2
+    -#               .itemPickBox2__item-image
+    -#                 - item.images.first(1).each do |image|
+    -#                   = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#               %ul.item_status2
+    -#                 %li.item_status2__price
+    -#                   = "¥#{item.price}"
+    -#                 %li.item_status2__title
+    -#                   = link_to "🤍#{item.liked_users.count}", item_path(item)
+    -#         - else
+    -#           .itemPickBox2
+    -#             .itemPickBox2__item-image
+    -#               - item.images.first(1).each do |image|
+    -#                 = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#             %ul.item_status2
+    -#               %li.item_status__stock
+    -#                 完売しました
+
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--archive
+    -#     -# メンズ
+    -#     .main__box--itemBox--archive--text1
+    -#     .main__box--itemBox--archive--text2
+    -#     .main__box--itemBox--archive--textItem3
+    -#       - @mens.first(4).each do |item|
+    -#         - unless item.stock == 0
+    -#           -# 仮クラス。商品登録機能完了後以下コメント外す
+    -#           = link_to item_path(item) do
+    -#             .itemPickBox2
+    -#               .itemPickBox2__item-image
+    -#                 - item.images.first(1).each do |image|
+    -#                   = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#               %ul.item_status2
+    -#                 %li.item_status2__price
+    -#                   = "¥#{item.price}"
+    -#                 %li.item_status2__title
+    -#                   = link_to "🤍#{item.liked_users.count}", item_path(item)
+    -#         - else
+    -#           .itemPickBox2
+    -#             .itemPickBox2__item-image
+    -#               - item.images.first(1).each do |image|
+    -#                 = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#             %ul.item_status2
+    -#               %li.item_status__stock
+    -#                 完売しました
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--archive
+    -#     -# 家電
+    -#     .main__box--itemBox--archive--text1
+    -#     .main__box--itemBox--archive--text2
+    -#     .main__box--itemBox--archive--textItem3
+    -#       - @home_appliances.first(4).each do |item|
+    -#         - unless item.stock == 0
+    -#           -# 仮クラス。商品登録機能完了後以下コメント外す
+    -#           = link_to item_path(item) do
+    -#             .itemPickBox2
+    -#               .itemPickBox2__item-image
+    -#                 - item.images.first(1).each do |image|
+    -#                   = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#               %ul.item_status2
+    -#                 %li.item_status2__price
+    -#                   = "¥#{item.price}"
+    -#                 %li.item_status2__title
+    -#                   = link_to "🤍#{item.liked_users.count}", item_path(item)
+    -#         - else
+    -#           .itemPickBox2
+    -#             .itemPickBox2__item-image
+    -#               - item.images.first(1).each do |image|
+    -#                 = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#             %ul.item_status2
+    -#               %li.item_status__stock
+    -#                 完売しました
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--archive
+    -#     -# インテリア
+    -#     .main__box--itemBox--archive--text1
+    -#     .main__box--itemBox--archive--text2
+    -#     .main__box--itemBox--archive--textItem3
+    -#       - @interiors.first(4).each do |item|
+    -#         - unless item.stock == 0
+    -#           -# 仮クラス。商品登録機能完了後以下コメント外す
+    -#           = link_to item_path(item) do
+    -#             .itemPickBox2
+    -#               .itemPickBox2__item-image
+    -#                 - item.images.first(1).each do |image|
+    -#                   = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#               %ul.item_status2
+    -#                 %li.item_status2__price
+    -#                   = "¥#{item.price}"
+    -#                 %li.item_status2__title
+    -#                   = link_to "🤍#{item.liked_users.count}", item_path(item)
+    -#         - else
+    -#           = link_to item_path(item) do
+    -#             .itemPickBox2
+    -#               .itemPickBox2__item-image
+    -#                 - item.images.first(1).each do |image|
+    -#                   = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#               %ul.item_status2
+    -#                 %li.item_status__stock
+    -#                   完売しました
+
+
+    -# .main__box--itemBox
+    -#   .main__box--itemBox--itemIndex--text1-head
+    -#     .main__box--itemBox--archive--text1
+    -#       カテゴリー
+    -#     .main__box--textBox--content3--head--bar2
+
+    -# .main__box--itemBox
+    -#   -# .main__box--itemBox--archive
+    -#   - @categories.each do |category|
+    -#     .category_title
+    -#       = category.root.name
+    -#     .main__box--itemBox--archive--textItem3
+    -#       - category.children.each do |child|
+    -#         - child.children.each do |grandchild|
+    -#           - grandchild.items.first(4).shuffle.each do |item|
+    -#             - unless item.stock == 0
+    -#               -# 仮クラス。商品登録機能完了後以下コメント外す
+    -#               = link_to item_path(item) do
+    -#                 .itemPickBox2
+    -#                   .itemPickBox2__item-image
+    -#                     - item.images.first(1).each do |image|
+    -#                       = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#                   %ul.item_status2
+    -#                     %li.item_status2__price
+    -#                       = "¥#{item.price}"
+    -#                     %li.item_status2__title
+    -#                       = link_to "🤍#{item.liked_users.count}", item_path(item)
+    -#             - else
+    -#               .itemPickBox2
+    -#                 .itemPickBox2__item-image
+    -#                   - item.images.first(1).each do |image|
+    -#                     = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+    -#                 %ul.item_status2
+    -#                   %li.item_status__stock
+    -#                     完売しました

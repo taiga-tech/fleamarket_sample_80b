@@ -136,106 +136,119 @@
   }
 }
 
-.Chat {
-  width: 70vw;
-  height: 300px;
-  display: inline-block;
-  margin-left: 220px;
-  border: 1px solid #fff;
-}
-
-.self_image {
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-}
-
-.MessageField {
-  width: 100%;
-  padding: 10px;
-  overflow: scroll;
-}
-
-.MessageBox {
-  background-color: #f5f5f5;
-  margin-bottom: 3px;
-  padding: 10px;
-  color: #2f2725;
-  border-radius: 3px;
-  width: 90%;
-  position: relative;
-  margin-top: 15px;
-}
-.MessageBox::before{
-  content: '';
-  position: absolute;
-  display: block;
-  width: 0;
-  height: 0;
-  left: 0px;
-  top: -15px;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid  #f5f5f5;
-  border-left: 15px solid transparent;
-}
-.MessageBox::after{
-  content: '';
-  position: absolute;
-  display: block;
-  width: 0;
-  height: 0;
-  left: 0px;
-  top: -12px;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid  #f5f5f5;
-  border-left: 15px solid transparent;
-}
-
-.Message{
-  font-size: 15px;
-  width: 100%;
-}
-
-.MessageInfo{
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  &__userName {
-    font-size: 15px;
-    margin-right: 10px;
-  }
-  &__userEdit {
-    display: inline;
-  }
-}
-.warning {
-  text-align: center;
-  padding-bottom: 10px;
-}
-
-.comment.none {
-  text-align: center;
-  margin: 30px auto;
-}
-.form {
+.Chat_container {
   display: flex;
   justify-content: center;
-.form-area {
-  height: 40px;
-  font-size: 15px;
-  padding: 5px;
-  width: 600px;
-  border: 3px solid #000;
-}
-.submit {
-  height: 40px;
-  width: 100px;
-  font-size: 12px;
-  float: right;
-  color: #fff;
-  background-color: #666666;
-  border: 3px solid #000;
-}
+  flex-direction: column;
+  align-items: center;
+
+  .Chat {
+    width: 50%;
+    // height: 300px;
+    // display: inline-block;
+    border: 1px solid #fff;
+  }
+
+
+  .self_image {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .MessageField {
+    width: 70%;
+    // width: 100%;
+    padding: 10px;
+    // overflow: scroll;
+  }
+
+  .MessageBox {
+    background-color: #f5f5f5;
+    margin-bottom: 3px;
+    padding: 10px;
+    color: #2f2725;
+    border-radius: 3px;
+    // width: 90%;
+    position: relative;
+    margin-top: 15px;
+  }
+
+  .MessageBox::before{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    left: 0px;
+    top: -15px;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid  #f5f5f5;
+    border-left: 15px solid transparent;
+  }
+  .MessageBox::after{
+    content: '';
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    left: 0px;
+    top: -12px;
+    border-right: 15px solid transparent;
+    border-bottom: 15px solid  #f5f5f5;
+    border-left: 15px solid transparent;
+  }
+
+  .Message{
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .MessageInfo{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    &__userName {
+      font-size: 15px;
+      margin-right: 10px;
+    }
+    &__userEdit {
+      display: inline;
+    }
+  }
+
+  .warning {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+
+  .comment.none {
+    text-align: center;
+    margin: 30px auto;
+  }
+  .form {
+    display: flex;
+    justify-content: center;
+    .form-area {
+      height: 40px;
+      font-size: 15px;
+      padding: 5px;
+      width: 600px;
+      border: 3px solid #000;
+    }
+    .submit {
+      height: 40px;
+      width: 100px;
+      font-size: 12px;
+      float: right;
+      color: #fff;
+      background-color: #666666;
+      border: 3px solid #000;
+    }
+  }
 }
 
 .slick_container {

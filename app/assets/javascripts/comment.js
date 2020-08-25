@@ -64,7 +64,11 @@ $(function(){
     })
     .done(function(data){
       var html = buildHTML(data);
-      $('.MessageField').append(html);
+      if (data.text == "") {
+        return false
+      } else {
+        $('.MessageField').append(html);
+      }
       $('.form-area').val('');
       $('.submit').prop('disabled', false);
     })
