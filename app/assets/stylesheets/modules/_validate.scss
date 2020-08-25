@@ -4,17 +4,19 @@ p.invalid {
   font-weight: bold;
 }
 
-input.invalid {
-  border: 1.5px solid rgb(255, 86, 86);
-  outline-style: none;
-}
-
-select.invalid {
-  border: 1.5px solid rgb(255, 86, 86);
-  outline-style: none;
-}
-
+input.invalid,
+select.invalid,
 textarea.invalid {
   border: 1.5px solid rgb(255, 86, 86);
   outline-style: none;
 }
+
+// select.invalid {
+//   border: 1.5px solid rgb(255, 86, 86);
+//   outline-style: none;
+// }
+
+// textarea.invalid {
+//   border: 1.5px solid rgb(255, 86, 86);
+//   outline-style: none;
+// }

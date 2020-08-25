@@ -29,11 +29,11 @@ $(function() {
   $('.hidden-destroy').hide();
 
 
-    // カメラをクリックで画像選択
-    $(document).on("click", ".triggericon", function(e){
-      let file_field = $(".js-file:last");
-      file_field.trigger("click");
-    })
+  // カメラをクリックで画像選択
+  $(document).on("click", ".triggericon", function(){
+    let file_field = $(".js-file:last");
+    file_field.trigger("click");
+  })
 
   $('#image-box').on('change', '.js-file', function(e) {
     const targetIndex = $(this).parent().data('index');
@@ -104,9 +104,9 @@ $(function() {
   });
 });
 
-$(document).ready(function(){
-  $('.sortable').sortable();
-});
+// $(document).ready(function(){
+//   $('.sortable').sortable();
+// });
 
 // 販売手数料の記述
 $(function(){
@@ -122,20 +122,25 @@ $(function(){
       $(".profit-span").text('');
     }
   })
+
   $("#item_delivery_id").change(function () {
     let delivery_id = $(this).val();
-    $.ajax({
-      url:     "get_delively_fee",
-      dateType: "JSON",
-      type:     "GET",
-      data:     { delivery_id: delivery_id}
-    })
-    .done(function(delivery) {
-      $(".shippingfee-span").text(`¥ ${delivery.price}`)
-    })
-    .fail(function() {
-      alert("失敗しました")
-    })
+    if (delivery_id != "") {
+      $.ajax({
+        url:     "get_delivery_fee",
+        dateType: "JSON",
+        type:     "GET",
+        data:     { delivery_id: delivery_id}
+      })
+      .done(function(delivery) {
+        $(".shippingfee-span").text(`¥ ${delivery.price}`)
+      })
+      .fail(function() {
+        alert("失敗しました")
+      });
+    } else {
+      $(".shippingfee-span").text("");
+    }
   })
 });
 

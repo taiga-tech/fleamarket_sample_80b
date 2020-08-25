@@ -1,4 +1,4 @@
-Rails.application.routes.draw do 
+Rails.application.routes.draw do
   get '/users/item.user.id', to: 'users#show'
 
   devise_for :users, controllers: {
@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_scope :user do
     get  'addresses', to: 'users/registrations#new_address'
     post 'addresses', to: 'users/registrations#create_address'
-  end 
+  end
 
 
   root "items#index"
@@ -17,31 +17,31 @@ Rails.application.routes.draw do
     resources :profiles, only: [:edit, :update]
     collection do
       get :likes
-    end 
-    member do  
-      get :followings, :followers 
-    end 
+    end
+    member do
+      get :followings, :followers
+    end
   end
 
   resources :items do
     resources :likes, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
     collection do
-      get "search"
-      get "detail"
-      match "detail" => "items#detail", via: [:get, :post]
-      get 'get_category_children', defaults: { format: 'json' }
-      get 'get_category_grandchildren', defaults: { format: 'json' }
-      get "get_delively_fee", defaults: {format: 'json'}
+      get   "search"
+      get   "detail"
+      match "detail" => "items#detail",   via: [:get, :post]
+      get   'get_category_children',      defaults: { format: 'json' }
+      get   'get_category_grandchildren', defaults: { format: 'json' }
+      get   "get_delively_fee",           defaults: { format: 'json' }
     end
 
     member do
-      get "get_category_children",        defaults: { format: "json" }
-      get "get_category_grandchildren",   defaults: { format: "json" } 
-      get "reserve" 
-      patch "reserved" 
+      get   "get_category_children",      defaults: { format: "json" }
+      get   "get_category_grandchildren", defaults: { format: "json" }
+      get   "get_delivery_fee",           defaults: { format: 'json' }
+      get   "reserve"
+      patch "reserved"
       patch "reserve_cancel"
-      # get "get_selected_category",        defaults: { format: "json" }
     end
   end
 
@@ -64,8 +64,8 @@ Rails.application.routes.draw do
     end
     # member do
     # end
-  end 
+  end
   Rails.application.routes.draw do
     resources :relationships, only: [:create, :destroy]
   end
-end 
+end

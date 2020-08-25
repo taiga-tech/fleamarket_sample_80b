@@ -92,7 +92,7 @@
 
     .underline
       .supplement 配送について
-    
+
     .form-group
       .temporaryclass
         = f.label :shipping, class: "form-group__label" do
@@ -106,7 +106,6 @@
           発送の日数
           .icon 必須
         =f.select :leadtime, {"１日で発送": "1日で発送", "2~3日で発送": "2~3日で発送", "4〜7日以上": "4〜7日以上"}, { include_blank: '選択してください'}, class: "leadtime field"
-
 
     .form-group
       .temporaryclass

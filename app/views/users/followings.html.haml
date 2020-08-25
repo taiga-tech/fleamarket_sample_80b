@@ -2,8 +2,17 @@
 - breadcrumb :followings
 
 .main_following 
-  .following  
-    %h1.follower.index フォロー中のユーザー一覧
-    - @users.each do |user| 
-      %h1.text 
-        = link_to "#{user.name}", user_path(user), method: :get 
+  .follow_title 
+    フォロー中のユーザー一覧 
+  .follow_content 
+    %h1.follow.index 
+    - @users.each do |user|
+      %h1.self_image 
+      - if user.profile.image.present?
+        = image_tag user.profile.image.url, class: "follow_image" if user.profile.image.present?
+      - else
+        = image_tag  "default.png", class: "self_image"
+      .Messagefollow  
+        .Message
+          %h1.follow_text 
+            = link_to "#{user.name}", user_path(user), method: :get 

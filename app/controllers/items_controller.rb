@@ -9,11 +9,12 @@ class ItemsController < ApplicationController
   # before_action :move_to_index, except: [:index, :show, :search]
 
   def index
-    @items = Item.includes(:user).order('created_at DESC')
-    @ladies = Item.where(category_id: 1..199).order('created_at DESC')
-    @mens = Item.where(category_id: 200..345).order('created_at DESC')
-    @home_appliances = Item.where(category_id: 898..983).order('created_at DESC')
-    @interiors = Item.where(category_id: 481..624).order('created_at DESC')
+    @first = Item.includes(:user).order('created_at DESC').first(8).shuffle
+    @categories = Category.includes(:items).where(ancestry: nil).shuffle.first(4)
+    # @ladies = Item.where(category_id: 1..199).shuffle #.order('created_at DESC')
+    # @mens = Item.where(category_id: 200..345).shuffle #.order('created_at DESC')
+    # @home_appliances = Item.where(category_id: 898..983).shuffle #.order('created_at DESC')
+    # @interiors = Item.where(category_id: 481..624).shuffle #.order('created_at DESC')
   end
 
   def show
@@ -69,7 +70,7 @@ class ItemsController < ApplicationController
 
   #商品更新機能
   def update
-    if @item.update(update_params)
+    if @item.update(item_params)
       redirect_to item_path(@item)
     else
       render :edit
@@ -86,7 +87,7 @@ class ItemsController < ApplicationController
     end
 
     # 配送料の負担
-    def get_delively_fee
+    def get_delivery_fee
       @delively_fee = Delivery.find(params[:delivery_id])
     end
 
@@ -147,21 +148,21 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def update_params
-    params.require(:item).permit(
-      :title,
-      :price,
-      :text,
-      :stock,
-      :brand,
-      :condition,
-      :leadtime,
-      :delivery_id,
-      :category_id,
-      :reservation_email,
-      images_attributes: [:image, :_destroy, :id]
-    )
-  end
+  # def update_params
+  #   params.require(:item).permit(
+  #     :title,
+  #     :price,
+  #     :text,
+  #     :stock,
+  #     :brand,
+  #     :condition,
+  #     :leadtime,
+  #     :delivery_id,
+  #     :category_id,
+  #     :reservation_email,
+  #     images_attributes: [:image, :_destroy, :id]
+  #   )
+  # end
 
   def detail_params
     params.require(:q).permit(:sorts)
