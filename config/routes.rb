@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       get   'get_category_grandchildren', defaults: { format: 'json' }
       get   "get_delivery_fee",           defaults: { format: 'json' }
     end
-
+    
     member do
       get   "get_category_children",      defaults: { format: "json" }
       get   "get_category_grandchildren", defaults: { format: "json" }
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       get   "reserve"
       patch "reserved"
       patch "reserve_cancel"
+      get   "category"
     end
   end
 

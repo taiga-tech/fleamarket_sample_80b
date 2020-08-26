@@ -33,7 +33,7 @@
                         %ul.pareUl3
                           - child.children.each do |grandchild|
                             %li.pareLi3
-                              = link_to grandchild.name, "#", class: "grandchild", id: "#{grandchild.id}"
+                              = link_to grandchild.name, category_item_path(grandchild.id), class: "grandchild", id: "#{grandchild.id}"
 
         %li.focus__brand
           = link_to "ブランド", "#", class: "brandBtn"

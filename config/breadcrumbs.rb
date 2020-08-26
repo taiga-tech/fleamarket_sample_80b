@@ -46,7 +46,7 @@ crumb :delete do
   parent :users
 end
 
-# 検索結果
+# 検索結果①
 crumb :detail do
   link "検索商品一覧", detail_items_path
   parent :users
@@ -69,6 +69,18 @@ crumb :new do
   parent :root
 end
 
+# 3.カテゴリー一覧--------------------------------
+crumb :category do
+  
+  categories = Category.where(id: params[:id])
+
+  categories.each do |category|
+    link category.name, category_item_path
+  end
+
+  parent :root
+
+end
 
 
 # crumb :projects do

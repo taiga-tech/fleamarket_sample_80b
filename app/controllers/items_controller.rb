@@ -114,6 +114,12 @@ class ItemsController < ApplicationController
       end
   end
 
+  # カテゴリー検索
+  def category
+    @categories = Category.where(id: params[:id])
+    # @item = @categories.find(params[:id])
+  end
+
   private
 
   def set_item
