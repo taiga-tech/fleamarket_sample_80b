@@ -16,20 +16,19 @@ class AddressesController < ApplicationController
 
   def set_user_address
     @user = User.find(params[:id])
-    @address = Address.find(params[:id])
+    @address = Address.find_by(user_id: @user.id)
   end
 
   def address_params
-    params.permit(
+    params.require(:address).permit(
       :family_name,
       :first_name,
       :family_name_kana,
       :first_name_kana,
-      :birthday,
       :zipcode,
       :city,
       :area,
       :street,
-    ).merge(user_id: @user.id)
+    ).merge(user_id: current_user.id)
   end
 end
