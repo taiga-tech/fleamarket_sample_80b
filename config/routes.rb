@@ -15,11 +15,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :show, :edit, :update] do
     resources :profiles, only: [:edit, :update]
+    resources :addresses, only: [:edit, :update]
     collection do
       get :likes
     end
     member do
-      get :followings, :followers
+      get  :followings, :followers
     end
   end
 
@@ -32,7 +33,7 @@ Rails.application.routes.draw do
       match "detail" => "items#detail",   via: [:get, :post]
       get   'get_category_children',      defaults: { format: 'json' }
       get   'get_category_grandchildren', defaults: { format: 'json' }
-      get   "get_delively_fee",           defaults: { format: 'json' }
+      get   "get_delivery_fee",           defaults: { format: 'json' }
     end
     
     member do

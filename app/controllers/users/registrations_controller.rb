@@ -16,7 +16,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.new(sign_up_params)
     unless @user.valid?
-      flash.now[:alert] = @user.errors.full_messages
+      # flash.now[:alert] = @user.errors.full_messages
       render :new and return
     end
     session["devise.regist_data"] = {user: @user.attributes}
@@ -84,8 +84,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   protected
   def address_params
-    params.require(:address).permit(:zipcode, :city, :area, :street, :user_id)
+    params.require(:address)
+    .permit(:family_name,
+            :first_name,
+            :family_name_kana,
+            :first_name_kana,
+            :birthday,
+            :zipcode,
+            :city,
+            :area,
+            :street,
+            :user_id,
+            )
   end
+
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

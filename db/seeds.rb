@@ -12,13 +12,13 @@ CSV.foreach("db/csv/deliveries-table.csv") do |row|
 end
 
 # ユーザー
-CSV.foreach("db/csv/users-table.csv") do |row|
-  User.create!( name: row[1], email: row[2], password: row[3], password_confirmation: row[4] )
+CSV.foreach("db/csv/users_view.csv") do |row|
+  User.create!( name: row[1], family_name: row[2], first_name: row[3], family_name_kana: row[4], first_name_kana: row[5], birthday: row[6], email: row[7], password: row[8], password_confirmation: row[9] )
 end
 
 # 住所
-CSV.foreach("db/csv/addresses-table.csv") do |row|
-  Address.create!( zipcode: row[1], area: row[2], city: row[3], street: row[4], user_id: row[5] )
+CSV.foreach("db/csv/addresses_view.csv") do |row|
+  Address.create!( family_name: row[1], first_name: row[2], family_name_kana: row[3], first_name_kana: row[4], zipcode: row[5], area: row[6], city: row[7], street: row[8], user_id: row[9] )
 end
 
 CSV.foreach("db/csv/profiles-table.csv") do |row|

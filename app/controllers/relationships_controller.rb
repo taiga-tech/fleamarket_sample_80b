@@ -6,9 +6,6 @@ class RelationshipsController < ApplicationController
     if following.save 
       flash[:success] = "ユーザーをフォローしました" 
       redirect_to @user 
-    else 
-      flash.now[:alert] = " ユーザーのフォローに失敗しました" 
-      redirect_to @user
   end 
 end 
 
@@ -17,9 +14,6 @@ def destroy
   if following.destroy 
     flash[:success] = "ユーザーのフォローを解除しました" 
     redirect_to @user 
-  else 
-    flash.now[:alert] = "ユーザーのフォロー解除に失敗しまた" 
-    redirect_to @user
   end 
 end   
 

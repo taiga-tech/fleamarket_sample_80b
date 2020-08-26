@@ -1,9 +1,8 @@
 .Devise.form
   .Devise__main
     .Devise__header
-      住所情報登録
-    = form_for @address do |f|
-      = render "devise/shared/error_messages", resource: @address
+      住所情報編集
+    = form_with model: [@user, @address], local: true, id: "edit_address" do |f|
       .title
         送付先氏名
       .flex
@@ -35,5 +34,5 @@
         = f.text_field :street, placeholder: "その他(番地など)"
         %span.separator
       .actions.form-bottom
-        = f.submit "Sign up"
-    = render "devise/shared/links"
+        = f.submit "編集"
+      = link_to "戻る", user_path(@user)

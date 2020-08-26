@@ -18,6 +18,13 @@ $(function() {
     cvc: function (value, element) {
       return this.optional(element) || /^\d{3,4}$/.test(value);
     },
+    kana: function (value, element) {
+      return this.optional(element) || /^[\u3041-\u3096]+$/.test(value);
+    },
+    zenkaku: function (value, element) {
+      return this.optional(element) || /^[^\x01-\x7E\xA1-\xDF]+$/.test(value);
+    },
+
   }
 
 
@@ -29,6 +36,25 @@ $(function() {
     rules: {
       "user[name]": {
         required: true
+      },
+      "user[family_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "user[first_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "user[family_name]": {
+        required: true,
+        zenkaku: true,
+      },
+      "user[first_name]": {
+        required: true,
+        zenkaku: true,
+      },
+      "user[birthday]": {
+        required: true,
       },
       "user[email]": {
         required: true,
@@ -46,6 +72,18 @@ $(function() {
     messages: {
       "user[name]": {
         required: "ユーザーネームを入力してください"
+      },
+      "user[family_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "user[first_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "user[family_name]": {
+        zenkaku: "全角で入力してください",
+      },
+      "user[first_name]": {
+        zenkaku: "全角で入力してください",
       },
       "user[email]": {
         required: "メールアドレスを入力してください",
@@ -69,6 +107,22 @@ $(function() {
 
   $("#new_address").validate ({
     rules: {
+      "address[family_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "address[first_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "address[family_name]": {
+        required: true,
+        zenkaku: true,
+      },
+      "address[first_name]": {
+        required: true,
+        zenkaku: true,
+      },
       "address[zipcode]": {
         required: true,
         zipcode: true,
@@ -84,6 +138,18 @@ $(function() {
       },
     },
     messages: {
+      "address[family_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "address[first_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "address[family_name]": {
+        zenkaku: "全角で入力してください",
+      },
+      "address[first_name]": {
+        zenkaku: "全角で入力してください",
+      },
       "address[zipcode]": {
         zipcode: "フォーマットが違います"
       }
@@ -94,6 +160,60 @@ $(function() {
   });
   $("#address_zipcode", "#address_area", "#address_city", "#address_street").blur(function() {
     $(this).valid();
+  });
+
+  $("#edit_address").validate ({
+    rules: {
+      "address[family_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "address[first_name_kana]": {
+        required: true,
+        kana: true,
+      },
+      "address[family_name]": {
+        required: true,
+        zenkaku: true,
+      },
+      "address[first_name]": {
+        required: true,
+        zenkaku: true,
+      },
+      "address[zipcode]": {
+        required: true,
+        zipcode: true,
+      },
+      "address[area]": {
+        required: true,
+      },
+      "address[city]": {
+        required: true,
+      },
+      "address[street]": {
+        required: true,
+      },
+    },
+    messages: {
+      "address[family_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "address[first_name_kana]": {
+        kana: "ひらがなで入力してください",
+      },
+      "address[family_name]": {
+        zenkaku: "全角で入力してください",
+      },
+      "address[first_name]": {
+        zenkaku: "全角で入力してください",
+      },
+      "address[zipcode]": {
+        zipcode: "フォーマットが違います"
+      },
+    },
+    errorClass: "devise-invalid",
+    errorElement: "p",
+    valudClass: "valid",
   });
 
   $("#items-form").validate ({
@@ -113,7 +233,7 @@ $(function() {
       "item[condition]": {
         required: true,
       },
-      "item[shippingcharges]": {
+      "item[shipping]": {
         required: true,
       },
       "item[leadtime]": {
@@ -135,7 +255,6 @@ $(function() {
     errorClass: "invalid",
     errorElement: "p",
     valudClass: "valid",
-
   });
   $("#item_title",
     "#item_text",

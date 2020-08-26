@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: :new 
-  def index  
-    @user = User.all 
-  end 
+  before_action :authenticate_user!, except: :new
+
+  def index
+    @user = User.all
+  end
   def new
     # @user = User.new
   end
@@ -13,7 +14,7 @@ class UsersController < ApplicationController
     @items = @user.items
     # @profile = Profile.new
     @user.profile.image = "default.png"
-    @profile = Profile.find_by(user_id: current_user.id)
+    @profile = Profile.find_by(user_id: @user.id)
     @created_at = @user.created_at
     # @zipcode = user.zipcode
     @address = @user.address
@@ -23,14 +24,15 @@ class UsersController < ApplicationController
   end
 
   def likes
-  end 
+  end
 
   def followers
-    @user = User.find(params[:id]) 
-    @users = @user.followers 
-  end 
-  def followings 
-    @user = User.find(params[:id]) 
-    @users = @user.followings 
-  end 
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
 end

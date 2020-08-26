@@ -1,18 +1,17 @@
 -# パンくず
 - breadcrumb :users
 
-= render "notification"
-.container 
+.container
   .wrapper
     .header
       .profile_name
         = @name
       .profile_image
-        - if user_signed_in? && current_user.id == @user.id
-          = image_tag @profile.image.url, class: "photo" if @profile.image.present?
+        = image_tag @profile.image.url, class: "photo"
       .selfy
         - if user_signed_in? && current_user.id == @user.id
-          = link_to "自己紹介編集", edit_user_profile_path(@current_user.id, @profile.id)
+          = link_to "自己紹介編集", edit_user_profile_path(@user.id, @profile.id)
+          = link_to "住所編集", edit_user_address_path(@user.id, @address.id)
       .profile_follow
         = render partial: "follow_button"
         = link_to "フォロー中：#{@user.followings.count}", followings_user_path(@user), class: "followings"
