@@ -12,10 +12,10 @@
     = javascript_include_tag 'application'
   %body
 
-    - unless controller_name == "items" || controller_name == "registrations" || controller_name == "sessions"
+    - unless controller_name == "items" || controller_name == "registrations" || controller_name == "sessions" || controller_name == "addresses"
       = render partial: 'layouts/header'
       = render partial: 'layouts/breadcrumbs'
-      
+
     = render partial: "devise/shared/modal"
     = yield
     = render partial: 'layouts/footer'

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, except: :new 
-  def index  
-    @user = User.all 
-  end 
+  before_action :authenticate_user!, except: :new
+
+  def index
+    @user = User.all
+  end
   def new
     # @user = User.new
   end
@@ -23,14 +24,15 @@ class UsersController < ApplicationController
   end
 
   def likes
-  end 
+  end
 
   def followers
-    @user = User.find(params[:id]) 
-    @users = @user.followers 
-  end 
-  def followings 
-    @user = User.find(params[:id]) 
-    @users = @user.followings 
-  end 
+    @user = User.find(params[:id])
+    @users = @user.followers
+  end
+  def followings
+    @user = User.find(params[:id])
+    @users = @user.followings
+  end
+
 end
