@@ -112,19 +112,18 @@ $(function() {
 // 販売手数料の記述
 $(function(){
   function Delivery(delivery) {
-    $(".shippingfee-span").text(delivery.price)
+    $(".shippingfee-span").text(`¥ ${delivery.price}`)
     $("#item_price").on('keyup', function(){
       var price = $("#item_price").val();
       if( 300 <= price && price <= 9999999) {
         var fee = Math.floor(price * 0.03);
         var profit = (price - fee - delivery.price);
-        // var deli = ( profit - delivery.price );
-        $(".fee-span").text(fee);
-        $(".profit-span").text(profit);
-        $(".shippingfee-span").text(delivery.price)
+        $(".fee-span").text(`¥ ${fee}`);
+        $(".profit-span").text(`¥ ${profit}`);
+        $(".shippingfee-span").text(`¥ ${delivery.price}`)
       }else{
-        $(".fee-span").text('');
-        $(".profit-span").text('');
+        $(".fee-span").text('¥ ー');
+        $(".profit-span").text('¥ ー');
       }
     })
   }
@@ -145,7 +144,7 @@ $(function(){
         alert("失敗しました")
       });
     } else {
-      $(".shippingfee-span").text("");
+      $(".shippingfee-span").text("¥ ー");
     }
   })
 });
