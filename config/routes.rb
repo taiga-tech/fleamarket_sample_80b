@@ -15,11 +15,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :show, :edit, :update] do
     resources :profiles, only: [:edit, :update]
+    resources :addresses, only: [:edit, :update]
     collection do
       get :likes
     end
     member do
-      get :followings, :followers
+      get  :followings, :followers
     end
   end
 

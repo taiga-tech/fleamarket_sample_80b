@@ -84,8 +84,20 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
   protected
   def address_params
-    params.require(:address).permit(:zipcode, :city, :area, :street, :user_id)
+    params.require(:address)
+    .permit(:family_name,
+            :first_name,
+            :family_name_kana,
+            :first_name_kana,
+            :birthday,
+            :zipcode,
+            :city,
+            :area,
+            :street,
+            :user_id,
+            )
   end
+
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
