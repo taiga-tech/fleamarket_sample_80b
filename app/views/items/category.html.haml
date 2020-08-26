@@ -1,0 +1,30 @@
+= render "header"
+-# パンくず
+- breadcrumb :category
+= render partial: 'layouts/breadcrumbs'
+
+.main__box--itemBox
+  - @categories.each do |category|
+    .category_title
+      = category.root.name
+    .main__box--itemBox--archive--textItem3
+      - category.items.first(2).shuffle.each do |item|
+        - unless item.stock == 0
+          = link_to item_path(item) do
+            .itemPickBox2
+              .itemPickBox2__item-image
+                - item.images.first(1).each do |image|
+                  = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+              %ul.item_status2
+                %li.item_status2__price
+                  = "¥#{item.price}"
+                %li.item_status2__title
+                  = link_to "🤍#{item.liked_users.count}", item_path(item)
+        - else
+          .itemPickBox2
+            .itemPickBox2__item-image
+              - item.images.first(1).each do |image|
+                = image_tag image.image.url, height: "100%", width: "100%", class: "item_image" if image.image.present?
+            %ul.item_status2
+              %li.item_status__stock
+                完売しました
