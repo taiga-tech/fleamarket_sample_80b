@@ -218,7 +218,7 @@ $(function() {
 
   $("#items-form").validate ({
     rules: {
-      "item[images_attributes]": {
+      "item[images_attributes][0][image]": {
         required: true
       },
       "item[title]": {

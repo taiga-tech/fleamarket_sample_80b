@@ -128,17 +128,17 @@
         .price_contents__content
           = f.label :fee, class: "price_contents__content--label" do
             販売手数料(3%)
-          %span.fee-span
+          %span.fee-span ¥ ー
 
         .price_contents__content
           = f.label :shippingfee, class: "price_contents__content--label" do
             配送料の負担
-          %span.shippingfee-span
+          %span.shippingfee-span ¥ ー
 
         .price_contents__content
           = f.label :profit, class: "price_contents__content--label" do
             販売利益
-          %span.profit-span
+          %span.profit-span ¥ ー
     .underline
 
     = f.hidden_field :stock, value:1
