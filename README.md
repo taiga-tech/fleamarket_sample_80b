@@ -16,9 +16,9 @@
   - has_many :items
   - has_many :buys
   - has_one  :address
-  - has_many :comments#, dependent: :destroy
+  - has_many :comments
   - has_one  :profile
-  - has_many :likes, dependent: :destroy
+  - has_many :likes
   - has_many :liked_items, through: :likes, source: :item
   - has_many :sns_credentials
   - has_many :relationships
